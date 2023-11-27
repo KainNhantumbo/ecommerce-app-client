@@ -1,3 +1,14 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": { "browser": true, "es2020": true },
+  "extends": ["next/core-web-vitals", "eslint:recommended"],
+  "rules": {
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/no-unescaped-entities": "off"
+  }
 }
