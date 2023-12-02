@@ -3,6 +3,9 @@ import { ReactNode } from 'react';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
+import AppContext from '@/context/AppContext';
+import { Provider } from 'react-redux';
+import { store } from '@/redux/store';
 
 const inter = Inter({ subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
@@ -17,7 +20,11 @@ type Props = { children: ReactNode };
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
-      <body className={clsx(inter.className, spaceGrotesk.className)}>{children}</body>
+      <body className={clsx(inter.className, spaceGrotesk.className)}>
+        <Provider store={store}>
+          <AppContext>{children}</AppContext>
+        </Provider>
+      </body>
     </html>
   );
 }
