@@ -1,7 +1,35 @@
 {
   "name": "ecommerce-app",
+  "description": "",
   "version": "0.1.0",
   "private": true,
+  "url": "",
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "author": {
+    "name": "Kain Nhantumbo",
+    "email": "nhantumbok@gmail.com",
+    "portfolio": "https://codenut-dev.vercel.app",
+    "github": "https://github.com/KainNhantumbo",
+    "linkedin": "https://www.linkedin.com/in/kain-nhantumbo?locale=en_US"
+  },
+  "keywords": [
+    "ecommerce",
+    "ecommerce application",
+    "ecommerce client application",
+    "multi verndor ecommerce application"
+  ],
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.6.7"
+  },
+  "license": "Apache License Version 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KainNhantumbo/ecommerce-app-client"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
