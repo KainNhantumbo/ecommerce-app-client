@@ -1,9 +1,12 @@
+'use client';
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from './slices/auth';
+import authReducer from './slices/auth';
+
+export { Provider } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    authSlice
+    auth: authReducer
   }
 });
 
