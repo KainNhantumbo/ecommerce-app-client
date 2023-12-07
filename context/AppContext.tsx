@@ -71,12 +71,12 @@ console.log(process.env.BASE_URL);
   async function handleAPIHealthCheck() {
     try {
       const {
-        data: { code, message }
-      } = await httpClient<{ code: number; message: string }>({
+        data: { statusCode, message }
+      } = await httpClient<{ statusCode: number; message: string }>({
         method: 'get',
         url: '/api/v1/healthcheck'
       });
-      console.info(`Service response code ${code}. ${message}`);
+      console.info(`Service response code ${statusCode}. ${message}`);
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       console.warn(message);

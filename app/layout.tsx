@@ -2,13 +2,14 @@ import './globals.css';
 import { ReactNode } from 'react';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import AppContext from '@/context/AppContext';
 import { store } from '@/redux/store';
 import { Provider } from '@/redux/store';
 import { constants } from '@/shared/constants';
+import { ThemeProvider } from '@/providers/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -25,9 +26,13 @@ type Props = { children: ReactNode };
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
-      <body className={clsx(inter.className, spaceGrotesk.className)}>
+      <body className={clsx(jakarta.className, spaceGrotesk.className)}>
         <Provider store={store}>
-          <AppContext>{children}</AppContext>
+          <AppContext>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+              {children}
+            </ThemeProvider>
+          </AppContext>
         </Provider>
       </body>
     </html>

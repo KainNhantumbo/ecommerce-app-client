@@ -1,6 +1,10 @@
-import { AxiosError } from "axios";
+import { AxiosError } from 'axios';
 
-export type HttpError = AxiosError<{ message: string| string[]; statusCode: number }>;
+export type HttpError = AxiosError<{
+  message: string | string[];
+  statusCode: number;
+  error?: string;
+}>;
 
 export type Auth = {
   id: string;
