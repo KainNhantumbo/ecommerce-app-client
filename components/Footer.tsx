@@ -1,9 +1,11 @@
-import { constants } from '@/shared/constants';
 import Link from 'next/link';
+import { constants } from '@/shared/constants';
 
 type Navigation = { url: string; label: string }[][];
 
-const navigation: Navigation = [[]];
+const navigation: Navigation = [[
+  
+]];
 
 export default function Footer() {
   return (

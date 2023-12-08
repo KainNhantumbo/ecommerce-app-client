@@ -9,6 +9,7 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import toast from 'react-hot-toast';
 
 type Props = { children: ReactNode };
 
@@ -29,7 +30,6 @@ export default function AppContext({ children }: Props) {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
 
-console.log(process.env.BASE_URL);
   const authenticateUser = async () => {
     try {
       const { data } = await httpClient<Auth>({
@@ -74,7 +74,7 @@ console.log(process.env.BASE_URL);
         data: { statusCode, message }
       } = await httpClient<{ statusCode: number; message: string }>({
         method: 'get',
-        url: '/api/v1/healthcheck'
+        url: '/api/v1/health'
       });
       console.info(`Service response code ${statusCode}. ${message}`);
     } catch (error) {

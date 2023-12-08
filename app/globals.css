@@ -61,7 +61,7 @@
   }
 
   body {
-    @apply w-[100%] relative font-sans m-0 bg-background text-font-light selection:bg-primary selection:text-white selection:text-opacity-90 font-normal uppercase;
+    @apply w-[100%] relative font-sans m-0 bg-background text-font selection:bg-primary selection:text-white selection:text-opacity-90 font-normal uppercase;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
