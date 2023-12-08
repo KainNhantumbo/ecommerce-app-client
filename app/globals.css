@@ -2,31 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --transparent: transparent;
-  --error: #fd384f;
-  --font: #4f4348;
-  --black: #1a1a1a;
-  --white: #ffffffff;
-  --primary: #ab7d41;
-  --secondary: #e64422;
-  --foreground: #ffffffff;
-  --background: #fafafa;
-}
-
-.dark {
-  --transparent: transparent;
-  --error: #fd384f;
-  --font: #c6c5cd;
-  --black: #1b1e20;
-  --white: #ffffffcc;
-  --primary: #ab7d41;
-  --secondary: #e64422;
-  --foreground: #27282d;
-  --background: #1b1b1f;
-}
 
 @layer base {
+  :root {
+    --transparent: transparent;
+    --error: 253 56 79;
+    --font: 95 99 104;
+    --black: 36 35 36;
+    --white: 255 255 255;
+    --primary: 166 118 67;
+    --secondary: 216 73 43;
+    --foreground: 255 255 255;
+    --background: 250 250 250;
+  }
+  
+  .dark {
+    --transparent: transparent;
+    --error: 253 56 79;
+    --font: 198 197 205;
+    --black: 46 45 46;
+    --white: 255 255 255;
+    --primary: 166 118 67;
+    --secondary: 216 73 43;
+    --foreground: 39 40 45;
+    --background: 27 27 31;
+  }
+  
   label {
     @apply select-none;
   }

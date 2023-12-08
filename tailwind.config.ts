@@ -20,14 +20,14 @@ const config: Config = {
       },
       colors: {
         transparent: 'var(--transparent)',
-        error: 'var(--error)',
-        font: 'var(--font)',
-        black: 'var(--black)',
-        white: 'var(--white)',
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
-        foreground: 'var(--foreground)',
-        background: 'var(--background)'
+        error: 'rgb(var(--error) / <alpha-value>)',
+        font: 'rgb(var(--font) / <alpha-value>)',
+        black: 'rgb(var(--black) / <alpha-value>)',
+        white: 'rgb(var(--white) / <alpha-value>)',
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        background: 'rgb(var(--background) / <alpha-value>)',
+        primary: 'rgb(var(--primary) / <alpha-value>)'
       }
     }
   },

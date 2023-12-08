@@ -1,4 +1,5 @@
-import { ShipIcon } from 'lucide-react';
+import { ShipIcon, StarIcon } from 'lucide-react';
+import { RiStarFill } from 'react-icons/ri';
 
 const cards: { title: string; content: string }[] = [
   {
@@ -25,26 +26,30 @@ const cards: { title: string; content: string }[] = [
 
 export default function BrandFeatures() {
   return (
-    <section>
-      <h2 className='font-sans-body font-bold text-4xl'>
+    <section className='w-full max-w-[890px] mx-auto flex flex-col gap-8'>
+      <h2 className='font-sans-display font-bold text-4xl text-center max-w-md mx-auto leading-normal'>
         Unveiling four pillars of distinction
       </h2>
-      <p>
+      <p className='font-sm max-w-2xl mx-auto text-center'>
         We take pride in presenting an unparelleled fusion of design and
         functionality, encapsulated in our pillars of distinction.
       </p>
 
-      <section>
+      <section className='grid mobile-x:grid-cols-2 gap-8'>
         {cards.map((card, i) => {
           return (
-            <div key={i} className=''>
-              <div>
-                <ShipIcon />
-                <span>{`0${i + 1}`}</span>
+            <div
+              key={i}
+              className='group select-none transition-colors flex flex-col gap-4 hover:bg-primary/20 p-5 rounded-3xl border-solid border-[1px] border-font/10'>
+              <div className='flex justify-between items-center'>
+                <StarIcon className='group-hover:stroke-primary' />
+                <span className='font-bold group-hover:text-primary'>{`0${
+                  i + 1
+                }`}</span>
               </div>
 
-              <h3>{card.title}</h3>
-              <p>{card.content}</p>
+              <h3 className='text-xl group-hover:text-primary'>{card.title}</h3>
+              <p className='group-hover:text-primary'>{card.content}</p>
             </div>
           );
         })}
