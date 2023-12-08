@@ -66,8 +66,8 @@ const socialMedia: SocialProps = [
 
 export default function Footer() {
   return (
-    <footer className='w-full flex flex-col p-4 font-sans mt-10'>
-      <section className='w-full flex flex-col gap-8 max-w-[800px] mx-auto'>
+    <footer className='w-full flex flex-col p-4 font-sans mt-10 z-0'>
+      <section className='w-full flex flex-col gap-8 max-w-[890px] mx-auto'>
         <nav className='w-full flex flex-col mobile-x:flex-row gap-8'>
           {navigation.map(({ title, children }, index) => (
             <section key={index} className='flex flex-col gap-2'>

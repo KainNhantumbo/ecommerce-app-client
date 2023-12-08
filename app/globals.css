@@ -11,7 +11,7 @@
   --primary: #ab7d41;
   --secondary: #e64422;
   --foreground: #ffffffff;
-  --background: #;
+  --background: #fafafa;
 }
 
 .dark {
@@ -86,15 +86,5 @@
 
   .inputs {
     @apply w-[100%] max-w-[200px] mobile:max-w-[260px] sm:max-w-md md:max-w-lg h-fit py-[10px] px-[18px] leading-7 outline-none resize-y rounded-xl bg-background bg-opacity-70 border-solid border-[1px] border-opacity-50 border-font text-font focus:border-font focus:border-opacity-70 focus:transition-shadow focus:shadow-[0_0_20px_rgba(0,0,0,0.1)] placeholder:text-[0.9rem] disabled:bg-foreground disabled:placeholder:text-transparent disabled:border-none;
-  }
-}
-
-@layer utilities {
-  ::-webkit-scrollbar {
-    @apply w-[8px] bg-background bg-opacity-70 hover:transition-all hover:delay-200 hover:ease-in-out;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-primary hover:transition-all hover:delay-200 hover:ease-in-out before:content-none absolute top-[50%] bottom-[50%] before:w-[100%] before:h-[100%] before:min-h-[44px] before:min-w-[44px] before:translate-x-[50%] before:translate-y-[50%];
   }
 }
