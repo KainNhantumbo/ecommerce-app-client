@@ -11,7 +11,7 @@
   --primary: #ab7d41;
   --secondary: #e64422;
   --foreground: #ffffffff;
-  --background: #c3b3a4;
+  --background: #;
 }
 
 .dark {
@@ -24,6 +24,20 @@
   --secondary: #e64422;
   --foreground: #27282d;
   --background: #1b1b1f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --transparent: transparent;
+    --error: #fd384f;
+    --font: #c6c5cd;
+    --black: #1b1e20;
+    --white: #ffffffcc;
+    --primary: #ab7d41;
+    --secondary: #e64422;
+    --foreground: #27282d;
+    --background: #1b1b1f;
+  }
 }
 
 @layer base {

@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,7 +11,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-        serif: ['Space Grotesk', 'serif']
+        'sans-body': ['IBM Plex Sans', 'Inter', 'sans-serif'],
+        'sans-display': ['Space Grotesk', 'Inter', 'sans-serif']
       },
       screens: {
         mobile: '420px',

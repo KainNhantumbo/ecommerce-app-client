@@ -1,7 +1,7 @@
 import Package from "../package.json"
 
 export const constants = {
-  name: 'Ecommerce',
+  name: 'WeCommerce',
   author: Package.author,
   version: Package.version,
   license: Package.license,

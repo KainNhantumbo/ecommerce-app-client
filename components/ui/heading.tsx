@@ -1,3 +1,5 @@
+import React from "react";
+
 interface HeadingProps {
   title: string;
   description: string;
