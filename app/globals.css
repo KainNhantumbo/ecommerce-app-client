@@ -32,15 +32,15 @@
   }
 
   h1 {
-    @apply font-serif text-3xl font-medium;
+    @apply font-sans-display text-3xl font-bold;
   }
 
   h2 {
-    @apply font-medium leading-6 text-xl;
+    @apply font-sans-display font-semibold leading-6 text-xl;
   }
 
   h3 {
-    @apply font-medium;
+    @apply font-semibold;
   }
 
   ul,
@@ -61,13 +61,17 @@
   }
 
   body {
-    @apply w-[100%] relative font-sans m-0 bg-background text-font selection:bg-primary selection:text-white selection:text-opacity-90 font-normal uppercase;
+    @apply w-[100%] relative font-sans m-0 bg-background text-font selection:bg-primary selection:text-white selection:text-opacity-90 font-normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     @apply overflow-x-hidden m-0 p-0 scroll-smooth text-font;
+  }
+
+  * {
+    @apply text-font;
   }
 }
 
@@ -77,7 +81,7 @@
   }
 
   .base-link {
-    @apply text-center sm:text-left hover:text-primary transition-colors font-semibold;
+    @apply text-center sm:text-left transition-colors hover:underline hover:underline-offset-4 w-fit;
   }
 
   .inputs {

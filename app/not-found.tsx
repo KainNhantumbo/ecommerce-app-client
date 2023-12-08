@@ -1,6 +1,5 @@
-"use client"
+'use client';
 
-import { ThemeToggle } from '@/components/theme-toggle';
 import { constants } from '@/shared/constants';
 import Link from 'next/link';
 
@@ -21,7 +20,6 @@ export default function NotFound() {
           But if you dont change your direction, and if you keep looking, you
           may end up where you are heading.
         </p>
-        <ThemeToggle/>
         <Link
           href={'/'}
           className='rounded-3xl font-medium font-sans border-solid border-[2px] border-font mt-5 p-3 px-5 hover:border-primary hover:text-primary transition-colors '>
