@@ -2,7 +2,7 @@
 import { Loader } from '@/components/ui/loader';
 
 const Loading = () => (
-  <div className='flex h-full w-full items-center justify-center'>
+  <div className='grid place-content-center place-items-center h-[100vh] w-[100vw]'>
     <Loader />
   </div>
 );

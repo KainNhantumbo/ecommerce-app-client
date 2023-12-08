@@ -5,7 +5,7 @@
 :root {
   --transparent: transparent;
   --error: #fd384f;
-  --font: #1e1a17;
+  --font: #4f4348;
   --black: #1a1a1a;
   --white: #ffffffff;
   --primary: #ab7d41;
@@ -24,20 +24,6 @@
   --secondary: #e64422;
   --foreground: #27282d;
   --background: #1b1b1f;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --transparent: transparent;
-    --error: #fd384f;
-    --font: #c6c5cd;
-    --black: #1b1e20;
-    --white: #ffffffcc;
-    --primary: #ab7d41;
-    --secondary: #e64422;
-    --foreground: #27282d;
-    --background: #1b1b1f;
-  }
 }
 
 @layer base {
@@ -81,7 +67,7 @@
   }
 
   html {
-    @apply overflow-x-hidden m-0 p-0 scroll-smooth;
+    @apply overflow-x-hidden m-0 p-0 scroll-smooth text-font;
   }
 }
 
@@ -92,29 +78,6 @@
 
   .base-link {
     @apply text-center sm:text-left hover:text-primary transition-colors font-semibold;
-  }
-
-  .base-border {
-    @apply border-dotted border-b-[3px] border-[#ffffff4c];
-  }
-
-  .base-corner-button {
-    all: unset;
-    @apply rounded-lg border-solid border-[1px] border-opacity-30 border-font  w-fit cursor-pointer place-content-center grid p-1;
-  }
-
-  .base-button-outline {
-    all: unset;
-    @apply px-[7px] py-[10px] cursor-pointer whitespace-nowrap text-ellipsis text-font overflow-hidden outline-none;
-  }
-
-  .base-label {
-    @apply relative text-xl font-medium;
-  }
-
-  .base-button {
-    all: unset;
-    @apply w-fit cursor-pointer px-2 py-3 rounded-xl bg-primary text-white  whitespace-nowrap text-ellipsis overflow-hidden border-solid border-[1px] border-opacity-80 border-font  text-center hover:bg-primary hover:border-opacity-20 font-semibold hover:text-font transition-colors;
   }
 
   .inputs {
@@ -128,6 +91,6 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-font hover:transition-all hover:delay-200 hover:ease-in-out before:content-none absolute top-[50%] bottom-[50%] before:w-[100%] before:h-[100%] before:min-h-[44px] before:min-w-[44px] before:translate-x-[50%] before:translate-y-[50%];
+    @apply rounded-lg bg-primary hover:transition-all hover:delay-200 hover:ease-in-out before:content-none absolute top-[50%] bottom-[50%] before:w-[100%] before:h-[100%] before:min-h-[44px] before:min-w-[44px] before:translate-x-[50%] before:translate-y-[50%];
   }
 }

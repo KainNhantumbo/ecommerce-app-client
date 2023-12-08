@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import { createContext, useContext, ReactNode, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';

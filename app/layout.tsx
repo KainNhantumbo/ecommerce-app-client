@@ -7,6 +7,7 @@ import { Provider } from '@/redux/store';
 import AppContext from '@/context/AppContext';
 import { constants } from '@/shared/constants';
 import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: Props) {
     <html lang='en'>
       <body className={clsx(jakarta.className, spaceGrotesk.className)}>
         <Provider store={store}>
-          <AppContext>{children}</AppContext>
+          <ThemeProvider attribute='class' enableSystem={true}>
+            <AppContext>{children}</AppContext>
+          </ThemeProvider>
         </Provider>
       </body>
     </html>
