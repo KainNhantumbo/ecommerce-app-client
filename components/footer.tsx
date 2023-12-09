@@ -34,14 +34,12 @@ const navigation: Navigation = [
       { label: 'About Us', url: '/about' },
       { label: 'Careers', url: '#' },
       { label: 'Stories', url: '#' },
-      { label: 'Find a Store', url: '#' }
     ]
   },
   {
     title: 'Home',
     children: [
       { label: 'Products', url: '/' },
-      { label: 'Display', url: '#' },
       { label: 'Contact', url: '/contact' },
       { label: 'FAQ', url: '#' }
     ]
@@ -51,8 +49,7 @@ const navigation: Navigation = [
     children: [
       { label: 'Orders', url: '#' },
       { label: 'Features', url: '#' },
-      { label: 'Terms & Conditions', url: '/terms-and-conditions' },
-      { label: 'Privacy Policy', url: '/privacy-policy' }
+      { label: 'Our Terms', url: '/terms-and-conditions' },
     ]
   },
   {
@@ -76,7 +73,7 @@ export default function Footer() {
   return (
     <footer className='w-full flex flex-col p-4 font-sans mt-10 z-0'>
       <section className='w-full flex flex-col gap-8 max-w-[890px] mx-auto'>
-        <nav className='w-full flex flex-col mobile-x:flex-row gap-8'>
+        <nav className='w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-8'>
           {navigation.map(({ title, children }, index) => (
             <section key={index} className='flex flex-col gap-2'>
               <h3>{title}</h3>
@@ -92,15 +89,15 @@ export default function Footer() {
               </div>
             </section>
           ))}
-          <section className='flex flex-col gap-3 max-w-[100px]'>
+          <section className='flex flex-col gap-3 max-w-[100px] items-center'>
             <h3>Payments</h3>
             <div className='grid grid-cols-2 place-content-center gap-2 '>
-              <RiAmazonFill className='w-[20px] h-[20px]' />
-              <RiVisaFill className='w-[20px] h-[20px]' />
-              <RiMastercardFill className='w-[20px] h-[20px]' />
-              <RiAppleFill className='w-[20px] h-[20px]' />
-              <RiGoogleFill className='w-[20px] h-[20px]' />
-              <RiPaypalFill className='w-[20px] h-[20px]' />
+              <RiAmazonFill className='w-[22px] h-[22px]' />
+              <RiVisaFill className='w-[22px] h-[22px]' />
+              <RiMastercardFill className='w-[22px] h-[22px]' />
+              <RiAppleFill className='w-[22px] h-[22px]' />
+              <RiGoogleFill className='w-[22px] h-[22px]' />
+              <RiPaypalFill className='w-[22px] h-[22px]' />
             </div>
           </section>
         </nav>
@@ -123,7 +120,7 @@ export default function Footer() {
           </div>
 
           <Link className='font-medium text-sm' href={'/privacy-policy'}>
-            Terms & Conditions
+            Privacy Policy
           </Link>
         </section>
       </section>

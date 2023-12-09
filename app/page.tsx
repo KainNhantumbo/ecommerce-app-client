@@ -1,7 +1,7 @@
+import CallToAction from '@/components/brand-call-to-action';
 import BrandFeatures from '@/components/brand-features';
 import BrandTestimonials from '@/components/brand-testmonials';
 import BrandNewsletter from '@/components/breand-newsletter';
-import { Button } from '@/components/ui/button';
 
 export default function Page() {
   return (
@@ -11,6 +11,7 @@ export default function Page() {
       </section>
       <BrandFeatures />
       <BrandTestimonials />
+      <CallToAction/>
       <BrandNewsletter/>
     </main>
   );

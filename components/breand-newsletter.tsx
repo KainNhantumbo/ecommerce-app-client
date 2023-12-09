@@ -24,7 +24,7 @@ export default function BrandNewsletter() {
           type='submit'
           size={'lg'}
           variant={'secondary'}
-          className='text-white rounded-full'>
+          className='text-white rounded-full font-bold'>
           Send
         </Button>
       </form>
