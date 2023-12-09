@@ -14,7 +14,7 @@ import { Button } from './ui/button';
 const mainRoutes = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
-  { name: 'Features', href: '/features' },
+  { name: 'Contact', href: '/contact' },
   { name: 'About', href: '/about' },
   { name: 'Careers', href: '/careers' }
 ];
