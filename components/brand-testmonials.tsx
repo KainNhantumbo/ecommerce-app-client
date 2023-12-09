@@ -30,25 +30,29 @@ const testmonials: TestmonialsProps = [
 
 export default function BrandTestimonials() {
   return (
-    <section>
-      <h2>Testmonials</h2>
+    <section className='w-full max-w-[890px] mx-auto flex flex-col gap-8'>
+      <h2 className='font-sans-display font-bold text-4xl text-center max-w-md mx-auto leading-normal'>
+        Some Testmonials from Our Customers
+      </h2>
 
-      <section>
+      <section className=' w-full flex flex-wrap gap-4 mx-auto items-center justify-center'>
         {testmonials.map((data, i) => (
-          <div key={i} className=''>
-            <div className=''>
-              <RiStarFill />
-              <RiStarFill />
-              <RiStarFill />
+          <div
+            key={i}
+            className='flex flex-col gap-3 max-w-xs items-center text-center'>
+            <div className='flex gap-3'>
+              <RiStarFill className='fill-primary' />
+              <RiStarFill className='fill-secondary' />
+              <RiStarFill className='fill-primary' />
             </div>
             <h3>{data.title}</h3>
 
-            <p>{data.comment}</p>
+            <p className='text-sm'>{data.comment}</p>
 
-            <div>
+            <div className='flex gap-1 flex-col'>
               <h3>{data.customerName}</h3>
-              <div>
-                <VerifiedIcon />
+              <div className='flex items-center gap-1 font-sans-body font-semibold'>
+                <VerifiedIcon className='stroke-secondary w-auto h-5' />
                 <span>Verified Customer</span>
               </div>
             </div>

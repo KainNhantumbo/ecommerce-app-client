@@ -54,6 +54,14 @@ const navigation: Navigation = [
       { label: 'Terms & Conditions', url: '/terms-and-conditions' },
       { label: 'Privacy Policy', url: '/privacy-policy' }
     ]
+  },
+  {
+    title: 'For Employees',
+    children: [
+      { label: 'Sign In', url: '/auth/sign-in' },
+      { label: 'Sign Up', url: '/auth/sign-up' },
+      { label: 'Manage', url: '/dashboard' }
+    ]
   }
 ];
 

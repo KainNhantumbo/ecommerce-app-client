@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --transparent: transparent;
@@ -15,7 +14,7 @@
     --foreground: 255 255 255;
     --background: 250 250 250;
   }
-  
+
   .dark {
     --transparent: transparent;
     --error: 253 56 79;
@@ -27,7 +26,7 @@
     --foreground: 39 40 45;
     --background: 27 27 31;
   }
-  
+
   label {
     @apply select-none;
   }
@@ -79,6 +78,10 @@
 @layer components {
   .base-image {
     @apply rounded-[50%] object-cover w-[100%] h-[100%];
+  }
+
+  .base-border {
+    @apply border-solid border-[1px] border-font/10;
   }
 
   .base-link {

@@ -1,5 +1,4 @@
-import { ShipIcon, StarIcon } from 'lucide-react';
-import { RiStarFill } from 'react-icons/ri';
+import { StarIcon } from 'lucide-react';
 
 const cards: { title: string; content: string }[] = [
   {
