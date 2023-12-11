@@ -5,7 +5,7 @@ export const errorTransformer = ({ response }: HttpError) => {
 
   if (response?.data && response.data.message) {
     if (Array.isArray(response.data.message)) {
-      message = response?.data.message.reduce((value, current) => {
+      message = response.data.message.reduce((value, current) => {
         const message = value.concat(' ', current);
         return message;
       }, '');
@@ -14,5 +14,5 @@ export const errorTransformer = ({ response }: HttpError) => {
     }
   }
 
-  return {message, statusCode: response?.data.statusCode};
+  return { message, statusCode: response?.data.statusCode };
 };

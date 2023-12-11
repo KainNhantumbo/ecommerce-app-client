@@ -53,7 +53,9 @@ export default function AppContext({ children }: Props) {
         const status = Number(error?.response?.status);
         if (status > 400 && status < 404) {
           authenticateUser().catch((error) => {
+             const { message } = errorTransformer(error as HttpError);
             console.error(error?.response?.data?.message || error);
+            console.warn(message);
             router.push('/auth/sign-in');
           });
         }

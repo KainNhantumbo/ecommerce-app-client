@@ -1,11 +1,11 @@
-import React from 'react';
-import { ContactForm } from '@/components/contact-form';
 import {
   ContactIcon,
   LocateIcon,
   MessageCircleIcon,
   PhoneCallIcon
 } from 'lucide-react';
+import React from 'react';
+import { ContactForm } from '@/components/contact-form';
 import BrandNewsletter from '@/components/breand-newsletter';
 
 const options = [

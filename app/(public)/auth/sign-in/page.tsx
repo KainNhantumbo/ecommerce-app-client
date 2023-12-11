@@ -18,13 +18,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import httpClient from '@/config/http-client';
 import { useRouter } from 'next/navigation';
-import { Auth } from '@/types';
+import { Auth, HttpError } from '@/types';
 import toast from 'react-hot-toast';
 import { GithubIcon, LockIcon, MailIcon, UnlockIcon } from 'lucide-react';
 import Image from 'next/image';
 import backgroundImage from '@/public/login-background.jpg';
 import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 import Link from 'next/link';
+import { errorTransformer } from '@/lib/http-error-transformer';
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -46,11 +47,14 @@ export default function Page() {
       const response = await httpClient<Auth>({
         method: 'post',
         url: '/api/v1/auth/sign-in',
-        data
+        data,
+        withCredentials: true
       });
       dispatch(updateAuth({ ...response.data }));
       router.push(`/dashboard`);
     } catch (error: any) {
+       const { message } = errorTransformer(error as HttpError);
+       console.warn(message)
       toast.error('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
