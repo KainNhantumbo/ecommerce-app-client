@@ -141,13 +141,15 @@ export default function Page() {
           </Form>
 
           <div className='flex flex-col gap-2 '>
-            <p className=' max-w-2xl text-end underline hover:text-primary underline-offset-4'>
+            <p className=' max-w-2xl text-end underline hover:text-primary underline-offset-4 transition-colors'>
               <Link href={'/auth/sign-up'}>Forgot password.</Link>
             </p>
             <p className='font-sm max-w-2xl'>
               Don't have an account?{' '}
-              <Link href={'/auth/password-recovery'}>
-                <strong>Sign up.</strong>
+              <Link
+                href={'/auth/password-recovery'}
+                className='font-bold hover:underline hover:underline-offset-4 transition-colors hover:text-primary'>
+                Sign up.
               </Link>
             </p>
           </div>

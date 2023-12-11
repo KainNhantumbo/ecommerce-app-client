@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence, motion } from '@/providers/framer';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
