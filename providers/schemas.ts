@@ -2,6 +2,28 @@
 
 import { z } from 'zod';
 
+export const emailSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'Email is required.' })
+    .email({ message: 'Please enter a valid email.' })
+    .trim()
+    .toLowerCase()
+});
+
+export const passwordSchema = z.object({
+  password: z
+    .string()
+    .trim()
+    .min(8, { message: 'Your password must have at least 8 characters.' })
+    .max(20, { message: 'Your password must have less than 20 characters.' }),
+  confirm_password: z
+    .string()
+    .trim()
+    .min(8, { message: 'Your password must have at least 8 characters.' })
+    .max(20, { message: 'Your password must have less than 20 characters.' })
+});
+
 export const contactSchema = z.object({
   name: z
     .string()
@@ -52,7 +74,7 @@ export const userSignupSchema = z
       .max(21, { message: 'Last name must have less than 21 characters.' })
       .trim(),
 
-    enployeeId: z
+    employeeId: z
       .string()
       .nonempty({ message: 'Please insert your enployer ID.' })
       .trim(),
@@ -84,3 +106,5 @@ export const userSignupSchema = z
 export type UserLoginType = z.infer<typeof userLoginSchema>;
 export type UserSignupType = z.infer<typeof userSignupSchema>;
 export type ContactType = z.infer<typeof contactSchema>;
+export type EmailSchemaType = z.infer<typeof emailSchema>;
+export type PasswordSchemaType = z.infer<typeof passwordSchema>;

@@ -8,6 +8,12 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
+import {
+  ArrowRightCircleIcon,
+  LockIcon,
+  MailIcon,
+  User2Icon
+} from 'lucide-react';
 import { UserSignupType, userSignupSchema } from '@/providers/schemas';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,12 +23,6 @@ import { useForm } from 'react-hook-form';
 import httpClient from '@/config/http-client';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
-import {
-  ArrowRightCircleIcon,
-  LockIcon,
-  MailIcon,
-  User2Icon
-} from 'lucide-react';
 import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 
 export default function Page() {
@@ -34,7 +34,12 @@ export default function Page() {
     resolver: zodResolver(userSignupSchema),
     defaultValues: {
       email: '',
-      password: ''
+      password: '',
+      confirm_password: '',
+      firstName: '',
+      lastName: '',
+      employeeId: '',
+      role: ''
     }
   });
 
@@ -46,7 +51,7 @@ export default function Page() {
         url: '/api/v1/auth/sign-up',
         data: {
           ...data,
-          employeeId: data.enployeeId.toUpperCase(),
+          employeeId: data.employeeId.toUpperCase(),
           role: data.role.toUpperCase()
         }
       });
@@ -122,7 +127,7 @@ export default function Page() {
               <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
                 <FormField
                   control={form.control}
-                  name='enployeeId'
+                  name='employeeId'
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
