@@ -30,7 +30,7 @@ export default function Page() {
   const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { width: innerWidth, height: innerHeight } = useInnerWindowSize();
+  const { height: innerHeight } = useInnerWindowSize();
 
   const form = useForm<UserLoginType>({
     resolver: zodResolver(userLoginSchema),
@@ -43,7 +43,11 @@ export default function Page() {
   const onSubmit = async (data: UserLoginType) => {
     setLoading(true);
     try {
-      const response = await httpClient<Auth>({ method: 'post', data });
+      const response = await httpClient<Auth>({
+        method: 'post',
+        url: '/api/v1/auth/sign-in',
+        data
+      });
       dispatch(updateAuth({ ...response.data }));
       router.push(`/dashboard`);
     } catch (error: any) {
@@ -59,7 +63,7 @@ export default function Page() {
       style={{ minHeight: innerHeight / 1 }}>
       <section className='w-full max-w-[890px] p-8 m-auto flex justify-between items-center gap-8'>
         <div className=' w-full flex flex-col gap-12 justify-between max-w-[400px] mx-auto md:w-full'>
-          <div className='w-full '>
+          <div className='w-full flex flex-col gap-3'>
             <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
               Wellcome back!
             </h1>
@@ -129,8 +133,7 @@ export default function Page() {
                   disabled={loading}
                   variant={'outline'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2 group'
-                  type='submit'>
+                  className='w-full flex items-center gap-2 group'>
                   <GithubIcon className='stroke-primary group-hover:stroke-white' />
                   <span className='text-primary font-semibold group-hover:text-white'>
                     Sign In with Github
@@ -142,12 +145,12 @@ export default function Page() {
 
           <div className='flex flex-col gap-2 '>
             <p className=' max-w-2xl text-end underline hover:text-primary underline-offset-4 transition-colors'>
-              <Link href={'/auth/sign-up'}>Forgot password.</Link>
+              <Link href={'/auth/password-recovery'}>Forgot password.</Link>
             </p>
             <p className='font-sm max-w-2xl'>
               Don't have an account?{' '}
               <Link
-                href={'/auth/password-recovery'}
+                href={'/auth/sign-up'}
                 className='font-bold hover:underline hover:underline-offset-4 transition-colors hover:text-primary'>
                 Sign up.
               </Link>

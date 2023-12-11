@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 import { RiCloseLine, RiMenu4Fill } from 'react-icons/ri';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -34,7 +33,6 @@ const adminRoutes = [
 
 export default function Header() {
   const { onToggleReveal, isBreakPoint } = useToggleHeader(768);
-  const { width: windowWidth } = useInnerWindowSize();
   const pathname = usePathname();
 
   const isProtectedRoutes = pathname.includes('dashboard');
@@ -90,18 +88,24 @@ export default function Header() {
         </div>
 
         <Button
-          variant={'outline'}
+          variant={'ghost'}
           size={'icon'}
           onClick={onToggleReveal}
-          className={clsx(' fixed top-1 right-5 border-none  md:hidden', {
+          className={clsx('group fixed top-1 right-5 border-none  md:hidden', {
             'bg-transparent': isBreakPoint
           })}>
           {!isBreakPoint ? (
-            <div className='flex items-center gap-2 font-semibold pointer-events-none'>
-              <RiMenu4Fill className={'w-5 h-5 pointer-events-none'} />
-            </div>
+            <RiMenu4Fill
+              className={
+                'w-5 h-5 pointer-events-none group-hover:fill-primary transition-colors'
+              }
+            />
           ) : (
-            <RiCloseLine className={'w-5 h-5 pointer-events-none'} />
+            <RiCloseLine
+              className={
+                'w-5 h-5 pointer-events-none group-hover:fill-primary transition-colors'
+              }
+            />
           )}
         </Button>
       </div>

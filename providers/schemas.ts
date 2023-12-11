@@ -41,16 +41,24 @@ export const userLoginSchema = z.object({
 
 export const userSignupSchema = z
   .object({
-    first_name: z
+    firstName: z
       .string()
       .min(2, { message: 'First name must have a minimun of 2 characters.' })
       .max(21, { message: 'First name must have less than 21 characters.' })
       .trim(),
-    last_name: z
+    lastName: z
       .string()
       .min(2, { message: 'Last name must have a minimun of 2 characters.' })
       .max(21, { message: 'Last name must have less than 21 characters.' })
       .trim(),
+
+    enployeeId: z
+      .string()
+      .nonempty({ message: 'Please insert your enployer ID.' })
+      .trim(),
+
+    role: z.string().nonempty({ message: 'Please select your role.' }).trim(),
+
     email: z
       .string()
       .min(1, { message: 'Email is required.' })
