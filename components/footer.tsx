@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { constants } from '@/shared/constants';
 import {
   FacebookIcon,
   TwitterIcon,
@@ -7,14 +5,9 @@ import {
   LinkedinIcon,
   LucideIcon
 } from 'lucide-react';
-import {
-  RiAmazonFill,
-  RiAppleFill,
-  RiGoogleFill,
-  RiMastercardFill,
-  RiPaypalFill,
-  RiVisaFill
-} from 'react-icons/ri';
+import Link from 'next/link';
+import { constants } from '@/shared/constants';
+
 
 type Navigation = {
   title: string;
@@ -32,16 +25,16 @@ const navigation: Navigation = [
     title: 'Our Company',
     children: [
       { label: 'About Us', url: '/about' },
-      { label: 'Careers', url: '#' },
-      { label: 'Stories', url: '#' },
+      { label: 'Careers', url: '/careers' },
+      { label: 'Stories', url: '/stories' },
     ]
   },
   {
     title: 'Home',
     children: [
-      { label: 'Products', url: '/' },
+      { label: 'Products', url: '/products' },
       { label: 'Contact', url: '/contact' },
-      { label: 'FAQ', url: '#' }
+      { label: 'FAQ', url: '/faq' }
     ]
   },
   {
@@ -89,7 +82,7 @@ export default function Footer() {
               </div>
             </section>
           ))}
-          <section className='flex flex-col gap-3 max-w-[100px] items-center'>
+          {/* <section className='flex flex-col gap-3 max-w-[100px] items-center'>
             <h3>Payments</h3>
             <div className='grid grid-cols-2 place-content-center gap-2 '>
               <RiAmazonFill className='w-[22px] h-[22px]' />
@@ -99,7 +92,7 @@ export default function Footer() {
               <RiGoogleFill className='w-[22px] h-[22px]' />
               <RiPaypalFill className='w-[22px] h-[22px]' />
             </div>
-          </section>
+          </section> */}
         </nav>
 
         <section className='w-full flex flex-wrap gap-3 items-center justify-between'>

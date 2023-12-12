@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  swcMinify: true,
+  optimizeFonts: false,
+  productionBrowserSourceMaps: false,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,24 +9,23 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import { updateAuth } from '@/redux/slices/auth';
-import { useDispatch } from 'react-redux';
-import { UserLoginType, userLoginSchema } from '@/providers/schemas';
 import { Input } from '@/components/ui/input';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import httpClient from '@/config/http-client';
-import { useRouter } from 'next/navigation';
+import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { errorTransformer } from '@/lib/http-error-transformer';
+import { UserLoginType, userLoginSchema } from '@/providers/schemas';
+import backgroundImage from '@/public/login-background.jpg';
+import { updateAuth } from '@/redux/slices/auth';
 import { Auth, HttpError } from '@/types';
-import toast from 'react-hot-toast';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { GithubIcon, LockIcon, MailIcon, UnlockIcon } from 'lucide-react';
 import Image from 'next/image';
-import backgroundImage from '@/public/login-background.jpg';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 import Link from 'next/link';
-import { errorTransformer } from '@/lib/http-error-transformer';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -53,8 +53,8 @@ export default function Page() {
       dispatch(updateAuth({ ...response.data }));
       router.push(`/dashboard`);
     } catch (error: any) {
-       const { message } = errorTransformer(error as HttpError);
-       console.warn(message)
+      const { message } = errorTransformer(error as HttpError);
+      console.warn(message);
       toast.error('Something went wrong. Please try again.');
     } finally {
       setLoading(false);

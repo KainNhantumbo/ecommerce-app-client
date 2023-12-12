@@ -1,5 +1,4 @@
-import { VerifiedIcon } from 'lucide-react';
-import { RiStarFill } from 'react-icons/ri';
+import { StarsIcon, VerifiedIcon } from 'lucide-react';
 
 type TestmonialsProps = {
   title: string;
@@ -41,9 +40,9 @@ export default function BrandTestimonials() {
             key={i}
             className='flex flex-col gap-3 max-w-xs items-center text-center'>
             <div className='flex gap-3'>
-              <RiStarFill className='fill-primary' />
-              <RiStarFill className='fill-secondary' />
-              <RiStarFill className='fill-primary' />
+              <StarsIcon className='stroke-primary' />
+              <StarsIcon className='stroke-secondary' />
+              <StarsIcon className='stroke-primary' />
             </div>
             <h3>{data.title}</h3>
 

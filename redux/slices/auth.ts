@@ -1,7 +1,7 @@
 import { Auth } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState: Auth = { id: '', email: '', name: '', token: '' };
+const initialState: Auth = { id: Number(), email: '', name: '', token: '' };
 
 const authSlice = createSlice({
   name: 'auth',

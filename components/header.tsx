@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
-import { RiCloseLine, RiMenu4Fill } from 'react-icons/ri';
+
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Button } from './ui/button';
+import { MenuIcon, XIcon } from 'lucide-react';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -95,15 +96,15 @@ export default function Header() {
             'bg-transparent': isBreakPoint
           })}>
           {!isBreakPoint ? (
-            <RiMenu4Fill
+            <MenuIcon
               className={
-                'w-5 h-5 pointer-events-none group-hover:fill-primary transition-colors'
+                'w-5 h-5 pointer-events-none group-hover:stroke-primary transition-colors'
               }
             />
           ) : (
-            <RiCloseLine
+            <XIcon
               className={
-                'w-5 h-5 pointer-events-none group-hover:fill-primary transition-colors'
+                'w-5 h-5 pointer-events-none group-hover:stroke-primary transition-colors'
               }
             />
           )}

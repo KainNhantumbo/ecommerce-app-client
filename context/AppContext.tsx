@@ -9,12 +9,12 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-
+import { useAutoSyncCartStore } from '@/hooks/useLocalStore';
 
 type Props = { children: ReactNode };
 
 type Context = {
-  httpClientAPI: <T>(config: AxiosRequestConfig) => Promise<AxiosResponse<T>>;
+  httpClientAPI: <T>(config: AxiosRequestConfig<T>) => Promise<AxiosResponse<T>>;
 };
 
 const context = createContext<Context>({
@@ -29,6 +29,9 @@ export default function AppContext({ children }: Props) {
   const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
+
+  // auto sync cart data to or from local storage
+  useAutoSyncCartStore();
 
   const authenticateUser = async () => {
     try {
@@ -53,7 +56,7 @@ export default function AppContext({ children }: Props) {
         const status = Number(error?.response?.status);
         if (status > 400 && status < 404) {
           authenticateUser().catch((error) => {
-             const { message } = errorTransformer(error as HttpError);
+            const { message } = errorTransformer(error as HttpError);
             console.error(error?.response?.data?.message || error);
             console.warn(message);
             router.push('/auth/sign-in');
