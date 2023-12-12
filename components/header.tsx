@@ -8,7 +8,9 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Button } from './ui/button';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -35,6 +37,7 @@ const adminRoutes = [
 export default function Header() {
   const { onToggleReveal, isBreakPoint } = useToggleHeader(768);
   const pathname = usePathname();
+  const cart = useSelector((state: RootState) => state.cart);
 
   const isProtectedRoutes = pathname.includes('dashboard');
 
@@ -49,7 +52,7 @@ export default function Header() {
             src='/favicon.png'
             alt='logo image'
           />
-          <span className='font-medium text-md text-primary'>WeCommerce</span>
+          <span className='font-bold text-md text-secondary/80'>WeCommerce</span>
         </div>
 
         <nav
@@ -80,13 +83,19 @@ export default function Header() {
 
         <div
           className={clsx(
-            ' fixed top-[1px] right-14 md:right-8 border-none md:flex lg:right-[calc(50%_-_480px)] w-fit flex-col md:flex-row items-center gap-2 px-2 py-1  ',
-            {
-              ' ': isBreakPoint
-            }
+            ' fixed top-[1px] right-14 md:right-8 border-none md:flex lg:right-[calc(50%_-_480px)] w-fit flex-col md:flex-row items-center gap-2 px-2 py-1  '
           )}>
           <ThemeToggle />
         </div>
+
+        <Link
+          href={'/checkout'}
+          className={clsx(
+            'fixed top-[12px] right-28 md:right-20 border-none flex lg:right-[calc(50%_-_430px)] w-fit   items-center gap-2 px-2 py-[2px] bg-black rounded-3xl hover:bg-primary transition-colors hover:cursor-pointer dark:bg-slate-600 dark:hover:bg-primary/70'
+          )}>
+          <ShoppingCartIcon className='w-4 h-4 pointer-events-none stroke-white' />
+          <span className='font-bold text-white'>{cart.length}</span>
+        </Link>
 
         <Button
           variant={'ghost'}

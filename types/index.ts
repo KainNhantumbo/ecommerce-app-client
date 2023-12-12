@@ -26,10 +26,11 @@ export type Category = {
 
 export type CartItem = {
   name: string;
-  productId: string;
+  productId: number;
   quantity: number;
   price: number;
-  image: Partial<ImageType>;
+  category: string;
+  image: ImageType;
 };
 
 export type Size = {
@@ -48,10 +49,20 @@ export type Product = {
   isFeatured: boolean;
   color: Color;
   images: ImageType[];
-  category: Category
-  sizes: Size[]
+  category: Category;
+  sizes: Size[];
   createdAt: string;
   updatedAt: string;
+};
+
+export type ProductQuery = {
+  search: string;
+  color: string;
+  category: string;
+  price: string;
+  size: string;
+  isFeatured: string;
+  isArchived: string;
 };
 
 export type HttpError = AxiosError<{
