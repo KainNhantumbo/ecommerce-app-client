@@ -5,7 +5,7 @@ import { currencyFormatter } from '@/lib/utils';
 import { updateCart } from '@/redux/slices/cart';
 import { AppDispatch, RootState } from '@/redux/store';
 import { CartItem } from '@/types';
-import { MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
+import { InfoIcon, MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,60 +66,69 @@ export default function Page() {
 
   return (
     <main className='w-full px-4 mt-[90px] font-sans flex flex-col gap-12'>
-      <section className='w-full max-w-[890px] mx-auto sm:flex-row gap-8 flex flex-col items-center sm:items-start md:flex-row'>
+      <section className='w-full max-w-[890px] mx-auto sm:flex-row gap-4 md:gap-8 flex flex-col items-center sm:items-start md:flex-row'>
         <section className='w-full flex flex-col gap-3'>
           <div className='font-sans-display font-bold text-2xl leading-relaxed'>
             Your cart ({cart.length} items)
           </div>
-          {cart.map((product) => (
-            <div
-              key={product.productId}
-              className='w-full flex flex-col gap-8 bg-foreground p-4 rounded-2xl base-border'>
-              <Image
-                src={product.image.url}
-                alt={`${product.name} image`}
-                width={600}
-                height={600}
-                className='object-cover rounded-2xl base-border'
-              />
-              <div className='flex flex-col gap-3'>
-                <h2>{product.name}</h2>
-                <p>{product.category}</p>
-                <p>{currencyFormatter(product.price)}</p>
+          {cart.length > 0 ? (
+            cart.map((product) => (
+              <div
+                key={product.productId}
+                className='w-full flex flex-col gap-8 bg-foreground p-4 rounded-2xl base-border'>
+                <Image
+                  src={product.image.url}
+                  alt={`${product.name} image`}
+                  width={600}
+                  height={600}
+                  className='object-cover rounded-2xl base-border'
+                />
+                <div className='flex flex-col gap-3'>
+                  <h2>{product.name}</h2>
+                  <p>{product.category}</p>
+                  <p>{currencyFormatter(product.price)}</p>
 
-                <div className=''>
-                  <div className=''>
-                    <Button onClick={() => decreaseQuantity(product)}>
-                      <MinusIcon />
-                    </Button>
-                    <input
-                      type='number'
-                      title='Quantity'
-                      min={1}
-                      value={product.quantity}
-                      onChange={(e) =>
-                        updateQuantity(product.productId, +e.target.value)
-                      }
-                    />
+                  <div className='w-full flex items-center justify-between'>
+                    <div className=''>
+                      <Button onClick={() => decreaseQuantity(product)}>
+                        <MinusIcon />
+                      </Button>
+                      <input
+                        type='number'
+                        title='Quantity'
+                        min={1}
+                        value={product.quantity}
+                        onChange={(e) =>
+                          updateQuantity(product.productId, +e.target.value)
+                        }
+                      />
+                      <Button
+                        value={'ghost'}
+                        size={'sm'}
+                        onClick={() => increaseQuantity(product)}>
+                        <PlusIcon />
+                      </Button>
+                    </div>
+
                     <Button
-                      value={'ghost'}
-                      size={'sm'}
-                      onClick={() => increaseQuantity(product)}>
-                      <PlusIcon />
+                      className=''
+                      onClick={() => removeCartItem(product.productId)}>
+                      <Trash2Icon />
                     </Button>
                   </div>
-
-                  <Button
-                    className=''
-                    onClick={() => removeCartItem(product.productId)}>
-                    <Trash2Icon />
-                  </Button>
                 </div>
               </div>
+            ))
+          ) : (
+            <div className='base-border flex items-center gap-3 rounded-2xl p-5 m-auto w-full bg-foreground'>
+              <InfoIcon className='w-5 h-5 pointer-events-none group-hover:stroke-primary transition-colors' />
+              <h3 className='font-sans-body '>
+                Nothing in cart to be displated
+              </h3>
             </div>
-          ))}
+          )}
         </section>
-        <section className='w-full max-w-[320px] flex flex-col gap-3'>
+        <section className='w-full sm:max-w-[320px] flex flex-col gap-3'>
           <div className='font-sans-display font-bold text-2xl leading-relaxed'>
             Summary
           </div>

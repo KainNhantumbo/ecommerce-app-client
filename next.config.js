@@ -5,8 +5,9 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
   images: {
-    domains: ['https://res.cloudinary.com/']
-  }
+    remotePatterns: [{ hostname: 'https://res.cloudinary.com/' }]
+  },
+
 };
 
 module.exports = nextConfig;

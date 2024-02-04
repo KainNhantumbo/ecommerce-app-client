@@ -17,7 +17,7 @@ export default function NotFound() {
         </h1>
         <h2 className='font-bold font-sans text-primary'>Page not found</h2>
         <p className='max-w-screen-mobile text-center font-sans normal-case font-medium'>
-          But if you dont change your direction, and if you keep looking, you
+          But if you don't change your direction, and if you keep looking, you
           may end up where you are heading.
         </p>
         <Link

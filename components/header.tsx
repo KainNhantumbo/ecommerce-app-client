@@ -1,16 +1,15 @@
 'use client';
 
-import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
-
-import { usePathname } from 'next/navigation';
-import Image from 'next/image';
-import clsx from 'clsx';
-import { Button } from './ui/button';
-import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
-import { useSelector } from 'react-redux';
+import Link from 'next/link';
 import { RootState } from '@/redux/store';
+import clsx from 'clsx';
+import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useSelector } from 'react-redux';
+import { Button } from './ui/button';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -19,6 +18,8 @@ const mainRoutes = [
   { name: 'About', href: '/about' },
   { name: 'Careers', href: '/careers' }
 ];
+
+console.log('darwin', 'linux', 'windowsNT');
 
 const adminRoutes = [
   { name: 'Overview', href: '/dashboard' },
@@ -52,7 +53,9 @@ export default function Header() {
             src='/favicon.png'
             alt='logo image'
           />
-          <span className='font-bold text-md text-secondary/80'>WeCommerce</span>
+          <span className='font-bold text-md text-secondary/80'>
+            WeCommerce
+          </span>
         </div>
 
         <nav
@@ -60,7 +63,7 @@ export default function Header() {
           className='md:w-fit md:mx-auto md:h-[48px] md:p-0 md:static md:px-8 lg:px-24 relative flex flex-col md:flex-row items-center md:justify-center gap-3 top-14 max-w-[95%] backdrop-blur-md bg-[#fafafa99] dark:bg-[#1b1b1f99] sm:bg-background sm:dark:bg-background rounded-2xl mx-auto'
           aria-label='Global'
           style={{ display: isBreakPoint ? 'flex' : 'none' }}>
-          <section className='flex sm:flex-row gap-3 md:items-center font-semibold text-md flex-col w-full p-5 rounded-md'>
+          <section className='flex md:flex-row gap-3 md:items-center font-semibold text-md flex-col w-full p-5 rounded-md'>
             {isProtectedRoutes
               ? adminRoutes.map((route, i) => (
                   <Link

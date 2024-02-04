@@ -11,7 +11,7 @@ export const useToggleHeader = (breakpoint: number) => {
     windowInnerSize.width > breakpoint
       ? setIsBreakPoint(true)
       : setIsBreakPoint(false);
-  }, [windowInnerSize]);
+  }, [windowInnerSize, breakpoint]);
 
   return {
     isBreakPoint,

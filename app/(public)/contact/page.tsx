@@ -6,13 +6,13 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { ContactForm } from '@/components/contact-form';
-import BrandNewsletter from '@/components/breand-newsletter';
+import BrandNewsletter from '@/components/brand-newsletter';
 
 const options = [
   {
     icon: MessageCircleIcon,
     name: 'Chat to Sales',
-    description: 'Speack to our friendly team.',
+    description: 'Speak to our friendly team.',
     contact: 'weco@mail.com'
   },
   {
