@@ -7,7 +7,6 @@ const nextConfig = {
   images: {
     remotePatterns: [{ hostname: 'https://res.cloudinary.com/' }]
   },
-
 };
 
 module.exports = nextConfig;

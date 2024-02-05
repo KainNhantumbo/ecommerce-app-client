@@ -37,34 +37,34 @@ const options = [
 
 export default function Page() {
   return (
-    <main className='w-full px-4 mt-[90px] font-sans flex flex-col gap-12'>
-      <section className='w-full max-w-[890px] mx-auto sm:flex-row gap-8 flex flex-col'>
-        <div className='w-full flex flex-col gap-9'>
-          <div className='w-full flex flex-col gap-4 items-center'>
-            <ContactIcon className='stroke-primary w-auto h-12' />
-            <h1 className='font-bold text-4xl text-center max-w-2xl mx-auto leading-normal'>
+    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans'>
+      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8 sm:flex-row'>
+        <div className='flex w-full flex-col gap-9'>
+          <div className='flex w-full flex-col items-center gap-4'>
+            <ContactIcon className='h-12 w-auto stroke-primary' />
+            <h1 className='mx-auto max-w-2xl text-center text-4xl font-bold leading-normal'>
               Contact our friendly team
             </h1>
-            <p className='font-sm max-w-xl mx-auto text-center'>
-              We're here to help! If you have any questions, suggestions, or
-              just want to say hello, please feel free to reach out to us.
+            <p className='font-sm mx-auto max-w-xl text-center'>
+              We're here to help! If you have any questions, suggestions, or just want
+              to say hello, please feel free to reach out to us.
             </p>
           </div>
 
-          <div className='w-full grid place-content-center place-items-center'>
-            <div className='w-full grid grid-cols-2 md:grid-cols-4 gap-2 mobile-x:gap-8'>
+          <div className='grid w-full place-content-center place-items-center'>
+            <div className='grid w-full grid-cols-2 gap-2 mobile-x:gap-8 md:grid-cols-4'>
               {options.map(({ icon: Icon, name, description, contact }, i) => (
                 <div
-                  className='group w-full max-w-[200px] flex flex-col justify-between gap-2 base-border p-3 rounded-xl'
+                  className='base-border group flex w-full max-w-[200px] flex-col justify-between gap-2 rounded-lg p-3'
                   key={i}>
-                  <Icon className='stroke-primary group-hover:stroke-secondary w-fit h-8 base-border p-2 mb-4 rounded-md' />
+                  <Icon className='base-border mb-4 h-8 w-fit rounded-lg stroke-primary p-2' />
                   <div className='flex flex-col gap-3'>
                     <p>
                       <strong>{name}</strong>
                     </p>
                     <p className='text-sm'>{description}</p>
                   </div>
-                  <p className='underline underline-offset-4 decoration-dashed hover:text-primary text-sm font-medium cursor-pointer'>
+                  <p className='cursor-pointer text-sm font-medium underline decoration-dashed underline-offset-4 hover:text-primary'>
                     {contact}
                   </p>
                 </div>
@@ -74,16 +74,16 @@ export default function Page() {
         </div>
       </section>
 
-      <section className='w-full max-w-[890px] mx-auto flex flex-col gap-8'>
-        <div className='flex flex-col gap-3 w-full mx-auto'>
-          <h2 className='text-4xl font-bold text-center max-w-2xl mx-auto '>
+      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+        <div className='mx-auto flex w-full flex-col gap-3'>
+          <h2 className='mx-auto max-w-2xl text-center text-4xl font-bold '>
             Drop a message
           </h2>
-          <p className='font-sm max-w-3xl mx-auto text-center'>
+          <p className='font-sm mx-auto max-w-3xl text-center'>
             We are here for you. How can we help you?
           </p>
         </div>
-        <div className='w-full flex flex-col max-w-3xl mx-auto'>
+        <div className='mx-auto flex w-full max-w-3xl flex-col'>
           <ContactForm />
         </div>
       </section>

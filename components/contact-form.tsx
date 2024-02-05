@@ -14,7 +14,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage, 
+  FormMessage
 } from '@/components/ui/form';
 import { ContactType, contactSchema } from '@/providers/schemas';
 
@@ -49,7 +49,7 @@ export const ContactForm: FC = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-5'>
         <FormField
           control={form.control}
           name='name'
@@ -70,11 +70,7 @@ export const ContactForm: FC = () => {
             <FormItem>
               <FormLabel>Subject</FormLabel>
               <FormControl>
-                <Input
-                  disabled={loading}
-                  placeholder='Your subject'
-                  {...field}
-                />
+                <Input disabled={loading} placeholder='Your subject' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

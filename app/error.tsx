@@ -1,4 +1,5 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { constants } from '@/shared/constants';
 import { useEffect } from 'react';
 
@@ -13,22 +14,20 @@ export default function Error({ error, reset }: Props) {
   }, [error]);
 
   return (
-    <main className='w-full h-[100vh] grid place-content-center place-items-center'>
+    <main className='grid h-[100vh] w-full place-content-center place-items-center'>
       <section className='logo-container'>
         <div className='font-sans-display text-3xl'>
           <span>{constants.name}</span>
         </div>
       </section>
       <section className='flex flex-col items-center gap-5'>
-        <h1 className='font-sans-display font-bold text-error text-center text-6xl leading-tight'>
+        <h1 className='text-center font-sans-display text-6xl font-bold leading-tight text-error'>
           Something went wrong!
         </h1>
 
-        <button
-          className='rounded-3xl font-medium font-sans border-solid border-[2px] border-font mt-5 p-3 px-5 hover:border-primary hover:text-primary transition-colors '
-          onClick={reset}>
+        <Button variant={'outline'} onClick={reset}>
           Try again
-        </button>
+        </Button>
       </section>
     </main>
   );

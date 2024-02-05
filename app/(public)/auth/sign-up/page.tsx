@@ -8,12 +8,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import {
-  ArrowRightCircleIcon,
-  LockIcon,
-  MailIcon,
-  User2Icon
-} from 'lucide-react';
+import { ArrowRightCircleIcon, LockIcon, MailIcon, User2Icon } from 'lucide-react';
 import { UserSignupType, userSignupSchema } from '@/providers/schemas';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -65,12 +60,12 @@ export default function Page() {
 
   return (
     <main
-      className='w-full pt-[70px] px-4 font-sans flex flex-col gap-12 bg-background'
+      className='flex w-full flex-col gap-12 bg-background px-4 pt-[70px] font-sans'
       style={{ minHeight: innerHeight / 1 }}>
-      <section className='w-full max-w-[890px] p-4 mobile-x:p-8 m-auto '>
-        <div className=' w-full flex flex-col gap-12 justify-between pt-10 md:p-0 mx-auto'>
-          <div className='w-full flex flex-col gap-3'>
-            <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
+      <section className='m-auto w-full max-w-[890px] p-4 mobile-x:p-8 '>
+        <div className=' mx-auto flex w-full flex-col justify-between gap-12 pt-10 md:p-0'>
+          <div className='flex w-full flex-col gap-3'>
+            <h1 className='max-w-md font-sans-display font-bold leading-normal sm:text-4xl'>
               Sign Up
             </h1>
             <p className='font-sm max-w-2xl'>
@@ -80,15 +75,15 @@ export default function Page() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-8 w-full h-full max my-auto'>
-              <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+              className='max my-auto h-full w-full space-y-8'>
+              <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
                 <FormField
                   control={form.control}
                   name='firstName'
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <User2Icon className='w-auto h-5' />
+                        <User2Icon className='h-5 w-auto' />
                         <span>First name</span>
                       </FormLabel>
                       <FormControl>
@@ -108,7 +103,7 @@ export default function Page() {
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <User2Icon className='w-auto h-5' />
+                        <User2Icon className='h-5 w-auto' />
                         <span>First name</span>
                       </FormLabel>
                       <FormControl>
@@ -124,14 +119,14 @@ export default function Page() {
                 />
               </div>
 
-              <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+              <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
                 <FormField
                   control={form.control}
                   name='employeeId'
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <User2Icon className='w-auto h-5' />
+                        <User2Icon className='h-5 w-auto' />
                         <span>Employee ID</span>
                       </FormLabel>
                       <FormControl>
@@ -151,7 +146,7 @@ export default function Page() {
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <User2Icon className='w-auto h-5' />
+                        <User2Icon className='h-5 w-auto' />
                         <span>Role</span>
                       </FormLabel>
                       <FormControl>
@@ -173,7 +168,7 @@ export default function Page() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='flex items-center gap-2'>
-                      <MailIcon className='w-auto h-5' />
+                      <MailIcon className='h-5 w-auto' />
                       <span>Email</span>
                     </FormLabel>
                     <FormControl>
@@ -189,14 +184,14 @@ export default function Page() {
                 )}
               />
 
-              <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+              <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
                 <FormField
                   control={form.control}
                   name='password'
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <LockIcon className='w-auto h-5' />
+                        <LockIcon className='h-5 w-auto' />
                         <span>Password</span>
                       </FormLabel>
                       <FormControl>
@@ -205,7 +200,6 @@ export default function Page() {
                           type='password'
                           placeholder='Enter your password'
                           {...field}
-                          className='rounded-3xl'
                         />
                       </FormControl>
                       <FormMessage />
@@ -218,7 +212,7 @@ export default function Page() {
                   render={({ field }) => (
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
-                        <LockIcon className='w-auto h-5' />
+                        <LockIcon className='h-5 w-auto' />
                         <span>Confirm Password</span>
                       </FormLabel>
                       <FormControl>
@@ -227,7 +221,6 @@ export default function Page() {
                           type='password'
                           placeholder='Confirm your password'
                           {...field}
-                          className='rounded-3xl'
                         />
                       </FormControl>
                       <FormMessage />
@@ -236,29 +229,27 @@ export default function Page() {
                 />
               </div>
 
-              <div className='w-full flex flex-col mobile-x:flex-row items-center gap-3'>
+              <div className='flex w-full flex-col items-center gap-3 mobile-x:flex-row'>
                 <Button
                   disabled={loading}
                   variant={'default'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2'
+                  className='flex w-full items-center gap-2'
                   type='submit'>
                   <ArrowRightCircleIcon className='stroke-white' />
-                  <span className='text-white font-semibold'>Sign Up</span>
+                  <span className='font-semibold text-white'>Sign Up</span>
                 </Button>
                 <Button
                   disabled={loading}
                   variant={'outline'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2 group'
+                  className='group flex w-full items-center gap-2'
                   onClick={(e) => {
                     e.preventDefault();
                     router.push('/auth/sign-in');
                   }}>
-                  <LockIcon className='stroke-primary group-hover:stroke-white' />
-                  <span className='text-primary font-semibold group-hover:text-white'>
-                    Sign In
-                  </span>
+                  <LockIcon className='stroke-primary' />
+                  <span className='font-semibold text-primary '>Sign In</span>
                 </Button>
               </div>
             </form>

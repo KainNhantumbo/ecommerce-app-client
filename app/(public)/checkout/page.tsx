@@ -15,15 +15,12 @@ export default function Page() {
   const cart = useSelector((state: RootState) => state.cart);
 
   const subTotal: number = useMemo(
-    () =>
-      cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
+    () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
     [cart]
   );
 
   const removeCartItem = (productId: number) => {
-    dispatch(
-      updateCart([...cart.filter((item) => item.productId !== productId)])
-    );
+    dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
   };
 
   const increaseQuantity = (product: CartItem) => {
@@ -45,8 +42,7 @@ export default function Page() {
           item.productId === product.productId
             ? {
                 ...product,
-                quantity:
-                  product.quantity > 1 ? product.quantity - 1 : product.quantity
+                quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
               }
             : item
         )
@@ -65,30 +61,30 @@ export default function Page() {
   };
 
   return (
-    <main className='w-full px-4 mt-[90px] font-sans flex flex-col gap-12'>
-      <section className='w-full max-w-[890px] mx-auto sm:flex-row gap-4 md:gap-8 flex flex-col items-center sm:items-start md:flex-row'>
-        <section className='w-full flex flex-col gap-3'>
-          <div className='font-sans-display font-bold text-2xl leading-relaxed'>
+    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans'>
+      <section className='mx-auto flex w-full max-w-[890px] flex-col items-center gap-4 sm:flex-row sm:items-start md:flex-row md:gap-8'>
+        <section className='flex w-full flex-col gap-3'>
+          <div className='font-sans-display text-2xl font-bold leading-relaxed'>
             Your cart ({cart.length} items)
           </div>
           {cart.length > 0 ? (
             cart.map((product) => (
               <div
                 key={product.productId}
-                className='w-full flex flex-col gap-8 bg-foreground p-4 rounded-2xl base-border'>
+                className='base-border flex w-full flex-col gap-8 rounded-lg p-4'>
                 <Image
                   src={product.image.url}
                   alt={`${product.name} image`}
                   width={600}
                   height={600}
-                  className='object-cover rounded-2xl base-border'
+                  className='base-border rounded-lg object-cover'
                 />
                 <div className='flex flex-col gap-3'>
                   <h2>{product.name}</h2>
                   <p>{product.category}</p>
                   <p>{currencyFormatter(product.price)}</p>
 
-                  <div className='w-full flex items-center justify-between'>
+                  <div className='flex w-full items-center justify-between'>
                     <div className=''>
                       <Button onClick={() => decreaseQuantity(product)}>
                         <MinusIcon />
@@ -120,61 +116,56 @@ export default function Page() {
               </div>
             ))
           ) : (
-            <div className='base-border flex items-center gap-3 rounded-2xl p-5 m-auto w-full bg-foreground'>
-              <InfoIcon className='w-5 h-5 pointer-events-none group-hover:stroke-primary transition-colors' />
-              <h3 className='font-sans-body '>
-                Nothing in cart to be displated
-              </h3>
+            <div className='base-border m-auto flex w-full items-center gap-3 rounded-lg bg-foreground p-5'>
+              <InfoIcon className='pointer-events-none h-5 w-5 transition-colors group-hover:stroke-primary' />
+              <h3 className='font-sans-body'>Nothing in cart to be displayed</h3>
             </div>
           )}
         </section>
-        <section className='w-full sm:max-w-[320px] flex flex-col gap-3'>
-          <div className='font-sans-display font-bold text-2xl leading-relaxed'>
+        <section className='flex w-full flex-col gap-3 sm:max-w-[320px]'>
+          <div className='font-sans-display text-2xl font-bold leading-relaxed'>
             Summary
           </div>
-          <div className='w-full flex flex-col gap-8 bg-foreground p-4 rounded-2xl base-border'>
+          <div className='base-border flex w-full flex-col gap-8 rounded-lg p-4'>
             <form
               onSubmit={(e) => e.preventDefault()}
-              className='flex gap-3 items-center base-border rounded-full p-1 w-full max-w-xl mx-auto'>
+              className='base-border mx-auto flex w-full max-w-xl items-center gap-3 rounded-lg p-1'>
               <input
                 placeholder='Promo code'
-                className='outline-none bg-foreground border-none p-1 px-4 rounded-full w-full '
+                className='w-full rounded-lg border-none bg-foreground p-1 px-4 outline-none '
               />
               <Button
                 type='submit'
                 size={'sm'}
-                variant={'secondary'}
-                className='text-white dark:bg-primary dark:hover:bg-secondary rounded-full font-bold'>
+                variant={'default'}
+                className='font-bold'>
                 Apply
               </Button>
             </form>
 
             <div className='flex flex-col gap-4'>
-              <div className='flex items-center w-full gap-4 justify-between'>
+              <div className='flex w-full items-center justify-between gap-4'>
                 <p className='font-semibold'>Subtotal</p>
                 <p className='font-bold'>{currencyFormatter(subTotal)}</p>
               </div>
-              <div className='flex items-center w-full gap-4 justify-between'>
+              <div className='flex w-full items-center justify-between gap-4'>
                 <p className='font-semibold'>Delivery & Handling</p>
                 <p className='font-bold'>Free</p>
               </div>
-              <div className='flex items-center w-full gap-4 justify-between'>
+              <div className='flex w-full items-center justify-between gap-4'>
                 <p className='font-semibold'>Estimated Taxes</p>
                 <p className='font-bold'>{currencyFormatter(0)}</p>
               </div>
             </div>
 
-            <div className='flex flex-col gap-4 pt-4 border-t-[1px] border-font/10 border-solid'>
-              <div className='flex items-center w-full gap-4 justify-between'>
+            <div className='flex flex-col gap-4 border-t-[1px] border-solid border-font/10 pt-4'>
+              <div className='flex w-full items-center justify-between gap-4'>
                 <p className='font-semibold'>Total</p>
                 <p className='font-bold'>{currencyFormatter(subTotal)}</p>
               </div>
             </div>
 
-            <Button
-              variant={'default'}
-              size={'sm'}
-              className='font-bold dark:bg-primary dark:hover:bg-secondary rounded-3xl'>
+            <Button variant={'default'} size={'sm'} className='font-bold'>
               Checkout now
             </Button>
           </div>

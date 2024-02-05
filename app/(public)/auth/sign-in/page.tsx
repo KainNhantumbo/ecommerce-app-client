@@ -63,13 +63,13 @@ export default function Page() {
 
   return (
     <main
-      className='w-full px-4 font-sans flex flex-col gap-12 bg-background'
+      className='flex w-full flex-col gap-12 bg-background px-4 font-sans'
       style={{ minHeight: innerHeight / 1 }}>
-      <section className='w-full max-w-[890px] p-8 m-auto flex justify-between items-center gap-8'>
-        <div className=' w-full flex flex-col gap-12 justify-between max-w-[400px] mx-auto md:w-full'>
-          <div className='w-full flex flex-col gap-3'>
-            <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
-              Wellcome back!
+      <section className='m-auto flex w-full max-w-[890px] items-center justify-between gap-8 p-8'>
+        <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
+          <div className='flex w-full flex-col gap-3'>
+            <h1 className='max-w-md font-sans-display font-bold leading-normal sm:text-4xl'>
+              Welcome back!
             </h1>
             <p className='font-sm max-w-2xl'>
               Complete the form below to access your account.
@@ -78,14 +78,14 @@ export default function Page() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-8 w-full h-full max my-auto'>
+              className='max my-auto h-full w-full space-y-5'>
               <FormField
                 control={form.control}
                 name='email'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='flex items-center gap-2'>
-                      <MailIcon className='w-auto h-5' />
+                      <MailIcon className='h-5 w-auto' />
                       <span>Email</span>
                     </FormLabel>
                     <FormControl>
@@ -106,7 +106,7 @@ export default function Page() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='flex items-center gap-2'>
-                      <LockIcon className='w-auto h-5' />
+                      <LockIcon className='h-5 w-auto' />
                       <span>Password</span>
                     </FormLabel>
                     <FormControl>
@@ -115,7 +115,6 @@ export default function Page() {
                         type='password'
                         placeholder='Enter your password'
                         {...field}
-                        className='rounded-3xl'
                       />
                     </FormControl>
                     <FormMessage />
@@ -123,23 +122,23 @@ export default function Page() {
                 )}
               />
 
-              <div className='w-full flex flex-col items-center gap-3'>
+              <div className='flex w-full flex-col items-center gap-3'>
                 <Button
                   disabled={loading}
                   variant={'default'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2'
+                  className='flex w-full items-center gap-2'
                   type='submit'>
                   <UnlockIcon className='stroke-white' />
-                  <span className='text-white font-semibold'>Sign In</span>
+                  <span className='font-semibold text-white'>Sign In</span>
                 </Button>
                 <Button
                   disabled={loading}
-                  variant={'outline'}
+                  variant={'ghost'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2 group'>
-                  <GithubIcon className='stroke-primary group-hover:stroke-white' />
-                  <span className='text-primary font-semibold group-hover:text-white'>
+                  className='group flex w-full items-center gap-2'>
+                  <GithubIcon className='stroke-primary ' />
+                  <span className='font-semibold text-primary '>
                     Sign In with Github
                   </span>
                 </Button>
@@ -148,14 +147,14 @@ export default function Page() {
           </Form>
 
           <div className='flex flex-col gap-2 '>
-            <p className=' max-w-2xl text-end underline hover:text-primary underline-offset-4 transition-colors'>
+            <p className=' max-w-2xl text-end underline underline-offset-4 transition-colors hover:text-primary'>
               <Link href={'/auth/password-recovery'}>Forgot password.</Link>
             </p>
             <p className='font-sm max-w-2xl'>
               Don't have an account?{' '}
               <Link
                 href={'/auth/sign-up'}
-                className='font-bold hover:underline hover:underline-offset-4 transition-colors hover:text-primary'>
+                className='font-bold transition-colors hover:text-primary hover:underline hover:underline-offset-4'>
                 Sign up.
               </Link>
             </p>
@@ -166,7 +165,7 @@ export default function Page() {
           alt='background image'
           width={640}
           height={887}
-          className=' w-full hidden md:block md:max-h-[500px] object-cover rounded-xl'
+          className=' hidden w-full rounded-xl object-cover md:block md:max-h-[500px]'
         />
       </section>
     </main>

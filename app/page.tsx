@@ -1,4 +1,3 @@
-import Carousel from 'react-multi-carousel';
 import CallToAction from '@/components/brand-call-to-action';
 import BrandFeatures from '@/components/brand-features';
 import BrandTestimonials from '@/components/brand-testmonials';

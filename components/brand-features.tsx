@@ -25,22 +25,22 @@ const cards: { title: string; content: string }[] = [
 
 export default function BrandFeatures() {
   return (
-    <section className='w-full max-w-[890px] mx-auto flex flex-col gap-8'>
-      <h2 className='font-sans-display font-bold text-4xl text-center max-w-md mx-auto leading-normal'>
+    <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
+      <h2 className='mx-auto max-w-md text-center font-sans-display text-4xl font-bold leading-normal'>
         Unveiling four pillars of distinction
       </h2>
-      <p className='font-sm max-w-2xl mx-auto text-center'>
-        We take pride in presenting an unparelleled fusion of design and
-        functionality, encapsulated in our pillars of distinction.
+      <p className='font-sm mx-auto max-w-2xl text-center'>
+        We take pride in presenting an unparalleled fusion of design and functionality,
+        encapsulated in our pillars of distinction.
       </p>
 
-      <section className='grid mobile-x:grid-cols-2 gap-8'>
+      <section className='grid gap-8 mobile-x:grid-cols-2'>
         {cards.map((card, i) => {
           return (
             <div
               key={i}
-              className='group select-none transition-colors flex flex-col gap-4 hover:bg-primary/20 p-5 rounded-3xl border-solid border-[1px] border-font/10'>
-              <div className='flex justify-between items-center'>
+              className='group flex select-none flex-col gap-4 rounded-xl border-[1px] border-solid border-font/10 p-5 transition-colors hover:bg-primary/20'>
+              <div className='flex items-center justify-between'>
                 <StarIcon className='group-hover:stroke-primary' />
                 <span className='font-bold group-hover:text-primary'>{`0${
                   i + 1
