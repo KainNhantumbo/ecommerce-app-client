@@ -1,19 +1,20 @@
 'use client';
-import { createContext, useContext, ReactNode, useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import { Auth, HttpError } from '@/types';
+
 import httpClient from '@/config/http-client';
-import { updateAuth } from '@/redux/slices/auth';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { updateAuth } from '@/redux/slices/auth';
+import type { RootState } from '@/redux/store';
+import type { Auth, HttpError } from '@/types';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { useRouter } from 'next/navigation';
+import { ReactNode, createContext, useContext, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import { useAutoSyncCartStore } from '@/hooks/useLocalStore';
 
 type Props = { children: ReactNode };
 
 type Context = {
+  // eslint-disable-next-line no-unused-vars
   httpClientAPI: <T>(config: AxiosRequestConfig<T>) => Promise<AxiosResponse<T>>;
 };
 
@@ -30,22 +31,22 @@ export default function AppContext({ children }: Props) {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
 
-  // auto sync cart data to or from local storage
-  useAutoSyncCartStore();
-
-  const authenticateUser = async () => {
-    try {
-      const { data } = await httpClient<Auth>({
-        method: 'get',
-        url: '/api/v1/auth/refresh',
-        withCredentials: true
-      });
-      dispatch(updateAuth({ ...data }));
-    } catch (error) {
-      const { message } = errorTransformer(error as HttpError);
-      console.error(message || error);
-    }
-  };
+  const authenticateUser = useMemo(
+    () => async () => {
+      try {
+        const { data } = await httpClient<Auth>({
+          method: 'get',
+          url: '/api/v1/auth/refresh',
+          withCredentials: true
+        });
+        dispatch(updateAuth({ ...data }));
+      } catch (error) {
+        const { message } = errorTransformer(error as HttpError);
+        console.error(message || error);
+      }
+    },
+    [dispatch]
+  );
 
   async function httpClientAPI<T>(
     config: AxiosRequestConfig
@@ -90,16 +91,19 @@ export default function AppContext({ children }: Props) {
   }
 
   useEffect((): (() => void) => {
-    const timer = setTimeout((): void => {
-      authenticateUser();
-    }, 1000 * 60 * 4);
+    const timer = setTimeout(
+      (): void => {
+        authenticateUser();
+      },
+      1000 * 60 * 4
+    );
     return (): void => clearTimeout(timer);
-  }, [auth]);
+  }, [auth, authenticateUser]);
 
   useEffect(() => {
     handleAPIHealthCheck();
     authenticateUser();
-  }, []);
+  }, [authenticateUser]);
 
   return (
     <QueryClientProvider client={queryClient}>

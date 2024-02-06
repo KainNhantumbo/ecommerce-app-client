@@ -9,7 +9,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from '@/providers/framer';
 
 
 type PublicProduct = Omit<Product, ''>;

@@ -1,34 +1,24 @@
 'use client';
 
-import { CartItem } from '@/types';
 import { updateCart } from '@/redux/slices/cart';
-import { AppDispatch, RootState } from '@/redux/store';
-import { useEffect, useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '@/redux/store';
+import { CART_STORAGE_KEY } from '@/shared/constants';
+import type { CartItem } from '@/types';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useAutoSyncCartStore = () => {
-  const STORE_KEY = 'CART';
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: RootState) => state.cart);
-
-  const syncCartToLocalStorage = () => {
-    localStorage.setItem(STORE_KEY, JSON.stringify(cart));
-  };
-
-  const restoreCartFromLocalStorage = () => {
-    const data: CartItem[] = JSON.parse(
-      localStorage.getItem(STORE_KEY) || `[]`
-    );
-
-    if (data.length > 0) dispatch(updateCart([...cart, ...data]));
-  };
+  const [cartValues, updateCartValues] = useLocalStorage<CartItem[]>(
+    CART_STORAGE_KEY,
+    cart
+  );
 
   useEffect(() => {
-    syncCartToLocalStorage();
-  }, [cart]);
+    dispatch(updateCart([...cart, ...cartValues]));
+  }, [dispatch, cart, cartValues]);
 
-  useLayoutEffect(() => {
-    restoreCartFromLocalStorage();
-  }, []);
+  return { cartItems: cartValues, updateCartItems: updateCartValues };
 };

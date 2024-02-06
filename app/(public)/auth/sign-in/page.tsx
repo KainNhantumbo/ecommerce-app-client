@@ -24,8 +24,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { toast } from 'sonner';
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -148,7 +148,7 @@ export default function Page() {
 
           <div className='flex flex-col gap-2 '>
             <p className=' max-w-2xl text-end underline underline-offset-4 transition-colors hover:text-primary'>
-              <Link href={'/auth/password-recovery'}>Forgot password.</Link>
+              <Link href={'/auth/recovery'}>Forgot password.</Link>
             </p>
             <p className='font-sm max-w-2xl'>
               Don't have an account?{' '}

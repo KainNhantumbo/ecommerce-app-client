@@ -9,7 +9,6 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-import toast from 'react-hot-toast';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
@@ -20,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { emailSchema, EmailSchemaType } from '@/providers/schemas';
 import { DownloadIcon, MailIcon } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 export default function Page() {
   const router = useRouter();

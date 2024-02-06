@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -8,17 +9,16 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import { ArrowRightCircleIcon, LockIcon, MailIcon, User2Icon } from 'lucide-react';
-import { UserSignupType, userSignupSchema } from '@/providers/schemas';
 import { Input } from '@/components/ui/input';
+import httpClient from '@/config/http-client';
+import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { UserSignupType, userSignupSchema } from '@/providers/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
+import { ArrowRightCircleIcon, LockIcon, MailIcon, User2Icon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import httpClient from '@/config/http-client';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { toast } from 'sonner';
 
 export default function Page() {
   const router = useRouter();

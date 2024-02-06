@@ -10,6 +10,7 @@ import { constants } from '@/shared/constants';
 import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
 import { ThemeProvider } from '@/providers/theme-provider';
 import Layout from '@/components/custom-layout';
+import { Toaster } from '@/components/ui/sonner';
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: Props) {
         <Provider store={store}>
           <ThemeProvider attribute='class' enableSystem={true}>
             <AppContext>
+              <Toaster closeButton loadingIcon />
               <Layout>{children}</Layout>
             </AppContext>
           </ThemeProvider>

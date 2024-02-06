@@ -1,18 +1,15 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { useAutoSyncCartStore } from '@/hooks/useLocalStore';
 import { currencyFormatter } from '@/lib/utils';
-import { updateCart } from '@/redux/slices/cart';
-import { AppDispatch, RootState } from '@/redux/store';
-import { CartItem } from '@/types';
+import type { CartItem } from '@/types';
 import { InfoIcon, MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function Page() {
-  const dispatch = useDispatch<AppDispatch>();
-  const cart = useSelector((state: RootState) => state.cart);
+  const { cartItems: cart, updateCartItems: updateCart } = useAutoSyncCartStore();
 
   const subTotal: number = useMemo(
     () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
@@ -20,44 +17,38 @@ export default function Page() {
   );
 
   const removeCartItem = (productId: number) => {
-    dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
+    updateCart([...cart.filter((item) => item.productId !== productId)]);
   };
 
   const increaseQuantity = (product: CartItem) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === product.productId
-            ? { ...product, quantity: product.quantity + 1 }
-            : item
-        )
-      ])
-    );
+    updateCart([
+      ...cart.map((item) =>
+        item.productId === product.productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : item
+      )
+    ]);
   };
 
   const decreaseQuantity = (product: CartItem) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === product.productId
-            ? {
-                ...product,
-                quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
-              }
-            : item
-        )
-      ])
-    );
+    updateCart([
+      ...cart.map((item) =>
+        item.productId === product.productId
+          ? {
+              ...product,
+              quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
+            }
+          : item
+      )
+    ]);
   };
 
   const updateQuantity = (productId: number, qty: number) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === productId ? { ...item, quantity: qty } : item
-        )
-      ])
-    );
+    updateCart([
+      ...cart.map((item) =>
+        item.productId === productId ? { ...item, quantity: qty } : item
+      )
+    ]);
   };
 
   return (

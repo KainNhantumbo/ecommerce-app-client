@@ -9,20 +9,18 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-import toast from 'react-hot-toast';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
-import httpClient from '@/config/http-client';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { DownloadIcon, LockIcon } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import httpClient from '@/config/http-client';
 import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 import { PasswordSchemaType, passwordSchema } from '@/providers/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { DownloadIcon, LockIcon } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export default function Page() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { height: innerHeight } = useInnerWindowSize();
 
@@ -52,12 +50,12 @@ export default function Page() {
 
   return (
     <main
-      className='w-full pt-[70px] px-4 font-sans flex flex-col gap-12 bg-background'
+      className='flex w-full flex-col gap-12 bg-background px-4 pt-[70px] font-sans'
       style={{ minHeight: innerHeight / 1 }}>
       <section className='w-full max-w-[890px] p-4 mobile-x:p-8 sm:m-auto '>
-        <div className=' w-full max-w-[400px] flex flex-col gap-12 justify-between pt-10 md:p-0 mx-auto'>
-          <div className='w-full flex flex-col gap-3'>
-            <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
+        <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 pt-10 md:p-0'>
+          <div className='flex w-full flex-col gap-3'>
+            <h1 className='max-w-md font-sans-display font-bold leading-normal sm:text-4xl'>
               Update Credentials
             </h1>
             <p className='font-sm max-w-2xl'>
@@ -67,14 +65,14 @@ export default function Page() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-8 w-full h-full max my-auto'>
+              className='max my-auto h-full w-full space-y-8'>
               <FormField
                 control={form.control}
                 name='password'
                 render={({ field }) => (
                   <FormItem className='w-full'>
                     <FormLabel className='flex items-center gap-2'>
-                      <LockIcon className='w-auto h-5' />
+                      <LockIcon className='h-5 w-auto' />
                       <span>Password</span>
                     </FormLabel>
                     <FormControl>
@@ -96,7 +94,7 @@ export default function Page() {
                 render={({ field }) => (
                   <FormItem className='w-full'>
                     <FormLabel className='flex items-center gap-2'>
-                      <LockIcon className='w-auto h-5' />
+                      <LockIcon className='h-5 w-auto' />
                       <span>Confirm Password</span>
                     </FormLabel>
                     <FormControl>
@@ -117,10 +115,10 @@ export default function Page() {
                 disabled={loading}
                 variant={'default'}
                 size={'lg'}
-                className='w-full flex items-center gap-2'
+                className='flex w-full items-center gap-2'
                 type='submit'>
                 <DownloadIcon className='stroke-white' />
-                <span className='text-white font-semibold'>Submit</span>
+                <span className='font-semibold text-white'>Submit</span>
               </Button>
             </form>
           </Form>

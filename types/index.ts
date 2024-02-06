@@ -77,3 +77,5 @@ export type Auth = {
   token: string;
   email: string;
 };
+
+export type Option = { value: string; label: string };

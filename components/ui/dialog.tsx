@@ -1,12 +1,6 @@
 'use client';
 
 import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLAttributes,
-  forwardRef
-} from 'react';
-import {
   Close,
   Content,
   Description,
@@ -18,6 +12,12 @@ import {
   Trigger
 } from '@radix-ui/react-dialog';
 import { XIcon } from 'lucide-react';
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  HTMLAttributes,
+  forwardRef
+} from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -25,8 +25,8 @@ const Dialog = Root;
 
 const DialogTrigger = Trigger;
 
-const DialogPortal = ({ className, children, ...props }: DialogPortalProps) => (
-  <Portal className={cn(className)} {...props}>
+const DialogPortal = ({ children, ...props }: DialogPortalProps) => (
+  <Portal {...props}>
     <div className='fixed inset-0 z-50 flex items-start justify-center sm:items-center'>
       {children}
     </div>
@@ -72,24 +72,15 @@ const DialogContent = forwardRef<
 ));
 DialogContent.displayName = Content.displayName;
 
-const DialogHeader = ({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>) => (
+const DialogHeader = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn(
-      'flex flex-col space-y-1.5 text-center sm:text-left',
-      className
-    )}
+    className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)}
     {...props}
   />
 );
 DialogHeader.displayName = 'DialogHeader';
 
-const DialogFooter = ({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>) => (
+const DialogFooter = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
       'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
@@ -106,10 +97,7 @@ const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <Title
     ref={ref}
-    className={cn(
-      'text-lg font-semibold leading-none tracking-tight',
-      className
-    )}
+    className={cn('text-lg font-semibold leading-none tracking-tight', className)}
     {...props}
   />
 ));
@@ -129,10 +117,10 @@ DialogDescription.displayName = Description.displayName;
 
 export {
   Dialog,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
+  DialogDescription,
   DialogFooter,
+  DialogHeader,
   DialogTitle,
-  DialogDescription
+  DialogTrigger
 };
