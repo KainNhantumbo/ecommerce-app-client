@@ -16,6 +16,8 @@ export const ALLOWED_MIMETYPES: string[] = ['image/png', 'image/jpeg', 'image/jp
 
 export const CART_STORAGE_KEY = 'CART_STORAGE_KEY';
 
+export const PRODUCTS_LIMIT_PER_PAGE = 10;
+
 export const sortOptions: Option[] = [
   { value: 'title', label: 'Title [A-Z]' },
   { value: '-title', label: 'Title [Z-A]' },

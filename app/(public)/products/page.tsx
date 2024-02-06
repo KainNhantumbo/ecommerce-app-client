@@ -1,25 +1,23 @@
-
 'use client';
 
 import httpClient from '@/config/http-client';
 import { currencyFormatter } from '@/lib/utils';
-import { RootState } from '@/redux/store';
-import { Product } from '@/types';
+import type { AppDispatch, RootState } from '@/redux/store';
+import { PRODUCTS_LIMIT_PER_PAGE } from '@/shared/constants';
+import type { Product } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-
-type PublicProduct = Omit<Product, ''>;
+import { useInView } from 'react-intersection-observer';
 
 export default function Page() {
-  const dispacth = useDispatch();
+  const inView = useInView();
+
+  const dispacth = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products);
   const cart = useSelector((state: RootState) => state.cart);
   const params = useSearchParams();
-  const PRODUCTS_LIMIT_PER_PAGE = 10;
-
 
   const getProducts = async ({ pageParam = 0 }) => {
     const currentParams = params.values;

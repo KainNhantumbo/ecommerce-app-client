@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 
 export const BrandNewsletter = () => {
   return (
-    <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+    <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
       <h2 className='mx-auto max-w-md text-center font-sans text-4xl font-bold leading-normal'>
         Your Monthly Dose of Updates and Offers!
       </h2>

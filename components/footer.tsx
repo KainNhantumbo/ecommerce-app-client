@@ -1,12 +1,12 @@
+import { constants } from '@/shared/constants';
 import {
   FacebookIcon,
-  TwitterIcon,
   InstagramIcon,
   LinkedinIcon,
-  LucideIcon
+  LucideIcon,
+  TwitterIcon
 } from 'lucide-react';
 import Link from 'next/link';
-import { constants } from '@/shared/constants';
 
 type Navigation = {
   title: string;
@@ -63,7 +63,7 @@ const socialMedia: SocialProps = [
 export const Footer = () => {
   return (
     <footer className='z-0 mt-10 flex w-full flex-col bg-background p-4 font-sans'>
-      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+      <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
         <nav className='grid w-full grid-cols-2 gap-8 sm:grid-cols-4 md:grid-cols-5'>
           {navigation.map(({ title, children }, index) => (
             <section key={index} className='flex flex-col gap-2'>

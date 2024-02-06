@@ -1,4 +1,4 @@
-import { constants } from '@/shared/constants';
+import { Button } from '@/components/ui/button';
 import ceoImage from '@/public/ps-05.jpg';
 import backerImage00 from '@/public/ps-234.jpg';
 import backerImage01 from '@/public/ps-2342rwe.jpg';
@@ -6,8 +6,8 @@ import backerImage02 from '@/public/ps-23wdfmodm.jpg';
 import backerImage03 from '@/public/ps-2fwdf.jpg';
 import backerImage04 from '@/public/ps-sdfdsgsdf.jpg';
 import backerImage05 from '@/public/ps-sdfsdf.jpg';
+import { constants } from '@/shared/constants';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 
 const backers = [
   { name: 'Ben Award', career: 'Product Designer', image: backerImage01 },
@@ -73,7 +73,7 @@ const listings = [
 export default function Page() {
   return (
     <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>
-      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+      <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
         <h1 className=' mx-auto max-w-2xl text-center text-4xl font-bold leading-normal'>
           Meet our team of creators, product designers and world class problem solvers!
         </h1>
@@ -138,9 +138,9 @@ export default function Page() {
 
         <section className=' mx-auto flex w-full flex-col gap-4 py-8'>
           <h3 className='mx-auto max-w-3xl text-center font-sans-body text-2xl font-medium'>
-            <strong className='text-primary'>{constants.name}</strong> truly values <em>work-life balance.</em>{' '}
-            We work really hard, but at the end of the day you can take a rest and
-            switch off.
+            <strong className='text-primary'>{constants.name}</strong> truly values{' '}
+            <em>work-life balance.</em> We work really hard, but at the end of the day
+            you can take a rest and switch off.
           </h3>
           <div className='flex flex-col items-center gap-2'>
             <Image

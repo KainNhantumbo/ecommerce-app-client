@@ -1,12 +1,11 @@
+import { BrandNewsletter } from '@/components/brand-newsletter';
+import { ContactForm } from '@/components/contact-form';
 import {
   ContactIcon,
   LocateIcon,
   MessageCircleIcon,
   PhoneCallIcon
 } from 'lucide-react';
-import React from 'react';
-import { ContactForm } from '@/components/contact-form';
-import { BrandNewsletter } from '@/components/brand-newsletter';
 
 const options = [
   {
@@ -38,7 +37,7 @@ const options = [
 export default function Page() {
   return (
     <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>
-      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8 sm:flex-row'>
+      <section className='mx-auto flex w-full max-w-5xl flex-col gap-8 sm:flex-row'>
         <div className='flex w-full flex-col gap-9'>
           <div className='flex w-full flex-col items-center gap-4'>
             <ContactIcon className='h-12 w-auto stroke-primary' />
@@ -74,7 +73,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+      <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
         <div className='mx-auto flex w-full flex-col gap-3'>
           <h2 className='mx-auto max-w-2xl text-center text-4xl font-bold '>
             Drop a message

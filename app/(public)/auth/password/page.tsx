@@ -52,7 +52,7 @@ export default function Page() {
     <main
       className='flex w-full flex-col gap-12 bg-background px-4 pt-[70px] font-sans'
       style={{ minHeight: innerHeight / 1 }}>
-      <section className='w-full max-w-[890px] p-4 mobile-x:p-8 sm:m-auto '>
+      <section className='w-full max-w-5xl p-4 mobile-x:p-8 sm:m-auto '>
         <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 pt-10 md:p-0'>
           <div className='flex w-full flex-col gap-3'>
             <h1 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>

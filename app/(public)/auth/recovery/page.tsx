@@ -9,16 +9,15 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
-import httpClient from '@/config/http-client';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from '@/components/ui/input';
 import { emailSchema, EmailSchemaType } from '@/providers/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { DownloadIcon, MailIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export default function Page() {
@@ -48,7 +47,7 @@ export default function Page() {
     <main
       className='flex w-full flex-col gap-12 bg-background px-4 font-sans'
       style={{ minHeight: innerHeight / 1 }}>
-      <section className='m-auto flex w-full max-w-[890px] items-center justify-between gap-8 p-8'>
+      <section className='m-auto flex w-full max-w-5xl items-center justify-between gap-8 p-8'>
         <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
           <div className='flex w-full flex-col gap-3'>
             <h1 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>

@@ -24,6 +24,10 @@ export default function Page() {
     dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
   };
 
+  const addCartItem = (item: CartItem) => {
+    dispatch(updateCart([...cart, item]));
+  };
+
   const increaseQuantity = (product: CartItem) => {
     dispatch(
       updateCart([
@@ -62,8 +66,8 @@ export default function Page() {
   };
 
   return (
-    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans'>
-      <section className='mx-auto flex w-full max-w-[890px] flex-col items-center gap-4 sm:flex-row sm:items-start md:flex-row md:gap-8'>
+    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>
+      <section className='mx-auto flex w-full max-w-5xl flex-col items-center gap-4 sm:flex-row sm:items-start md:flex-row md:gap-8'>
         <section className='flex w-full flex-col gap-3'>
           <div className='font-sans text-2xl font-bold leading-relaxed'>
             Your cart ({cart.length} items)
