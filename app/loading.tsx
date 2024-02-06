@@ -1,10 +1,11 @@
 'use client';
+
 import { Loader } from '@/components/ui/loader';
 
-const Loading = () => (
-  <div className='grid place-content-center place-items-center h-[100vh] w-[100vw] bg-background'>
-    <Loader />
-  </div>
-);
-
-export default Loading;
+export default function Loading() {
+  return (
+    <div className='grid h-[100vh] w-[100vw] place-content-center place-items-center bg-background'>
+      <Loader />
+    </div>
+  );
+}

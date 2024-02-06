@@ -9,6 +9,7 @@ import {
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
+import { Separator } from './ui/separator';
 
 export const ThemeToggle = () => {
   const { setTheme } = useTheme();
@@ -22,29 +23,22 @@ export const ThemeToggle = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='base-border flex flex-col justify-start gap-2 font-sans font-semibold normal-case'>
-        <DropdownMenuItem asChild>
-          <Button
-            variant={'ghost'}
-            className='border-none text-left hover:border-none'
-            onClick={() => setTheme('light')}>
-            Light
-          </Button>
+        <DropdownMenuItem
+          className='items-start justify-start text-left cursor-pointer'
+          onClick={() => setTheme('light')}>
+          <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Button
-            variant={'ghost'}
-            className='border-none text-left hover:border-none'
-            onClick={() => setTheme('dark')}>
-            Dark
-          </Button>
+        <Separator decorative />
+        <DropdownMenuItem
+          onClick={() => setTheme('dark')}
+          className='items-start justify-start text-left cursor-pointer'>
+          <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Button
-            variant={'ghost'}
-            className='border-none text-left hover:border-none'
-            onClick={() => setTheme('system')}>
-            System
-          </Button>
+        <Separator decorative />
+        <DropdownMenuItem
+          className='items-start justify-start text-left cursor-pointer'
+          onClick={() => setTheme('system')}>
+          <span className='text-left'>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

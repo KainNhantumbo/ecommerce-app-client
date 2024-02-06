@@ -60,7 +60,7 @@ const socialMedia: SocialProps = [
   { url: '/', label: 'Twitter', icon: TwitterIcon }
 ];
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className='z-0 mt-10 flex w-full flex-col bg-background p-4 font-sans'>
       <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
@@ -118,4 +118,4 @@ export default function Footer() {
       </section>
     </footer>
   );
-}
+};

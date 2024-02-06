@@ -1,18 +1,16 @@
-import './globals.css';
-import clsx from 'clsx';
-import { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import { store } from '@/redux/store';
-import { Provider } from '@/redux/store';
-import AppContext from '@/context/AppContext';
+import { Layout } from '@/components/custom-layout';
 import { constants } from '@/shared/constants';
-import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
-import { ThemeProvider } from '@/providers/theme-provider';
-import Layout from '@/components/custom-layout';
-import { Toaster } from '@/components/ui/sonner';
+import clsx from 'clsx';
+import type { Metadata } from 'next';
+import { IBM_Plex_Sans, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import type { ReactNode } from 'react';
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600']
+});
 
 export const metadata: Metadata = {
   title: constants.name,
@@ -28,15 +26,13 @@ type Props = { children: ReactNode };
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
-      <body className={clsx(jakarta.className, spaceGrotesk.className)}>
-        <Provider store={store}>
-          <ThemeProvider attribute='class' enableSystem={true}>
-            <AppContext>
-              <Toaster closeButton loadingIcon />
-              <Layout>{children}</Layout>
-            </AppContext>
-          </ThemeProvider>
-        </Provider>
+      <body
+        className={clsx(
+          jakarta.className,
+          ibmPlexSans.className,
+          spaceGrotesk.className
+        )}>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );

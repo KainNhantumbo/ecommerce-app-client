@@ -1,8 +1,10 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+// import moment from 'moment';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export const currencyFormatter = (param: number): string =>
@@ -10,3 +12,5 @@ export const currencyFormatter = (param: number): string =>
     style: 'currency',
     currency: 'USD'
   }).format(param);
+
+// export const formatDate = (date: string): string => moment(date).format('LL');

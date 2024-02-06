@@ -2,13 +2,14 @@
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
-import Link from 'next/link';
+import { RootState } from '@/redux/store';
 import clsx from 'clsx';
 import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import { Button } from './ui/button';
-import { useAppContext } from '@/context/AppContext';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -32,11 +33,10 @@ const adminRoutes = [
 // { name: 'Sizes', href: '/dashboard/about', icon: RiLineHeight },
 // { name: 'Colors', href: '/dashboard/about', icon: RiDropLine },
 
-export default function Header() {
-  const { onToggleReveal, isBreakPoint } = useToggleHeader(768);
+export const Header = () => {
   const pathname = usePathname();
-  const { cart } = useAppContext();
-
+  const cart = useSelector((state: RootState) => state.cart);
+  const { onToggleReveal, isBreakPoint } = useToggleHeader(768);
   const isProtectedRoutes = pathname.includes('dashboard');
 
   return (
@@ -120,4 +120,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};

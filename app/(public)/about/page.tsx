@@ -2,7 +2,7 @@ import { constants } from '@/shared/constants';
 
 export default function Page() {
   return (
-    <main className='mt-[70px] flex w-full flex-col gap-12 px-4 font-sans'>
+    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans'>
       <h1>About Our Story</h1>
       <p>
         Welcome to {constants.name}, where fashion meets convenience! We are a premier
