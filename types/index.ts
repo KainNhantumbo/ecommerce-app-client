@@ -79,3 +79,9 @@ export type Auth = {
 };
 
 export type Option = { value: string; label: string };
+
+export type Testimonials = Array<{
+  title: string;
+  comment: string;
+  customerName: string;
+}>;

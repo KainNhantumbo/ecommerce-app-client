@@ -2,7 +2,7 @@ import coverImage from '@/public/side-call.jpg';
 import { Button } from './ui/button';
 import Image from 'next/image';
 
-export default function CallToAction() {
+export const CallToAction = () => {
   return (
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8 rounded-lg bg-primary/10 p-8 md:flex-row md:items-center'>
       <section className='flex w-full flex-col gap-5 sm:gap-12'>
@@ -30,4 +30,4 @@ export default function CallToAction() {
       />
     </section>
   );
-}
+};

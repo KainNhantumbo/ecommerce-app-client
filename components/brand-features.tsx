@@ -9,7 +9,7 @@ const cards: { title: string; content: string }[] = [
   {
     title: 'Unique',
     content:
-      'Each piece is a testament to our commitment to innovation and criativy, ensuring that your space stands out with a touch of distinctiveness.'
+      'Each piece is a testament to our commitment to innovation and creativity, ensuring that your space stands out with a touch of distinctiveness.'
   },
   {
     title: 'Materials',
@@ -23,7 +23,7 @@ const cards: { title: string; content: string }[] = [
   }
 ];
 
-export default function BrandFeatures() {
+export const BrandFeatures = () => {
   return (
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
       <h2 className='mx-auto max-w-md text-center font-sans-display text-4xl font-bold leading-normal'>
@@ -55,4 +55,4 @@ export default function BrandFeatures() {
       </section>
     </section>
   );
-}
+};

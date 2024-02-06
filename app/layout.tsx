@@ -1,5 +1,4 @@
 import './globals.css';
-import 'react-multi-carousel/lib/styles.css';
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import type { Metadata } from 'next';

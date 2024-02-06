@@ -1,7 +1,7 @@
 'use client';
 import { Button } from './ui/button';
 
-export default function BrandNewsletter() {
+export const BrandNewsletter = () => {
   return (
     <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
       <h2 className='mx-auto max-w-md text-center font-sans-display text-4xl font-bold leading-normal'>
@@ -30,4 +30,4 @@ export default function BrandNewsletter() {
       </form>
     </section>
   );
-}
+};

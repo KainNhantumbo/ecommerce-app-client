@@ -1,12 +1,7 @@
+import type { Testimonials } from '@/types';
 import { StarsIcon, VerifiedIcon } from 'lucide-react';
 
-type TestimonialsProps = {
-  title: string;
-  comment: string;
-  customerName: string;
-}[];
-
-const testimonials: TestimonialsProps = [
+const testimonials: Testimonials = [
   {
     title: 'Beyond impress',
     comment:
@@ -27,7 +22,7 @@ const testimonials: TestimonialsProps = [
   }
 ];
 
-export default function BrandTestimonials() {
+export const BrandTestimonials = () => {
   return (
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
       <h2 className='mx-auto max-w-md text-center font-sans-display text-4xl font-bold leading-normal'>
@@ -60,4 +55,4 @@ export default function BrandTestimonials() {
       </section>
     </section>
   );
-}
+};

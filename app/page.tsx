@@ -1,18 +1,17 @@
-import CallToAction from '@/components/brand-call-to-action';
-import BrandFeatures from '@/components/brand-features';
-import BrandTestimonials from '@/components/brand-testmonials';
-import BrandNewsletter from '@/components/brand-newsletter';
+import { CallToAction } from '@/components/brand-call-to-action';
+import { BrandFeatures } from '@/components/brand-features';
+import { BrandTestimonials } from '@/components/brand-testimonials';
+import { BrandNewsletter } from '@/components/brand-newsletter';
+import { Introduction } from '@/components/introduction';
 
 export default function Page() {
   return (
-    <main className='w-full px-4 mt-[70px] font-sans flex flex-col gap-12'>
-      <section className='w-full max-w-[890px] mx-auto'>
-        <h1>Huge title</h1>
-      </section>
+    <main className='mt-[70px] flex w-full flex-col gap-12 px-4 font-sans'>
+      <Introduction />
       <BrandFeatures />
       <BrandTestimonials />
-      <CallToAction/>
-      <BrandNewsletter/>
+      <CallToAction />
+      <BrandNewsletter />
     </main>
   );
 }

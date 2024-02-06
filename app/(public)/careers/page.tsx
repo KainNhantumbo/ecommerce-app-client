@@ -169,3 +169,21 @@ export default function Page() {
     </main>
   );
 }
+
+
+/**
+ *
+ * **Welcome to Our Careers Page: Where Opportunities Await**
+
+Welcome to the gateway of possibilities – our Careers page. Here, we believe in the power of individuals coming together, fueled by passion and driven by purpose, to create something extraordinary. If you're searching for more than just a job – if you're seeking a place where your talents are valued, your ideas are welcomed, and your potential is nurtured – then you're in the right place.
+
+At [Your Company Name], we're not just building a brand; we're building a community of dreamers, innovators, and change-makers. Whether you're a seasoned professional or a fresh graduate, whether you're exploring new horizons or looking to take the next step in your career journey, we invite you to explore the opportunities that await you here.
+
+Our Careers page is more than just a listing of job openings; it's a reflection of our commitment to fostering a culture of growth, diversity, and inclusion. We believe in empowering our team members to thrive, providing them with the resources, support, and opportunities they need to reach their full potential.
+
+So, if you're ready to embark on a new adventure, to challenge yourself, to make a meaningful impact, then we encourage you to explore the possibilities that await you at [Your Company Name]. Join us as we shape the future together and create something truly extraordinary. Your journey starts here.
+ *
+ *
+ *
+ *
+ */

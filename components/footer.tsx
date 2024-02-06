@@ -41,7 +41,6 @@ const navigation: Navigation = [
     title: 'Service',
     children: [
       { label: 'Orders', url: '#' },
-      { label: 'Features', url: '#' },
       { label: 'Our Terms', url: '/terms-and-conditions' },
     ]
   },
