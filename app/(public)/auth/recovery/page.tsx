@@ -46,12 +46,12 @@ export default function Page() {
 
   return (
     <main
-      className='w-full px-4 font-sans flex flex-col gap-12 bg-background'
+      className='flex w-full flex-col gap-12 bg-background px-4 font-sans'
       style={{ minHeight: innerHeight / 1 }}>
-      <section className='w-full max-w-[890px] p-8 m-auto flex justify-between items-center gap-8'>
-        <div className=' w-full flex flex-col gap-12 justify-between max-w-[400px] mx-auto md:w-full'>
-          <div className='w-full flex flex-col gap-3'>
-            <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
+      <section className='m-auto flex w-full max-w-[890px] items-center justify-between gap-8 p-8'>
+        <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
+          <div className='flex w-full flex-col gap-3'>
+            <h1 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>
               Account Recovery
             </h1>
             <p className='font-sm max-w-2xl'>
@@ -61,14 +61,14 @@ export default function Page() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-8 w-full h-full max my-auto'>
+              className='max my-auto h-full w-full space-y-8'>
               <FormField
                 control={form.control}
                 name='email'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className='flex items-center gap-2'>
-                      <MailIcon className='w-auto h-5' />
+                      <MailIcon className='h-5 w-auto' />
                       <span>Email</span>
                     </FormLabel>
                     <FormControl>
@@ -84,15 +84,15 @@ export default function Page() {
                 )}
               />
 
-              <div className='w-full flex flex-col items-center gap-3'>
+              <div className='flex w-full flex-col items-center gap-3'>
                 <Button
                   disabled={loading}
                   variant={'default'}
                   size={'lg'}
-                  className='w-full flex items-center gap-2'
+                  className='flex w-full items-center gap-2'
                   type='submit'>
                   <DownloadIcon className='stroke-white' />
-                  <span className='text-white font-semibold'>Submit</span>
+                  <span className='font-semibold text-white'>Submit</span>
                 </Button>
               </div>
             </form>
@@ -103,7 +103,7 @@ export default function Page() {
               Don't have an account?{' '}
               <Link
                 href={'/auth/sign-up'}
-                className='font-bold hover:underline hover:underline-offset-4 transition-colors hover:text-primary'>
+                className='font-bold transition-colors hover:text-primary hover:underline hover:underline-offset-4'>
                 Sign up.
               </Link>
             </p>

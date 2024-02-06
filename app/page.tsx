@@ -6,7 +6,7 @@ import { Introduction } from '@/components/introduction';
 
 export default function Page() {
   return (
-    <main className='mt-[70px] flex w-full flex-col gap-12 px-4 font-sans'>
+    <main className='mt-[70px] flex w-full flex-col gap-12 px-4 font-sans-body'>
       <Introduction />
       <BrandFeatures />
       <BrandTestimonials />

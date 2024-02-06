@@ -3,11 +3,11 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Page() {
   return (
-    <main className='w-full px-4 mt-[70px] font-sans flex flex-col gap-12 min-h-[80vh]'>
-      <section className='w-full max-w-[890px] p-4 mobile-x:p-8 m-auto'>
-        <div className=' w-full flex flex-col gap-12 justify-between pt-10 md:p-0 mx-auto'>
-          <div className='w-full flex flex-col gap-4'>
-            <h1 className='font-sans-display font-bold sm:text-4xl max-w-md leading-normal'>
+    <main className='mt-[70px] flex min-h-[80vh] w-full flex-col gap-12 px-4 font-sans'>
+      <section className='m-auto w-full max-w-[890px] p-4 mobile-x:p-8'>
+        <div className=' mx-auto flex w-full flex-col justify-between gap-12 pt-10 md:p-0'>
+          <div className='flex w-full flex-col gap-4'>
+            <h1 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>
               You're now registered.
             </h1>
             <p className='font-sm max-w-2xl'>
@@ -16,9 +16,9 @@ export default function Page() {
 
             <Link
               href={'/auth/sign-in'}
-              className='flex items-center gap-2 bg-primary rounded-3xl w-fit py-2 px-5 hover:bg-secondary transition-colors'>
+              className='flex w-fit items-center gap-2 rounded-3xl bg-primary px-5 py-2 transition-colors hover:bg-secondary'>
               <ArrowRight className='stroke-white' />
-              <span className='text-white font-semibold'>Go and Sign In</span>
+              <span className='font-semibold text-white'>Go and Sign In</span>
             </Link>
           </div>
         </div>

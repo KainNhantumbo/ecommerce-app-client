@@ -60,8 +60,7 @@ const config = {
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-        'sans-body': ['IBM Plex Sans', 'Inter', 'sans-serif'],
-        'sans-display': ['Space Grotesk', 'Inter', 'sans-serif']
+        'sans-body': ['IBM Plex Sans', 'Inter', 'sans-serif']
       },
       screens: {
         mobile: '420px',

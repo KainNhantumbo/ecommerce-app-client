@@ -1,51 +1,92 @@
+import { CallToAction } from '@/components/brand-call-to-action';
 import { constants } from '@/shared/constants';
 
 export default function Page() {
   return (
-    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans'>
-      <h1>About Our Story</h1>
+    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
+      <h1 className='font-sans'>
+        About <i className='text-primary'>Us</i>
+      </h1>
+
       <p>
-        Welcome to {constants.name}, where fashion meets convenience! We are a premier
-        online destination for trendsetting individuals seeking quality clothing and
-        accessories at their fingertips. Our mission is to provide an unparalleled
-        shopping experience that combines the latest fashion trends with exceptional
-        customer service.
+        Welcome to our store, your ultimate destination for fashion-forward clothing and
+        accessories! At {constants.name}, we believe that style is a reflection of
+        individuality, and we're here to help you express yourself confidently through
+        our curated collection of trendy apparel.
       </p>
-      <p>
-        At {constants.name}, we understand that style is a reflection of your unique
-        personality. That's why we curate a diverse collection of apparel and
-        accessories that cater to all tastes, preferences, and sizes. Whether you're
-        looking for casual everyday wear, chic office attire, or statement pieces for
-        special occasions, we've got you covered.
-      </p>
-      <p>
-        Our team of fashion enthusiasts scours the globe to bring you the hottest trends
-        and timeless classics. From runway-inspired designs to wardrobe essentials, each
-        item in our collection is carefully selected for its quality, style, and
-        affordability. We believe that everyone deserves to look and feel their best
-        without breaking the bank.
-      </p>
-      <p>
-        What sets us apart is our commitment to customer satisfaction. We strive to make
-        your shopping experience seamless and enjoyable from start to finish. With
-        user-friendly navigation, secure payment options, and fast shipping, we ensure
-        that you receive your order promptly and hassle-free. Our dedicated customer
-        support team is always available to assist you with any questions or concerns
-        you may have.
-      </p>
-      <p>
-        But we're more than just an online store – we're a community of fashion
-        enthusiasts who share a passion for self-expression through clothing. Follow us
-        on social media for style inspiration, exclusive promotions, and
-        behind-the-scenes glimpses of our latest arrivals. Join the conversation and
-        connect with like-minded individuals who share your love for fashion.
-      </p>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Our Story</h2>
+        <p>
+          Founded in 1992, {constants.name} began as a passion project by a group of
+          fashion enthusiasts who wanted to create a platform where people could
+          discover the latest trends, shop for high-quality clothing, and express their
+          unique sense of style. What started as a small venture has now grown into a
+          thriving online community, connecting fashion lovers from around the world.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Our Mission</h2>
+        <p>
+          At {constants.name}, our mission is to empower individuals to look and feel
+          their best every day. We believe that fashion should be accessible, inclusive,
+          and fun. That's why we're committed to offering a diverse range of styles,
+          sizes, and price points to cater to every taste and budget.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Our Collection</h2>
+        <p>
+          Discover an extensive selection of clothing and accessories carefully curated
+          by our team of fashion experts. From trendy tops and dresses to cozy knitwear
+          and stylish outerwear, we've got everything you need to elevate your wardrobe.
+          Whether you're dressing for a casual day out or a special occasion, you'll
+          find the perfect pieces to express your personal style.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Quality Assurance</h2>
+        <p>
+          At {constants.name}, we're dedicated to delivering the highest quality
+          products to our customers. We partner with trusted suppliers and designers who
+          share our commitment to craftsmanship, durability, and sustainability. Each
+          item in our collection is meticulously inspected to ensure it meets our
+          standards of excellence.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Customer Experience</h2>
+        <p>
+          Your satisfaction is our top priority. We strive to provide an exceptional
+          shopping experience from start to finish. With user-friendly navigation,
+          secure payment options, and fast shipping, we make it easy for you to shop
+          with confidence. Our friendly customer support team is always available to
+          assist you with any questions or concerns you may have.
+        </p>
+      </div>
+
+      <div>
+        <h2 className='font-sans text-2xl leading-relaxed'>Join Our Community</h2>
+        <p>
+          Become a part of the {constants.name} community and connect with fellow
+          fashion enthusiasts from around the world. Follow us on social media for style
+          inspiration, exclusive promotions, and behind-the-scenes glimpses of our
+          latest arrivals. Share your #OOTD (Outfit of the Day) and join the
+          conversation!
+        </p>
+      </div>
+
       <p>
         Thank you for choosing {constants.name} as your go-to destination for all your
-        fashion needs. Whether you're browsing for the perfect outfit or treating
-        yourself to a wardrobe refresh, we're here to help you look and feel your best
-        every step of the way. Happy shopping!
+        fashion needs. We're excited to embark on this style journey with you and help
+        you discover your signature look. Happy shopping!
       </p>
+
+      <CallToAction />
     </main>
   );
 }

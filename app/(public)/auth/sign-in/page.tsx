@@ -68,7 +68,7 @@ export default function Page() {
       <section className='m-auto flex w-full max-w-[890px] items-center justify-between gap-8 p-8'>
         <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
           <div className='flex w-full flex-col gap-3'>
-            <h1 className='max-w-md font-sans-display font-bold leading-normal sm:text-4xl'>
+            <h1 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>
               Welcome back!
             </h1>
             <p className='font-sm max-w-2xl'>

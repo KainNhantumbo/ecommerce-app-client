@@ -5,24 +5,22 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <main className='w-full h-[100vh] grid place-content-center place-items-center'>
+    <main className='grid h-[100vh] w-full place-content-center place-items-center'>
       <section className='logo-container'>
-        <div className='font-sans-display text-3xl'>
+        <div className='font-sans text-3xl'>
           <span>{constants.name}</span>
         </div>
       </section>
       <section className='flex flex-col items-center gap-5'>
-        <h1 className='font-sans-display font-bold text-center text-6xl leading-tight'>
-          404
-        </h1>
-        <h2 className='font-bold font-sans text-primary uppercase'>Page not found</h2>
-        <p className='max-w-screen-mobile text-center font-sans normal-case font-medium'>
-          But if you don't change your direction, and if you keep looking, you
-          may end up where you are heading.
+        <h1 className='text-center font-sans text-6xl font-bold leading-tight'>404</h1>
+        <h2 className='font-sans font-bold uppercase text-primary'>Page not found</h2>
+        <p className='max-w-screen-mobile text-center font-sans font-medium normal-case'>
+          But if you don't change your direction, and if you keep looking, you may end
+          up where you are heading.
         </p>
         <Link
           href={'/'}
-          className='rounded-lg font-medium font-sans border-solid border-[2px] border-font mt-5 p-3 px-5 hover:border-primary hover:text-primary transition-colors '>
+          className='mt-5 rounded-lg border-[2px] border-solid border-font p-3 px-5 font-sans font-medium transition-colors hover:border-primary hover:text-primary '>
           Take me home
         </Link>
       </section>

@@ -66,11 +66,11 @@
   }
 
   h1 {
-    @apply font-sans-display text-3xl font-bold;
+    @apply font-sans text-3xl font-bold;
   }
 
   h2 {
-    @apply font-sans-display text-xl font-semibold leading-6;
+    @apply font-sans text-xl font-semibold leading-6;
   }
 
   h3 {
@@ -115,7 +115,7 @@
   }
 
   .base-link {
-    @apply w-fit hover:text-primary text-center transition-colors underline text-blue-400 underline-offset-4 sm:text-left;
+    @apply w-fit text-center text-blue-400 underline underline-offset-4 transition-colors hover:text-primary sm:text-left;
   }
 
   .inputs {

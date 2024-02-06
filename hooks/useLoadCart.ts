@@ -11,10 +11,12 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 export const useLoadCart = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: RootState) => state.cart);
+
   const restoreCartFromLocalStorage = () => {
     const data: CartItem[] = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || `[]`);
 
-    if (data?.length > 0) dispatch(updateCart([...cart, ...data]));
+    if (data.length > 0) return dispatch(updateCart([...cart, ...data]));
+    return localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   };
 
   const syncCartToLocalStorage = useMemo(

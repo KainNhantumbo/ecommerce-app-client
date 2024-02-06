@@ -2,11 +2,10 @@ import { Layout } from '@/components/custom-layout';
 import { constants } from '@/shared/constants';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { IBM_Plex_Sans, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google';
+import { IBM_Plex_Sans, Plus_Jakarta_Sans } from 'next/font/google';
 import type { ReactNode } from 'react';
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] });
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600']
@@ -26,12 +25,7 @@ type Props = { children: ReactNode };
 export default function RootLayout({ children }: Props) {
   return (
     <html lang='en'>
-      <body
-        className={clsx(
-          jakarta.className,
-          ibmPlexSans.className,
-          spaceGrotesk.className
-        )}>
+      <body className={clsx(jakarta.className, ibmPlexSans.className)}>
         <Layout>{children}</Layout>
       </body>
     </html>

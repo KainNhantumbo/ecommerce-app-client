@@ -7,7 +7,7 @@ export const CallToAction = () => {
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8 rounded-lg bg-primary/10 p-8 md:flex-row md:items-center'>
       <section className='flex w-full flex-col gap-5 sm:gap-12'>
         <div className='flex flex-col gap-4 '>
-          <h2 className='max-w-md font-sans-display font-bold leading-normal sm:text-4xl'>
+          <h2 className='max-w-md font-sans font-bold leading-normal sm:text-4xl'>
             Discover the latest in <em>Trendy Products</em> with us!
           </h2>
           <p className='font-sm max-w-2xl '>

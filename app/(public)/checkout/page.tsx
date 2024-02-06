@@ -2,15 +2,18 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAppContext } from '@/context/AppContext';
 import { currencyFormatter } from '@/lib/utils';
+import { updateCart } from '@/redux/slices/cart';
+import type { AppDispatch, RootState } from '@/redux/store';
 import type { CartItem } from '@/types';
 import { InfoIcon, MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Page() {
-  const { cart, updateCart } = useAppContext();
+  const dispatch = useDispatch<AppDispatch>();
+  const cart = useSelector((state: RootState) => state.cart);
 
   const subTotal: number = useMemo(
     () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
@@ -18,45 +21,51 @@ export default function Page() {
   );
 
   const removeCartItem = (productId: number) => {
-    updateCart([...cart.filter((item) => item.productId !== productId)]);
+    dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
   };
 
   const increaseQuantity = (product: CartItem) => {
-    updateCart([
-      ...cart.map((item) =>
-        item.productId === product.productId
-          ? { ...product, quantity: product.quantity + 1 }
-          : item
-      )
-    ]);
+    dispatch(
+      updateCart([
+        ...cart.map((item) =>
+          item.productId === product.productId
+            ? { ...product, quantity: product.quantity + 1 }
+            : item
+        )
+      ])
+    );
   };
 
   const decreaseQuantity = (product: CartItem) => {
-    updateCart([
-      ...cart.map((item) =>
-        item.productId === product.productId
-          ? {
-              ...product,
-              quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
-            }
-          : item
-      )
-    ]);
+    dispatch(
+      updateCart([
+        ...cart.map((item) =>
+          item.productId === product.productId
+            ? {
+                ...product,
+                quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
+              }
+            : item
+        )
+      ])
+    );
   };
 
   const updateQuantity = (productId: number, qty: number) => {
-    updateCart([
-      ...cart.map((item) =>
-        item.productId === productId ? { ...item, quantity: qty } : item
-      )
-    ]);
+    dispatch(
+      updateCart([
+        ...cart.map((item) =>
+          item.productId === productId ? { ...item, quantity: qty } : item
+        )
+      ])
+    );
   };
 
   return (
     <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans'>
       <section className='mx-auto flex w-full max-w-[890px] flex-col items-center gap-4 sm:flex-row sm:items-start md:flex-row md:gap-8'>
         <section className='flex w-full flex-col gap-3'>
-          <div className='font-sans-display text-2xl font-bold leading-relaxed'>
+          <div className='font-sans text-2xl font-bold leading-relaxed'>
             Your cart ({cart.length} items)
           </div>
           {cart.length > 0 ? (
@@ -115,17 +124,12 @@ export default function Page() {
           )}
         </section>
         <section className='flex w-full flex-col gap-3 sm:max-w-[320px]'>
-          <div className='font-sans-display text-2xl font-bold leading-relaxed'>
-            Summary
-          </div>
+          <div className='font-sans text-2xl font-bold leading-relaxed'>Summary</div>
           <div className='base-border flex w-full flex-col gap-8 rounded-lg p-4'>
             <form
               onSubmit={(e) => e.preventDefault()}
               className='base-border mx-auto flex w-full max-w-xl items-center gap-3 rounded-lg p-1'>
-              <Input
-                placeholder='Promo code'
-                className='border-none shadow-none'
-              />
+              <Input placeholder='Promo code' className='border-none shadow-none' />
               <Button
                 type='submit'
                 size={'sm'}

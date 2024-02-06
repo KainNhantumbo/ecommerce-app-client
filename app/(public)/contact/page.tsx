@@ -37,7 +37,7 @@ const options = [
 
 export default function Page() {
   return (
-    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans'>
+    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>
       <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8 sm:flex-row'>
         <div className='flex w-full flex-col gap-9'>
           <div className='flex w-full flex-col items-center gap-4'>

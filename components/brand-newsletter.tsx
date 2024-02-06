@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 export const BrandNewsletter = () => {
   return (
     <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
-      <h2 className='mx-auto max-w-md text-center font-sans-display text-4xl font-bold leading-normal'>
+      <h2 className='mx-auto max-w-md text-center font-sans text-4xl font-bold leading-normal'>
         Your Monthly Dose of Updates and Offers!
       </h2>
       <p className='font-sm mx-auto max-w-2xl text-center'>

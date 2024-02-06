@@ -25,8 +25,7 @@ const backers = [
 const listings = [
   {
     career: 'Product designer',
-    description:
-      "We're looking for a mid-level product designer to join our team.",
+    description: "We're looking for a mid-level product designer to join our team.",
     location: 'Remote',
     type: 'Part-time'
   },
@@ -39,22 +38,19 @@ const listings = [
   },
   {
     career: 'Content creator',
-    description:
-      "We're looking for a creative content creator to join our team.",
+    description: "We're looking for a creative content creator to join our team.",
     location: 'Remote',
     type: 'Part-time'
   },
   {
     career: 'Account Executive',
-    description:
-      "We're looking for a experienced account executive to join our team.",
+    description: "We're looking for a experienced account executive to join our team.",
     location: 'Remote',
     type: 'Full-time'
   },
   {
     career: 'Sales Consultant',
-    description:
-      "We're looking for a experienced sales consultant to join our team.",
+    description: "We're looking for a experienced sales consultant to join our team.",
     location: 'Local',
     type: 'Full-time'
   },
@@ -76,29 +72,28 @@ const listings = [
 
 export default function Page() {
   return (
-    <main className='w-full px-4 mt-[90px] font-sans flex flex-col gap-12'>
-      <section className='w-full max-w-[890px] mx-auto flex flex-col gap-8'>
-        <h1 className=' font-bold text-4xl text-center max-w-2xl mx-auto leading-normal'>
-          Meet our team of creators, product designers and world class problem
-          solvers!
+    <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>
+      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+        <h1 className=' mx-auto max-w-2xl text-center text-4xl font-bold leading-normal'>
+          Meet our team of creators, product designers and world class problem solvers!
         </h1>
 
-        <p className='font-sm max-w-3xl mx-auto text-center'>
+        <p className='font-sm mx-auto max-w-3xl text-center'>
           To be the company of our customers want us to be, it takes an{' '}
-          <em>eclectic team</em> of passionate workers. Get to know the people
-          leading the way at <strong>{constants.name}</strong>.
+          <em>eclectic team</em> of passionate workers. Get to know the people leading
+          the way at <strong>{constants.name}</strong>.
         </p>
 
-        <div className='w-full grid place-content-center place-items-center'>
-          <div className='w-full grid grid-cols-2 sm:grid-cols-3 gap-8'>
+        <div className='grid w-full place-content-center place-items-center'>
+          <div className='grid w-full grid-cols-2 gap-8 sm:grid-cols-3'>
             {backers.map(({ career, name, image }, i) => (
-              <div className='w-full flex flex-col gap-2' key={i}>
+              <div className='flex w-full flex-col gap-2' key={i}>
                 <Image
                   src={image}
                   width={190}
                   height={190}
                   alt={`${name} photo`}
-                  className='object-cover mobile-x:max-w-[190px] mobile-x:max-h-[190px] max-w-[120px] max-h-[120px] rounded-lg'
+                  className='max-h-[120px] max-w-[120px] rounded-lg object-cover mobile-x:max-h-[190px] mobile-x:max-w-[190px]'
                 />
                 <div>
                   <h3>{name}</h3>
@@ -109,35 +104,31 @@ export default function Page() {
           </div>
         </div>
 
-        <section className='w-full flex flex-col gap-5 py-4'>
-          <div className='w-full flex flex-col gap-2 mx-auto'>
-            <h2 className='font-sans-display font-bold text-4xl text-center max-w-md mx-auto leading-normal'>
+        <section className='flex w-full flex-col gap-5 py-4'>
+          <div className='mx-auto flex w-full flex-col gap-2'>
+            <h2 className='mx-auto max-w-md text-center font-sans text-4xl font-bold leading-normal'>
               Start doing work that matters
             </h2>
-            <p className='font-sm max-w-2xl mx-auto text-center'>
-              We are remote and hybrid team spread all across the world and
-              looking for talented people. Join us!
+            <p className='font-sm mx-auto max-w-2xl text-center'>
+              We are remote and hybrid team spread all across the world and looking for
+              talented people. Join us!
             </p>
           </div>
 
-          <div className='w-full flex flex-col gap-5'>
+          <div className='flex w-full flex-col gap-5'>
             {listings.map(({ career, description, location, type }, i) => (
-              <div
-                className='flex flex-col gap-2 base-border p-4 rounded-3xl'
-                key={i}>
+              <div className='base-border flex flex-col gap-2 rounded-3xl p-4' key={i}>
                 <h3 className='capitalize'>{career}</h3>
                 <p>{description}</p>
                 <div className='flex items-center gap-2'>
-                  <span className='base-border  py-1 px-2 rounded-full'>
+                  <span className='base-border  rounded-full px-2 py-1'>
                     {location}
                   </span>
-                  <span className='base-border  py-1 px-2 rounded-full'>
-                    {type}
-                  </span>
+                  <span className='base-border  rounded-full px-2 py-1'>{type}</span>
                 </div>
                 <Button
                   variant={'default'}
-                  className='rounded-full w-fit py-2 px-4 font-semibold'>
+                  className='w-fit rounded-full px-4 py-2 font-semibold'>
                   Apply
                 </Button>
               </div>
@@ -145,19 +136,19 @@ export default function Page() {
           </div>
         </section>
 
-        <section className=' flex flex-col gap-4 mx-auto w-full py-8'>
-          <h3 className='font-sans text-2xl text-center mx-auto max-w-3xl'>
-            <strong>{constants.name}</strong> truly values{' '}
-            <em>work-life balance.</em> We work really hard, but at the end of
-            the day you can take a rest and switch off.
+        <section className=' mx-auto flex w-full flex-col gap-4 py-8'>
+          <h3 className='mx-auto max-w-3xl text-center font-sans-body text-2xl font-medium'>
+            <strong className='text-primary'>{constants.name}</strong> truly values <em>work-life balance.</em>{' '}
+            We work really hard, but at the end of the day you can take a rest and
+            switch off.
           </h3>
-          <div className='flex flex-col gap-2 items-center'>
+          <div className='flex flex-col items-center gap-2'>
             <Image
               src={ceoImage}
               width={120}
               height={120}
               alt='ceo image'
-              className='object-cover max-w-[60px] max-h-[60px] rounded-full'
+              className='max-h-[60px] max-w-[60px] rounded-full object-cover'
             />
             <p>Martha Kodella</p>
             <span>
@@ -169,21 +160,3 @@ export default function Page() {
     </main>
   );
 }
-
-
-/**
- *
- * **Welcome to Our Careers Page: Where Opportunities Await**
-
-Welcome to the gateway of possibilities – our Careers page. Here, we believe in the power of individuals coming together, fueled by passion and driven by purpose, to create something extraordinary. If you're searching for more than just a job – if you're seeking a place where your talents are valued, your ideas are welcomed, and your potential is nurtured – then you're in the right place.
-
-At [Your Company Name], we're not just building a brand; we're building a community of dreamers, innovators, and change-makers. Whether you're a seasoned professional or a fresh graduate, whether you're exploring new horizons or looking to take the next step in your career journey, we invite you to explore the opportunities that await you here.
-
-Our Careers page is more than just a listing of job openings; it's a reflection of our commitment to fostering a culture of growth, diversity, and inclusion. We believe in empowering our team members to thrive, providing them with the resources, support, and opportunities they need to reach their full potential.
-
-So, if you're ready to embark on a new adventure, to challenge yourself, to make a meaningful impact, then we encourage you to explore the possibilities that await you at [Your Company Name]. Join us as we shape the future together and create something truly extraordinary. Your journey starts here.
- *
- *
- *
- *
- */
