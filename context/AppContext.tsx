@@ -8,18 +8,33 @@ import type { Auth, HttpError } from '@/types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import { ReactNode, createContext, useContext, useEffect, useMemo } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import { CART_STORAGE_KEY } from '@/shared/constants';
+import type { CartItem } from '@/types';
 
 type Props = { children: ReactNode };
 
 type Context = {
   // eslint-disable-next-line no-unused-vars
   httpClientAPI: <T>(config: AxiosRequestConfig<T>) => Promise<AxiosResponse<T>>;
+  updateCart: Dispatch<SetStateAction<CartItem[]>>;
+  cart: CartItem[];
 };
 
 const context = createContext<Context>({
-  httpClientAPI: ({ ...config }) => httpClient(config)
+  httpClientAPI: ({ ...config }) => httpClient(config),
+  cart: [],
+  updateCart: () => {}
 });
 
 const queryClient = new QueryClient({
@@ -30,6 +45,7 @@ export default function AppContext({ children }: Props) {
   const router = useRouter();
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
+  const [cart, updateCart] = useLocalStorage<CartItem[]>(CART_STORAGE_KEY, []);
 
   const authenticateUser = useMemo(
     () => async () => {
@@ -107,7 +123,9 @@ export default function AppContext({ children }: Props) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <context.Provider value={{ httpClientAPI }}>{children}</context.Provider>
+      <context.Provider value={{ httpClientAPI, cart, updateCart }}>
+        {children}
+      </context.Provider>
     </QueryClientProvider>
   );
 }

@@ -8,7 +8,6 @@ import {
 import Link from 'next/link';
 import { constants } from '@/shared/constants';
 
-
 type Navigation = {
   title: string;
   children: { url: string; label: string }[];
@@ -26,7 +25,7 @@ const navigation: Navigation = [
     children: [
       { label: 'About Us', url: '/about' },
       { label: 'Careers', url: '/careers' },
-      { label: 'Stories', url: '/stories' },
+      { label: 'Stories', url: '/stories' }
     ]
   },
   {
@@ -40,8 +39,8 @@ const navigation: Navigation = [
   {
     title: 'Service',
     children: [
-      { label: 'Orders', url: '#' },
       { label: 'Our Terms', url: '/terms-and-conditions' },
+      { label: 'Cart & Checkout', url: '/checkout' }
     ]
   },
   {
@@ -63,9 +62,9 @@ const socialMedia: SocialProps = [
 
 export default function Footer() {
   return (
-    <footer className='w-full flex flex-col p-4 font-sans mt-10 z-0 bg-background'>
-      <section className='w-full flex flex-col gap-8 max-w-[890px] mx-auto'>
-        <nav className='w-full grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-8'>
+    <footer className='z-0 mt-10 flex w-full flex-col bg-background p-4 font-sans'>
+      <section className='mx-auto flex w-full max-w-[890px] flex-col gap-8'>
+        <nav className='grid w-full grid-cols-2 gap-8 sm:grid-cols-4 md:grid-cols-5'>
           {navigation.map(({ title, children }, index) => (
             <section key={index} className='flex flex-col gap-2'>
               <h3>{title}</h3>
@@ -74,7 +73,8 @@ export default function Footer() {
                   <Link
                     key={i}
                     href={url}
-                    className='base-link hover:text-primary'>
+                    className='sm:text-left; w-fit text-center transition-colors hover:text-primary hover:underline
+  hover:underline-offset-4'>
                     {label}
                   </Link>
                 ))}
@@ -94,24 +94,24 @@ export default function Footer() {
           </section> */}
         </nav>
 
-        <section className='w-full flex flex-wrap gap-3 items-center justify-between'>
-          <p className='font-medium text-sm'>
+        <section className='flex w-full flex-wrap items-center justify-between gap-3'>
+          <p className='text-sm font-medium'>
             &copy; {new Date().getFullYear()} {constants.name}
           </p>
 
-          <div className='font-medium flex-wrap text-sm flex gap-3 hover:text-primary'>
+          <div className='flex flex-wrap gap-3 text-sm font-medium hover:text-primary'>
             {socialMedia.map((media, i) => (
               <Link
                 href={media.url}
                 key={i}
-                className='flex flex-row gap-1 items-center hover:text-primary'>
+                className='flex flex-row items-center gap-1 hover:text-primary'>
                 <media.icon className='w-[14px]' />
                 <span className='hover:text-primary'>{media.label}</span>
               </Link>
             ))}
           </div>
 
-          <Link className='font-medium text-sm' href={'/privacy-policy'}>
+          <Link className='text-sm font-medium' href={'/privacy-policy'}>
             Privacy Policy
           </Link>
         </section>

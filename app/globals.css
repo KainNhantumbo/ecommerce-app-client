@@ -115,7 +115,7 @@
   }
 
   .base-link {
-    @apply w-fit text-center transition-colors hover:underline hover:underline-offset-4 sm:text-left;
+    @apply w-fit hover:text-primary text-center transition-colors underline text-blue-400 underline-offset-4 sm:text-left;
   }
 
   .inputs {

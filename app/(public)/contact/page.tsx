@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { ContactForm } from '@/components/contact-form';
-import BrandNewsletter from '@/components/brand-newsletter';
+import { BrandNewsletter } from '@/components/brand-newsletter';
 
 const options = [
   {

@@ -1,7 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useAutoSyncCartStore } from '@/hooks/useLocalStore';
+import { Input } from '@/components/ui/input';
+import { useAppContext } from '@/context/AppContext';
 import { currencyFormatter } from '@/lib/utils';
 import type { CartItem } from '@/types';
 import { InfoIcon, MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
@@ -9,7 +10,7 @@ import Image from 'next/image';
 import { useMemo } from 'react';
 
 export default function Page() {
-  const { cartItems: cart, updateCartItems: updateCart } = useAutoSyncCartStore();
+  const { cart, updateCart } = useAppContext();
 
   const subTotal: number = useMemo(
     () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
@@ -107,7 +108,7 @@ export default function Page() {
               </div>
             ))
           ) : (
-            <div className='base-border m-auto flex w-full items-center gap-3 rounded-lg bg-foreground p-5'>
+            <div className='base-border m-auto flex w-full items-center gap-3 rounded-lg p-5'>
               <InfoIcon className='pointer-events-none h-5 w-5 transition-colors group-hover:stroke-primary' />
               <h3 className='font-sans-body'>Nothing in cart to be displayed</h3>
             </div>
@@ -121,9 +122,9 @@ export default function Page() {
             <form
               onSubmit={(e) => e.preventDefault()}
               className='base-border mx-auto flex w-full max-w-xl items-center gap-3 rounded-lg p-1'>
-              <input
+              <Input
                 placeholder='Promo code'
-                className='w-full rounded-lg border-none bg-foreground p-1 px-4 outline-none '
+                className='border-none shadow-none'
               />
               <Button
                 type='submit'

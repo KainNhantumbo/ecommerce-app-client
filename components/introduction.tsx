@@ -2,6 +2,8 @@ import { constants } from '@/shared/constants';
 import introCoverImage from '@/public/intro-cover-dom-hill-nimElTcTNyY-unsplash.jpg';
 import Image from 'next/image';
 import { Separator } from './ui/separator';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 export const Introduction = () => {
   return (
@@ -24,7 +26,6 @@ export const Introduction = () => {
         </h1>
       </div>
 
-      <Separator className='mx-auto w-full max-w-5xl' decorative />
       <div className='grid grid-cols-1 flex-wrap place-items-center gap-4 font-medium sm:grid-cols-2'>
         <p className='max-w-[420px] text-justify'>
           <i className='text-primary'>
@@ -60,6 +61,15 @@ export const Introduction = () => {
           <i className='italic text-primary'>Happy shopping!</i>
         </p>
       </div>
+      <div className='mx-auto flex w-full flex-wrap justify-center gap-4'>
+        <Button asChild variant={'default'} size={'lg'} className='capitalize'>
+          <Link href={'/products'}>Explore our products</Link>
+        </Button>
+        <Button asChild variant={'default'} size={'lg'} className='capitalize'>
+          <Link href={'/stories'}>read more about our journey</Link>
+        </Button>
+      </div>
+      <Separator className='mx-auto w-full max-w-5xl' decorative />
     </section>
   );
 };

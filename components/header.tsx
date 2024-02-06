@@ -3,13 +3,12 @@
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/useToggleHeader';
 import Link from 'next/link';
-import { RootState } from '@/redux/store';
 import clsx from 'clsx';
 import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useSelector } from 'react-redux';
 import { Button } from './ui/button';
+import { useAppContext } from '@/context/AppContext';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -36,7 +35,7 @@ const adminRoutes = [
 export default function Header() {
   const { onToggleReveal, isBreakPoint } = useToggleHeader(768);
   const pathname = usePathname();
-  const cart = useSelector((state: RootState) => state.cart);
+  const { cart } = useAppContext();
 
   const isProtectedRoutes = pathname.includes('dashboard');
 
@@ -87,14 +86,15 @@ export default function Header() {
           <ThemeToggle />
         </div>
 
-        <Link
-          href={'/checkout'}
-          className={clsx(
-            'fixed right-28 top-[12px] flex w-fit items-center gap-2 rounded-xl border-none bg-black px-2 py-[2px] transition-colors hover:cursor-pointer hover:bg-primary dark:bg-slate-600 dark:hover:bg-primary/70 md:right-20 lg:right-[calc(50%_-_430px)]'
-          )}>
-          <ShoppingCartIcon className='pointer-events-none h-4 w-4 stroke-white' />
-          <span className='font-bold text-white'>{cart.length}</span>
-        </Link>
+        <Button
+          asChild
+          variant={'ghost'}
+          className=' fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
+          <Link href={'/checkout'} className='group flex w-fit items-center gap-2 px-2'>
+            <ShoppingCartIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
+            <span className='font-bold group-hover:text-primary'>{cart.length}</span>
+          </Link>
+        </Button>
 
         <Button
           variant={'ghost'}
