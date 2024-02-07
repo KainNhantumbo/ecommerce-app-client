@@ -11,7 +11,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { emailSchema, EmailSchemaType } from '@/providers/schemas';
+import { emailSchema, type EmailSchemaType } from '@/providers/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DownloadIcon, MailIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -36,8 +36,9 @@ export default function Page() {
     try {
       //
       router.push(`/dashboard`);
-    } catch (error: any) {
+    } catch (error) {
       toast.error('Something went wrong. Please try again.');
+      console.error(error)
     } finally {
       setLoading(false);
     }

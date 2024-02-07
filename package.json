@@ -3,7 +3,7 @@
   "description": "An full feature enriched ecommerce website demo",
   "version": "0.1.0",
   "private": true,
-  "url": "",
+  "url": "https://wecommerce-store-demo.vercel.app",
   "browserslist": [
     "defaults",
     "not IE 11"
