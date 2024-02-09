@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -14,12 +15,14 @@ export default function Page() {
               Please click the button below to access your account.
             </p>
 
-            <Link
-              href={'/auth/sign-in'}
-              className='flex w-fit items-center gap-2 rounded-3xl bg-primary px-5 py-2 transition-colors hover:bg-secondary'>
-              <ArrowRight className='stroke-white' />
-              <span className='font-semibold text-white'>Go and Sign In</span>
-            </Link>
+            <Button asChild>
+              <Link
+                href={'/auth/sign-in'}
+                className='flex w-fit items-center gap-2'>
+                <ArrowRight className='stroke-white w-5 h-auto' />
+                <span className='font-semibold text-white'>Go and Sign In</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

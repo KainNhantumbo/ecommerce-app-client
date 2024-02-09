@@ -55,7 +55,7 @@ export default function Page() {
     } catch (error: any) {
       const { message } = errorTransformer(error as HttpError);
       console.warn(message);
-      toast.error('Something went wrong. Please try again.');
+      toast.error(message);
     } finally {
       setLoading(false);
     }

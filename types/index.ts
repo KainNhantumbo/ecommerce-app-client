@@ -1,8 +1,9 @@
 import { AxiosError } from 'axios';
+import { constrainedMemory } from 'process';
 
 export type ImageType = {
   id: number;
-  publicId: string;
+  publicId?: string;
   url: string;
   createdAt: string;
   updatedAt: string;
@@ -85,3 +86,12 @@ export type Testimonials = Array<{
   comment: string;
   customerName: string;
 }>;
+
+export type Billboard = {
+  id: number;
+  label: string;
+  image: ImageType;
+  createdAt: string;
+  updatedAt: string;
+};
+

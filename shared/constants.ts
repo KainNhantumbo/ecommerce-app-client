@@ -14,9 +14,9 @@ export const constants = {
 
 export const ALLOWED_MIMETYPES: string[] = ['image/png', 'image/jpeg', 'image/jpg'];
 
-export const CART_STORAGE_KEY = 'CART_STORAGE_KEY';
+export const CART_STORAGE_KEY: string = 'CART_STORAGE_KEY';
 
-export const PRODUCTS_LIMIT_PER_PAGE = 10;
+export const PRODUCTS_LIMIT_PER_PAGE: number = 10;
 
 export const sortOptions: Option[] = [
   { value: 'title', label: 'Title [A-Z]' },
@@ -26,3 +26,5 @@ export const sortOptions: Option[] = [
   { value: '-updatedAt', label: 'Date Updated' },
   { value: 'updatedAt', label: 'Date Updated [Inverted]' }
 ];
+
+export const USER_ROLES: string[] = ['EMPLOYEE', 'USER', 'ADMIN'];

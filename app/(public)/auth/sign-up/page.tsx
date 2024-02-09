@@ -10,9 +10,17 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import httpClient from '@/config/http-client';
 import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
 import { UserSignupType, userSignupSchema } from '@/providers/schemas';
+import { USER_ROLES } from '@/shared/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRightCircleIcon, LockIcon, MailIcon, User2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -52,7 +60,12 @@ export default function Page() {
       });
       router.push(`/auth/success`);
     } catch (error: any) {
-      toast.error('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.', {
+        action: {
+          label: 'Retry',
+          onClick: () => onSubmit(data)
+        }
+      });
     } finally {
       setLoading(false);
     }
@@ -129,13 +142,20 @@ export default function Page() {
                         <User2Icon className='h-5 w-auto' />
                         <span>Employee ID</span>
                       </FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={loading}
-                          placeholder='Enter your employee ID'
-                          {...field}
-                        />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder='Enter your employee ID' />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {USER_ROLES.map((role, i) => (
+                            <SelectItem value={role} key={i} className='capitalize'>
+                              {role}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -149,13 +169,20 @@ export default function Page() {
                         <User2Icon className='h-5 w-auto' />
                         <span>Role</span>
                       </FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={loading}
-                          placeholder='Enter your role'
-                          {...field}
-                        />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder='Enter your role' />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {USER_ROLES.map((role, i) => (
+                            <SelectItem value={role} key={i} className='capitalize'>
+                              {role}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

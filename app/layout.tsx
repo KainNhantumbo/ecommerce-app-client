@@ -24,7 +24,7 @@ type Props = { children: ReactNode };
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={clsx(jakarta.className, ibmPlexSans.className)}>
         <Layout>{children}</Layout>
       </body>

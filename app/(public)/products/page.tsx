@@ -94,13 +94,13 @@ export default function Page() {
 
   useEffect(() => {
     dispatch(updateProducts([...products, ...incomingData]));
-  }, [incomingData, dispatch, products]);
+  }, [incomingData]);
 
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView, fetchNextPage, hasNextPage]);
+  }, [inView, hasNextPage]);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
@@ -111,8 +111,8 @@ export default function Page() {
   }, [params, refetch]);
 
   return (
-    <main>
-      <BillboardsCarousel/>
+    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
+      <BillboardsCarousel />
       <section className=''>
         {products.length > 0
           ? products.map((product, index) => (

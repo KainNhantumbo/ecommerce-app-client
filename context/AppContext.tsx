@@ -13,7 +13,6 @@ import {
   createContext,
   useContext,
   useEffect,
-  useMemo,
   type FC,
   type ReactNode
 } from 'react';
@@ -39,25 +38,22 @@ export const AppContext: FC<Props> = ({ children }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
 
-  // loads cart from localstorage
+  // loads cart data from localstorage
   useLoadCart();
 
-  const authenticateUser = useMemo(
-    () => async () => {
-      try {
-        const { data } = await httpClient<Auth>({
-          method: 'get',
-          url: '/api/v1/auth/refresh',
-          withCredentials: true
-        });
-        dispatch(updateAuth({ ...data }));
-      } catch (error) {
-        const { message } = errorTransformer(error as HttpError);
-        console.error(message || error);
-      }
-    },
-    [dispatch]
-  );
+  const authenticateUser = async () => {
+    try {
+      const { data } = await httpClient<Auth>({
+        method: 'get',
+        url: '/api/v1/auth/refresh',
+        withCredentials: true
+      });
+      dispatch(updateAuth({ ...data }));
+    } catch (error) {
+      const { message } = errorTransformer(error as HttpError);
+      console.error(message || error);
+    }
+  };
 
   async function httpClientAPI<T>(
     config: AxiosRequestConfig
@@ -109,12 +105,12 @@ export const AppContext: FC<Props> = ({ children }) => {
       1000 * 60 * 4
     );
     return (): void => clearTimeout(timer);
-  }, [auth, authenticateUser]);
+  }, [auth]);
 
   useEffect(() => {
     handleAPIHealthCheck();
     authenticateUser();
-  }, [authenticateUser]);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

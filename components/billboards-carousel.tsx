@@ -1,20 +1,24 @@
-import { useQuery } from '@tanstack/react-query';
-import httpClient from '@/config/http-client';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext
+  CarouselNext,
+  CarouselPrevious
 } from '@/components/ui/carousel';
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
-import type {} from '@/types';
-import { Skeleton } from './ui/skeleton';
+import httpClient from '@/config/http-client';
+import type { Billboard } from '@/types';
+import { useQuery } from '@tanstack/react-query';
+import { AlertTriangleIcon, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
+import Image from 'next/image';
 import { EmptyMessage } from './empty-message';
+import { Skeleton } from './ui/skeleton';
 
 export const BillboardsCarousel = () => {
   const getBillboards = async () => {
-    const { data } = await httpClient<Bilbo>({ method: 'get', url: '/billboards' });
+    const { data } = await httpClient<Billboard[]>({
+      method: 'get',
+      url: '/billboards'
+    });
     return data;
   };
 
@@ -32,7 +36,9 @@ export const BillboardsCarousel = () => {
           </CarouselPrevious>
           <CarouselContent>
             {data.map((item) => (
-              <CarouselItem key={item.id}></CarouselItem>
+              <CarouselItem key={item.id}>
+                <Image key={item.id} src={item.image.url} alt={item.label} />
+              </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselNext>
@@ -41,8 +47,17 @@ export const BillboardsCarousel = () => {
         </Carousel>
       ) : null}
 
-      {isLoading && !isError ? <Skeleton /> : null}
-      {isError && !isLoading ? <Skeleton /> : null}
+      {isLoading && !isError ? <Skeleton className='h-48 w-full' /> : null}
+
+      {isError && !isLoading ? (
+        <Skeleton>
+          <EmptyMessage
+            message='Error loading billboard content. Please try again.'
+            icon={AlertTriangleIcon}
+            action={{ handler: () => refetch({}), label: 'Retry' }}
+          />
+        </Skeleton>
+      ) : null}
     </section>
   );
 };

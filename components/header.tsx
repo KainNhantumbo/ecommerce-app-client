@@ -64,7 +64,7 @@ export const Header = () => {
                   <Link
                     href={route.href}
                     key={i}
-                    className='text-sm font-semibold leading-6 hover:text-secondary'>
+                    className='ext-sm font-semibold leading-6 hover:text-primary hover:underline hover:decoration-dashed hover:underline-offset-4'>
                     {route.name}
                   </Link>
                 ))
