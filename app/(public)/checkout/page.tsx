@@ -5,12 +5,11 @@ import { Input } from '@/components/ui/input';
 import { currencyFormatter } from '@/lib/utils';
 import { updateCart } from '@/redux/slices/cart';
 import type { AppDispatch, RootState } from '@/redux/store';
-import type { CartItem, HttpError } from '@/types';
+import type { CartItem, CreateOrder, HttpError } from '@/types';
 import {
   HomeIcon,
   InfoIcon,
   MinusIcon,
-  PartyPopper,
   PartyPopperIcon,
   Phone,
   PlusIcon,
@@ -36,24 +35,39 @@ import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import httpClient from '@/config/http-client';
 import { toast } from 'sonner';
 import { Separator } from '@/components/ui/separator';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: RootState) => state.cart);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const form = useForm<OrderSchemaType>({
     resolver: zodResolver(orderSchema),
     defaultValues: { customerName: '', phone: '', address: '' }
   });
 
-  const onSubmit = async (data: OrderSchemaType) => {
+  const onSubmit = async (orderData: OrderSchemaType) => {
     try {
-      await httpClient({ method: 'post', url: '/api/v1/orders' });
+      setLoading(true);
+      await httpClient<CreateOrder>({
+        method: 'post',
+        url: '/api/v1/orders',
+        data: {
+          ...orderData,
+          items: cart.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity
+          }))
+        }
+      });
+      router.push('/checkout/success');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);
       console.warn(message || error);
+    } finally {
+      setLoading(false);
     }
   };
 
