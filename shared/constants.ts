@@ -28,3 +28,5 @@ export const sortOptions: Option[] = [
 ];
 
 export const USER_ROLES: string[] = ['EMPLOYEE', 'USER', 'ADMIN'];
+
+export const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try again later.';

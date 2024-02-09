@@ -16,6 +16,7 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { UserLoginType, userLoginSchema } from '@/providers/schemas';
 import backgroundImage from '@/public/login-background.jpg';
 import { updateAuth } from '@/redux/slices/auth';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { Auth, HttpError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { GithubIcon, LockIcon, MailIcon, UnlockIcon } from 'lucide-react';
@@ -54,8 +55,8 @@ export default function Page() {
       router.push(`/dashboard`);
     } catch (error: any) {
       const { message } = errorTransformer(error as HttpError);
+      toast.error(message || DEFAULT_ERROR_MESSAGE);
       console.warn(message);
-      toast.error(message);
     } finally {
       setLoading(false);
     }

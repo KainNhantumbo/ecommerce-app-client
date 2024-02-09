@@ -5,15 +5,57 @@ import { Input } from '@/components/ui/input';
 import { currencyFormatter } from '@/lib/utils';
 import { updateCart } from '@/redux/slices/cart';
 import type { AppDispatch, RootState } from '@/redux/store';
-import type { CartItem } from '@/types';
-import { InfoIcon, MinusIcon, PlusIcon, Trash2Icon } from 'lucide-react';
+import type { CartItem, HttpError } from '@/types';
+import {
+  HomeIcon,
+  InfoIcon,
+  MinusIcon,
+  PartyPopper,
+  PartyPopperIcon,
+  Phone,
+  PlusIcon,
+  TextIcon,
+  Trash2Icon
+} from 'lucide-react';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { OrderSchemaType, orderSchema } from '@/providers/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { errorTransformer } from '@/lib/http-error-transformer';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
+import httpClient from '@/config/http-client';
+import { toast } from 'sonner';
+import { Separator } from '@/components/ui/separator';
 
 export default function Page() {
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: RootState) => state.cart);
+  const [loading, setLoading] = useState(false);
+
+  const form = useForm<OrderSchemaType>({
+    resolver: zodResolver(orderSchema),
+    defaultValues: { customerName: '', phone: '', address: '' }
+  });
+
+  const onSubmit = async (data: OrderSchemaType) => {
+    try {
+      await httpClient({ method: 'post', url: '/api/v1/orders' });
+    } catch (error) {
+      const { message } = errorTransformer(error as HttpError);
+      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      console.warn(message || error);
+    }
+  };
 
   const subTotal: number = useMemo(
     () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
@@ -130,44 +172,108 @@ export default function Page() {
         <section className='flex w-full flex-col gap-3 sm:max-w-[320px]'>
           <div className='font-sans text-2xl font-bold leading-relaxed'>Summary</div>
           <div className='base-border flex w-full flex-col gap-8 rounded-lg p-4'>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className='base-border mx-auto flex w-full max-w-xl items-center gap-3 rounded-lg p-1'>
-              <Input placeholder='Promo code' className='border-none shadow-none' />
-              <Button
-                type='submit'
-                size={'sm'}
-                variant={'default'}
-                className='font-bold'>
-                Apply
-              </Button>
-            </form>
-
             <div className='flex flex-col gap-4'>
-              <div className='flex w-full items-center justify-between gap-4'>
-                <p className='font-semibold'>Subtotal</p>
-                <p className='font-bold'>{currencyFormatter(subTotal)}</p>
-              </div>
-              <div className='flex w-full items-center justify-between gap-4'>
-                <p className='font-semibold'>Delivery & Handling</p>
-                <p className='font-bold'>Free</p>
-              </div>
-              <div className='flex w-full items-center justify-between gap-4'>
-                <p className='font-semibold'>Estimated Taxes</p>
-                <p className='font-bold'>{currencyFormatter(0)}</p>
-              </div>
-            </div>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className='max my-auto h-full w-full space-y-5'>
+                  <FormField
+                    control={form.control}
+                    name='customerName'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className='flex items-center gap-2'>
+                          <TextIcon className='h-5 w-auto' />
+                          <span>Name *</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={loading}
+                            placeholder='Your full name'
+                            type='text'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='phone'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className='flex items-center gap-2'>
+                          <Phone className='h-5 w-auto' />
+                          <span>Phone *</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={loading}
+                            placeholder='Your phone number'
+                            type='number'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='address'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className='flex items-center gap-2'>
+                          <HomeIcon className='h-5 w-auto' />
+                          <span>Address *</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={loading}
+                            placeholder='Your address'
+                            type='text'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-            <div className='flex flex-col gap-4 border-t-[1px] border-solid border-font/10 pt-4'>
-              <div className='flex w-full items-center justify-between gap-4'>
-                <p className='font-semibold'>Total</p>
-                <p className='font-bold'>{currencyFormatter(subTotal)}</p>
-              </div>
-            </div>
+                  <Separator decorative />
+                  <div className='flex w-full items-center justify-between gap-4'>
+                    <p className='font-semibold'>Subtotal</p>
+                    <p className='font-bold'>{currencyFormatter(subTotal)}</p>S
+                  </div>
+                  <div className='flex w-full items-center justify-between gap-4'>
+                    <p className='font-semibold'>Delivery & Handling</p>
+                    <p className='font-bold'>Free</p>
+                  </div>
+                  <div className='flex w-full items-center justify-between gap-4'>
+                    <p className='font-semibold'>Estimated Taxes</p>
+                    <p className='font-bold'>{currencyFormatter(0)}</p>
+                  </div>
+                  <Separator decorative />
+                  <div className='flex flex-col gap-4'>
+                    <div className='flex w-full items-center justify-between gap-4'>
+                      <p className='font-semibold'>Total</p>
+                      <p className='font-bold'>{currencyFormatter(subTotal)}</p>
+                    </div>
+                  </div>
 
-            <Button variant={'default'} size={'sm'} className='font-bold'>
-              Checkout now
-            </Button>
+                  <Button
+                    disabled={loading}
+                    variant={'default'}
+                    size={'lg'}
+                    className='flex w-full items-center gap-2'
+                    type='submit'>
+                    <PartyPopperIcon className='stroke-white' />
+                    <span className='font-semibold text-white'>Checkout Now</span>
+                  </Button>
+                </form>
+              </Form>
+            </div>
           </div>
         </section>
       </section>

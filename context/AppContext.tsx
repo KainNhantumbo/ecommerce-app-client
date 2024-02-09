@@ -65,7 +65,7 @@ export const AppContext: FC<Props> = ({ children }) => {
         if (status > 400 && status < 404) {
           authenticateUser().catch((error) => {
             const { message } = errorTransformer(error as HttpError);
-            console.error(error?.response?.data?.message || error);
+            console.error(message || error);
             console.warn(message);
             router.push('/auth/sign-in');
           });

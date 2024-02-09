@@ -36,9 +36,6 @@ export const ContactForm: FC = () => {
 
   const onSubmit = async (data: ContactType) => {
     try {
-      console.log(data);
-      router.refresh();
-      router.push(`/${params.storeId}/billboards`);
       toast.success('Message sent successfully!');
     } catch (error: any) {
       toast.error('Something went wrong. Please try again.');

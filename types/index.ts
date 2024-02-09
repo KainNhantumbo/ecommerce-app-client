@@ -1,5 +1,23 @@
-import { AxiosError } from 'axios';
-import { constrainedMemory } from 'process';
+import type { OrderSchemaType, UserSignupType } from '@/providers/schemas';
+import type { AxiosError } from 'axios';
+
+export type User = Omit<UserSignupType, 'password' | 'confirm_password'> & {
+  id: string;
+};
+
+export type CreateOrder = OrderSchemaType & {
+  items: { productId: number; quantity: number }[];
+};
+
+export type Order = {
+  id: string;
+  orderItems: { product: number; quantity: number }[];
+  phone: string;
+  address: string;
+  isPaid: boolean;
+  updatedAt: string;
+  createdAt: string;
+};
 
 export type ImageType = {
   id: number;
@@ -94,4 +112,3 @@ export type Billboard = {
   createdAt: string;
   updatedAt: string;
 };
-

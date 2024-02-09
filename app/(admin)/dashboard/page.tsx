@@ -2,22 +2,28 @@
 
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { UserSignupType } from '@/providers/schemas';
-import { HttpError } from '@/types';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
+import type { HttpError, Order, Product, User } from '@/types';
 import { useQueries } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 
-export type User = Omit<UserSignupType, 'password' | 'confirm_password'> & {
-  id: string;
-}; 
-
 export default function Page() {
   const { httpClientAPI } = useAppContext();
 
-  const getProducts = async()=> {
-
-  }
+  const getProducts = async () => {
+    try {
+      const { data } = await httpClientAPI<Product[]>({
+        method: 'get',
+        url: '/api/v1/products'
+      });
+      return data;
+    } catch (error) {
+      const { message } = errorTransformer(error as HttpError);
+      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      console.warn(message || error);
+    }
+  };
 
   const getUsers = async () => {
     try {
@@ -29,22 +35,40 @@ export default function Page() {
       return data;
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message);
+      toast.error(message || DEFAULT_ERROR_MESSAGE);
       console.warn(message);
     }
   };
 
+  const getOrders = async () => {
+    try {
+      const { data } = await httpClientAPI<Order[]>({
+        method: 'get',
+        url: '/api/v1/orders'
+      });
+      return data;
+    } catch (error) {
+      const { message } = errorTransformer(error as HttpError);
+      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      console.warn(message || error);
+    }
+  };
+
   const [users] = useQueries({
-    queries: [{ queryFn: getUsers, queryKey: ['users'] }]
+    queries: [
+      { queryFn: getUsers, queryKey: ['users'] },
+      { queryFn: getProducts, queryKey: ['products'] }
+    ]
   });
 
   useEffect(() => {
     // query()
-    getUsers()
- }, []);
+    getUsers();
+    console.info(users);
+  }, [users]);
 
   return (
-    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
+    <main className='space-x-480 mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
       <h1 className='font-sans'>Dashboard</h1>
 
       <section></section>
