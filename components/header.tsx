@@ -1,7 +1,7 @@
 'use client';
 
 import { ThemeToggle } from '@/components/theme-toggle';
-import { useToggleHeader } from '@/hooks/useToggleHeader';
+import { useToggleHeader } from '@/hooks/toggle-header-hook';
 import { RootState } from '@/redux/store';
 import clsx from 'clsx';
 import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';

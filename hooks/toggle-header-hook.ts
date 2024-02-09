@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useInnerWindowSize } from './useInnerWindowSize';
+import { useInnerWindowSize } from './inner-window-size-hook';
 
 export const useToggleHeader = (breakpoint: number) => {
   const windowInnerSize = useInnerWindowSize();

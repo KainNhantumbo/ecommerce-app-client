@@ -1,11 +1,24 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import httpClient from '@/config/http-client';
+import { useCartManager } from '@/hooks/cart-manager-hook';
+import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
-import { updateCart } from '@/redux/slices/cart';
-import type { AppDispatch, RootState } from '@/redux/store';
-import type { CartItem, CreateOrder, HttpError } from '@/types';
+import { OrderSchemaType, orderSchema } from '@/providers/schemas';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
+import type { CreateOrder, HttpError } from '@/types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   HomeIcon,
   InfoIcon,
@@ -17,29 +30,15 @@ import {
   Trash2Icon
 } from 'lucide-react';
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { OrderSchemaType, orderSchema } from '@/providers/schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { errorTransformer } from '@/lib/http-error-transformer';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
-import httpClient from '@/config/http-client';
-import { toast } from 'sonner';
-import { Separator } from '@/components/ui/separator';
 import { useRouter } from 'next/navigation';
+import { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export default function Page() {
-  const dispatch = useDispatch<AppDispatch>();
-  const cart = useSelector((state: RootState) => state.cart);
+  const { removeCartItem, updateQuantity, increaseQuantity, cart, decreaseQuantity } =
+    useCartManager();
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const form = useForm<OrderSchemaType>({
@@ -75,51 +74,6 @@ export default function Page() {
     () => cart.map((item) => item.price).reduce((acc, current) => acc + current, 0),
     [cart]
   );
-
-  const removeCartItem = (productId: number) => {
-    dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
-  };
-
-  const addCartItem = (item: CartItem) => {
-    dispatch(updateCart([...cart, item]));
-  };
-
-  const increaseQuantity = (product: CartItem) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === product.productId
-            ? { ...product, quantity: product.quantity + 1 }
-            : item
-        )
-      ])
-    );
-  };
-
-  const decreaseQuantity = (product: CartItem) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === product.productId
-            ? {
-                ...product,
-                quantity: product.quantity > 1 ? product.quantity - 1 : product.quantity
-              }
-            : item
-        )
-      ])
-    );
-  };
-
-  const updateQuantity = (productId: number, qty: number) => {
-    dispatch(
-      updateCart([
-        ...cart.map((item) =>
-          item.productId === productId ? { ...item, quantity: qty } : item
-        )
-      ])
-    );
-  };
 
   return (
     <main className='mt-[90px] flex w-full flex-col gap-12 px-4 font-sans-body'>

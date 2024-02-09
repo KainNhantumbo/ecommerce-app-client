@@ -6,7 +6,7 @@ import { CART_STORAGE_KEY } from '@/shared/constants';
 import type { CartItem } from '@/types';
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from './isomorphic-layout-effect-hook';
 
 export const useLoadCart = () => {
   const dispatch = useDispatch<AppDispatch>();

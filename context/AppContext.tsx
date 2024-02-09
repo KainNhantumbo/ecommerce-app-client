@@ -1,7 +1,7 @@
 'use client';
 
 import httpClient from '@/config/http-client';
-import { useLoadCart } from '@/hooks/useLoadCart';
+import { useLoadCart } from '@/hooks/load-cart-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateAuth } from '@/redux/slices/auth';
 import type { RootState } from '@/redux/store';
