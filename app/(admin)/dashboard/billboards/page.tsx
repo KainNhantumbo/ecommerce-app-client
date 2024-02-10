@@ -4,11 +4,10 @@ import { Label } from '@/components/ui/label';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
-import { Billboard, HttpError } from '@/types';
-import { useEffect, useState } from 'react';
+import type { Billboard, CreateBillboard, HttpError } from '@/types';
+import { useQuery } from '@tanstack/react-query';
+import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
-
-export type CreateBillboard = { label: string; image: string };
 
 export default function Page() {
   const { httpClientAPI } = useAppContext();
@@ -17,12 +16,11 @@ export default function Page() {
 
   const getBillBoards = async () => {
     try {
-      setLoading(true);
       const { data } = await httpClientAPI<Billboard[]>({
         method: 'get',
         url: '/api/v1/billboards'
       });
-      setBillboards(data);
+      return data;
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);
@@ -32,40 +30,39 @@ export default function Page() {
     }
   };
 
-  const updateBillboard = async (data: Billboard) => {
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ['billboards'],
+    queryFn: getBillBoards
+  });
+
+  const updateBillboard = async (id: number, data: CreateBillboard) => {
     try {
       setLoading(true);
-      const { data: billboard } = await httpClientAPI<CreateBillboard>({
+      await httpClientAPI<CreateBillboard>({
         method: 'post',
-        url: `/api/v1/billboards/${data.id}`,
+        url: `/api/v1/billboards/${id}`,
         data: { label: data.label, image: data.image }
       });
-      setBillboards((billboards) => {
-        return [...billboards, billboard as unknown as Billboard].sort((a, b) =>
-          a.createdAt > b.createdAt ? -1 : 1
-        );
-      });
+      refetch();
       toast.success('Billboard updated.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);
       console.warn(message || error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const createBillboard = async (data: CreateBillboard) => {
     try {
       setLoading(true);
-      const { data: billboard } = await httpClientAPI({
+      await httpClientAPI({
         method: 'post',
         url: '/api/v1/billboards',
         data
       });
-      setBillboards((billboards) => {
-        return [...billboards, billboard as unknown as Billboard].sort((a, b) =>
-          a.createdAt > b.createdAt ? -1 : 1
-        );
-      });
+      refetch();
       toast.success('Billboard created.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
@@ -82,7 +79,7 @@ export default function Page() {
         method: 'delete',
         url: `/api/v1/billboards/${billboardId}`
       });
-      getBillBoards();
+      refetch();
       toast.success('Billboard deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
@@ -91,9 +88,9 @@ export default function Page() {
     }
   };
 
-  useEffect(() => {
-    getBillBoards();
-  }, []);
+  useMemo(() => {
+    if (data) setBillboards(data);
+  }, [data]);
 
   return (
     <main>
