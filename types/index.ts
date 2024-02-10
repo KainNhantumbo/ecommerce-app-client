@@ -112,3 +112,5 @@ export type Billboard = {
   createdAt: string;
   updatedAt: string;
 };
+
+
