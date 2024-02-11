@@ -54,7 +54,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
     cell: ({ row }: any) => <div className='capitalize'>{row.getValue('label')}</div>
   },
   {
-    accessorKey: 'created',
+    accessorKey: 'createdAt',
     header: ({ column }: any) => {
       return (
         <Button
@@ -66,11 +66,11 @@ export const createColumns: ColumnDef<Billboard>[] = [
       );
     },
     cell: ({ row }: any) => (
-      <div className='capitalize'>{formatDate(row.getValue('created'))}</div>
+      <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
     )
   },
   {
-    accessorKey: 'updated',
+    accessorKey: 'updatedAt',
     header: ({ column }: any) => {
       return (
         <Button
@@ -82,7 +82,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
       );
     },
     cell: ({ row }: any) => (
-      <div className='capitalize'>{formatDate(row.getValue('updated'))}</div>
+      <div className='capitalize'>{formatDate(row.getValue('updatedAt'))}</div>
     )
   },
   {
@@ -100,7 +100,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
       const billboard = row.original as Billboard;
       return (
         <Button asChild variant={'ghost'}>
-          <Link href={`/billboards/edit/${billboard.id}`}>
+          <Link href={`/dashboard/billboards/update/${billboard.id}`}>
             <TooltipWrapper content='Edit billboard'>
               <EditIcon className='h-auto w-4' />
             </TooltipWrapper>

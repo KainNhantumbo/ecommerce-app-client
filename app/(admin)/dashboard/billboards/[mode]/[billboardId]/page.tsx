@@ -5,16 +5,18 @@ import { ImageViewer } from '@/components/image-viewer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
-import { CreateBillboard, HttpError } from '@/types';
+import { Billboard, CreateBillboard, HttpError } from '@/types';
+import { useQuery } from '@tanstack/react-query';
 import { XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-export type PageProps = { params: { mode: 'create' | 'update'; id?: string } };
+export type PageProps = { params: { mode: 'create' | 'update'; billboardId?: string } };
 
 export default function Page({ params }: PageProps) {
   const [billboard, setBillboard] = useState<CreateBillboard>({ image: '', label: '' });
@@ -22,12 +24,31 @@ export default function Page({ params }: PageProps) {
   const { httpClientAPI } = useAppContext();
   const router = useRouter();
 
-  const handleUpdate = async (id: number) => {
+  useQuery({
+    queryKey: ['edit-billboard'],
+    queryFn: async () => {
+      try {
+        if (!params.billboardId) return billboard;
+        const { data } = await httpClient<Billboard>({
+          method: 'get',
+          url: `/api/v1/billboards/${params.billboardId}`
+        });
+        setBillboard({ label: data.label, image: data.image.url });
+        return { label: data.label, image: data.image.url };
+      } catch (error) {
+        const { message } = errorTransformer(error as HttpError);
+        toast.error(message || DEFAULT_ERROR_MESSAGE);
+        console.warn(message || error);
+      }
+    }
+  });
+
+  const handleUpdate = async (billboardId: number) => {
     try {
       setIsDisabled(true);
       await httpClientAPI<CreateBillboard>({
-        method: 'post',
-        url: `/api/v1/billboards/${id}`,
+        method: 'patch',
+        url: `/api/v1/billboards/${billboardId}`,
         data: billboard
       });
       setBillboard({ label: '', image: '' });
@@ -42,7 +63,7 @@ export default function Page({ params }: PageProps) {
       toast.error(message || DEFAULT_ERROR_MESSAGE, {
         action: {
           label: 'Retry',
-          onClick: () => handleUpdate(id)
+          onClick: () => handleUpdate(billboardId)
         }
       });
       console.warn(message || error);
@@ -120,13 +141,13 @@ export default function Page({ params }: PageProps) {
         disabled={isDisabled}
         onClick={() => {
           if (params.mode === 'update') {
-            handleUpdate(Number(params?.id));
+            handleUpdate(Number(params?.billboardId));
           } else if (params.mode === 'create') {
             handleCreate();
           }
         }}
-        className='capitalize'>
-        {params.mode}
+        className='w-fit self-end capitalize'>
+        {params.mode === 'create' ? 'save' : 'update'}
       </Button>
     </main>
   );
