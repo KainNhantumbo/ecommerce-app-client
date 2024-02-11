@@ -113,5 +113,5 @@ export type Billboard = {
   updatedAt: string;
 };
 
-export type CreateBillboard = { label: string; image: string, id: number };
+export type CreateBillboard = { label: string; image: string };
 

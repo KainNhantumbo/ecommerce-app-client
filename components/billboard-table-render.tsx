@@ -54,7 +54,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
     cell: ({ row }: any) => <div className='capitalize'>{row.getValue('label')}</div>
   },
   {
-    accessorKey: 'createdAt',
+    accessorKey: 'created',
     header: ({ column }: any) => {
       return (
         <Button
@@ -66,11 +66,11 @@ export const createColumns: ColumnDef<Billboard>[] = [
       );
     },
     cell: ({ row }: any) => (
-      <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
+      <div className='capitalize'>{formatDate(row.getValue('created'))}</div>
     )
   },
   {
-    accessorKey: 'updatedAt',
+    accessorKey: 'updated',
     header: ({ column }: any) => {
       return (
         <Button
@@ -82,7 +82,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
       );
     },
     cell: ({ row }: any) => (
-      <div className='capitalize'>{formatDate(row.getValue('updatedAt'))}</div>
+      <div className='capitalize'>{formatDate(row.getValue('updated'))}</div>
     )
   },
   {

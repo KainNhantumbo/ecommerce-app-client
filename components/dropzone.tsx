@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import { DownloadIcon } from 'lucide-react';
 import { Input } from './ui/input';
@@ -8,12 +10,11 @@ import { toast } from 'sonner';
 import { Skeleton } from './ui/skeleton';
 import Compressor from 'compressorjs';
 
-export type DropZoneProps = {
-  // eslint-disable-next-line no-unused-vars
+export type DropzoneProps = {
   handler: (file: string) => void;
 };
 
-export const DropzoneArea = ({ handler }: DropZoneProps) => {
+export const DropzoneArea = ({ handler }: DropzoneProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
