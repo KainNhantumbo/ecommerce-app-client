@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import httpClient from '@/config/http-client';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { useInnerWindowSize } from '@/hooks/inner-window-size-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { UserLoginType, userLoginSchema } from '@/providers/schemas';
 import backgroundImage from '@/public/login-background.jpg';
@@ -65,7 +65,7 @@ export default function Page() {
   return (
     <main
       className='flex w-full flex-col gap-12 bg-background px-4 font-sans'
-      style={{ minHeight: innerHeight / 1 }}>
+      style={{ minHeight: innerHeight  }}>
       <section className='m-auto flex w-full max-w-5xl items-center justify-between gap-8 p-8'>
         <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
           <div className='flex w-full flex-col gap-3'>

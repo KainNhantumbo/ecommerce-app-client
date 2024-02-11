@@ -18,7 +18,7 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import httpClient from '@/config/http-client';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { useInnerWindowSize } from '@/hooks/inner-window-size-hook';
 import { UserSignupType, userSignupSchema } from '@/providers/schemas';
 import { USER_ROLES } from '@/shared/constants';
 import { zodResolver } from '@hookform/resolvers/zod';

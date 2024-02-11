@@ -23,15 +23,10 @@ const adminRoutes = [
   { name: 'Overview', href: '/dashboard' },
   { name: 'Orders', href: '/dashboard/orders' },
   { name: 'Products', href: '/dashboard/products' },
-  { name: 'Attributes', href: '/dashboard/attributes' },
+  { name: 'Categories', href: '/dashboard/categories' },
   { name: 'Settings', href: '/dashboard/about' },
-  { name: 'Billboards', href: '/dashboard/careers' }
-];
-
-// TODO: this have to be placed into attributes page
-// { name: 'Categories', href: '/dashboard/features', icon: GridIcon },
-// { name: 'Sizes', href: '/dashboard/about', icon: RiLineHeight },
-// { name: 'Colors', href: '/dashboard/about', icon: RiDropLine },
+  { name: 'Billboards', href: '/dashboard/billboards' }
+].sort((a, b) => (a.name > b.name ? 1 : -1));
 
 export const Header = () => {
   const pathname = usePathname();

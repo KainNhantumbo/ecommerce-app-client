@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export type ImageViewerProps = {
   imageData: string;
@@ -7,7 +7,9 @@ export type ImageViewerProps = {
 export const ImageViewer = ({ imageData }: ImageViewerProps) => (
   <Image
     src={imageData}
+    width={3000}
+    height={3000}
     alt='user selected image'
-    className='base-border h-full max-h-[280px] w-full rounded-md object-cover shadow-2xl'
+    className=' h-full max-h-[280px] w-full rounded-lg object-cover'
   />
 );

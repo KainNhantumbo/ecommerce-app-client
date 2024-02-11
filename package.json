@@ -63,6 +63,7 @@
     "compressorjs": "^1.2.1",
     "embla-carousel-react": "^8.0.0-rc22",
     "lucide-react": "^0.293.0",
+    "moment": "^2.30.1",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
     "react": "^18",

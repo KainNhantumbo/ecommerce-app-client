@@ -15,12 +15,12 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
     <Provider store={store}>
       <ThemeProvider attribute='class' enableSystem={true}>
         <AppContext>
-          <Toaster closeButton loadingIcon />
+          <Toaster closeButton loadingIcon duration={3000} />
           <Header />
           {children}
           <Footer />
-         </AppContext>
-       </ThemeProvider>
-     </Provider>
+        </AppContext>
+      </ThemeProvider>
+    </Provider>
   );
 };

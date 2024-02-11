@@ -6,7 +6,7 @@ export const errorTransformer = ({ response }: HttpError) => {
   if (response?.data && response.data.message) {
     if (Array.isArray(response.data.message)) {
       message = response.data.message.reduce((value, current) => {
-        const message = value.concat(' ', current);
+        const message = value.concat(current.toUpperCase(), '. ');
         return message;
       }, '');
     } else {

@@ -26,46 +26,46 @@ const listings = [
   {
     career: 'Product designer',
     description: "We're looking for a mid-level product designer to join our team.",
-    location: 'Remote',
+    basedIn: 'Remote',
     type: 'Part-time'
   },
   {
     career: 'Customer Success Manager',
     description:
       "We're looking for a junior-level customer success manager to join our team.",
-    location: 'Local',
+    basedIn: 'Local',
     type: 'Full-time'
   },
   {
     career: 'Content creator',
     description: "We're looking for a creative content creator to join our team.",
-    location: 'Remote',
+    basedIn: 'Remote',
     type: 'Part-time'
   },
   {
     career: 'Account Executive',
     description: "We're looking for a experienced account executive to join our team.",
-    location: 'Remote',
+    basedIn: 'Remote',
     type: 'Full-time'
   },
   {
     career: 'Sales Consultant',
     description: "We're looking for a experienced sales consultant to join our team.",
-    location: 'Local',
+    basedIn: 'Local',
     type: 'Full-time'
   },
   {
     career: 'SEO Marketing Manager',
     description:
       "We're looking for a experienced Seo marketing manager to join our team.",
-    location: 'Remote',
+    basedIn: 'Remote',
     type: 'Part-time'
   },
   {
     career: 'Engineering Manager',
     description:
       "We're looking for a experienced engineering manager to join our team.",
-    location: 'Remote',
+    basedIn: 'Remote',
     type: 'Part-time'
   }
 ];
@@ -116,19 +116,17 @@ export default function Page() {
           </div>
 
           <div className='flex w-full flex-col gap-5'>
-            {listings.map(({ career, description, location, type }, i) => (
-              <div className='base-border flex flex-col gap-2 rounded-3xl p-4' key={i}>
+            {listings.map(({ career, description, basedIn, type }, i) => (
+              <div className='base-border flex flex-col gap-2 rounded-lg p-4' key={i}>
                 <h3 className='capitalize'>{career}</h3>
                 <p>{description}</p>
                 <div className='flex items-center gap-2'>
-                  <span className='base-border  rounded-full px-2 py-1'>
-                    {location}
-                  </span>
-                  <span className='base-border  rounded-full px-2 py-1'>{type}</span>
+                  <span className='base-border  rounded-lg px-2 py-1'>{basedIn}</span>
+                  <span className='base-border  rounded-lg px-2 py-1'>{type}</span>
                 </div>
                 <Button
                   variant={'default'}
-                  className='w-fit rounded-full px-4 py-2 font-semibold'>
+                  className='w-fit rounded-lg px-4 py-2 font-semibold'>
                   Apply
                 </Button>
               </div>

@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import httpClient from '@/config/http-client';
-import { useInnerWindowSize } from '@/hooks/useInnerWindowSize';
+import { useInnerWindowSize } from '@/hooks/inner-window-size-hook';
 import { PasswordSchemaType, passwordSchema } from '@/providers/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DownloadIcon, LockIcon } from 'lucide-react';
