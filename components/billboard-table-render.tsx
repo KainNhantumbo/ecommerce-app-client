@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table';
-import { type FC, useState } from 'react';
+import { useState, type FC } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -33,88 +33,86 @@ import {
 } from '@/components/ui/table';
 import { formatDate } from '@/lib/utils';
 import type { Billboard } from '@/types';
-import { BillboardTableActions } from './billboards-table-actions';
+import { EditIcon } from 'lucide-react';
+import Link from 'next/link';
+import { DeleteBillboardAlert } from './billboard-delete-alert';
+import { TooltipWrapper } from './tooltip-wrapper';
 
-export const createColumns = ({
-  onUpdate,
-  onDelete
-}: {
-  // eslint-disable-next-line no-unused-vars
-  onDelete: (id: number) => void;
-  // eslint-disable-next-line no-unused-vars
-  onUpdate: (id: number) => void;
-}): ColumnDef<Billboard>[] => {
-  return [
-    {
-      accessorKey: 'label',
-      header: ({ column }: any) => {
-        return (
-          <Button
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-            Label
-            <CaretSortIcon className='ml-2 h-4 w-4' />
-          </Button>
-        );
-      },
-      cell: ({ row }: any) => <div className='capitalize'>{row.getValue('label')}</div>
+export const createColumns: ColumnDef<Billboard>[] = [
+  {
+    accessorKey: 'label',
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Label
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
     },
-    {
-      accessorKey: 'createdAt',
-      header: ({ column }: any) => {
-        return (
-          <Button
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-            Created
-            <CaretSortIcon className='ml-2 h-4 w-4' />
-          </Button>
-        );
-      },
-      cell: ({ row }: any) => (
-        <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
-      )
+    cell: ({ row }: any) => <div className='capitalize'>{row.getValue('label')}</div>
+  },
+  {
+    accessorKey: 'createdAt',
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Created
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
     },
-    {
-      accessorKey: 'updatedAt',
-      header: ({ column }: any) => {
-        return (
-          <Button
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-            Updated
-            <CaretSortIcon className='ml-2 h-4 w-4' />
-          </Button>
-        );
-      },
-      cell: ({ row }: any) => (
-        <div className='capitalize'>{formatDate(row.getValue('updatedAt'))}</div>
-      )
+    cell: ({ row }: any) => (
+      <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
+    )
+  },
+  {
+    accessorKey: 'updatedAt',
+    header: ({ column }: any) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Updated
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
     },
-    {
-      id: 'actions',
-      enableHiding: false,
-      cell: ({ row }: any) => {
-        const billboard = row.original;
-        return (
-          <BillboardTableActions
-            key={billboard.id}
-            onUpdate={() => onUpdate(billboard.id)}
-            onDelete={() => onDelete(billboard.id)}
-            id={billboard.id}
-          />
-        );
-      }
+    cell: ({ row }: any) => (
+      <div className='capitalize'>{formatDate(row.getValue('updatedAt'))}</div>
+    )
+  },
+  {
+    id: 'delete',
+    enableHiding: false,
+    cell: ({ row }: any) => {
+      const billboard = row.original as Billboard;
+      return <DeleteBillboardAlert id={billboard.id} />;
     }
-  ];
-};
+  },
+  {
+    id: 'edit',
+    enableHiding: false,
+    cell: ({ row }: any) => {
+      const billboard = row.original as Billboard;
+      return (
+        <Button asChild variant={'ghost'}>
+          <Link href={`/billboards/edit/${billboard.id}`}>
+            <TooltipWrapper content='Edit billboard'>
+              <EditIcon className='h-auto w-4' />
+            </TooltipWrapper>
+          </Link>
+        </Button>
+      );
+    }
+  }
+];
 
 export type BillboardTableRenderProps = {
   data: Billboard[];
-  // eslint-disable-next-line no-unused-vars
-  onDelete: (id: number) => void;
-  // eslint-disable-next-line no-unused-vars
-  onUpdate: (id: number) => void;
 };
 
 export const BillboardTableRender: FC<BillboardTableRenderProps> = (props) => {
@@ -125,7 +123,7 @@ export const BillboardTableRender: FC<BillboardTableRenderProps> = (props) => {
 
   const table = useReactTable({
     data: props.data,
-    columns: createColumns({ onUpdate: props.onUpdate, onDelete: props.onDelete }),
+    columns: createColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),

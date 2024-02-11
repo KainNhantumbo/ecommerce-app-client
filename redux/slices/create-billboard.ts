@@ -1,7 +1,7 @@
 import { CreateBillboard } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState: CreateBillboard = { label: '', image: '' };
+const initialState: CreateBillboard = { id: '', label: '', image: '' };
 
 const createBillboardSlice = createSlice({
   name: 'billboards',
