@@ -21,7 +21,6 @@ export type Order = {
 
 export type ImageType = {
   id: number;
-  publicId?: string;
   url: string;
   createdAt: string;
   updatedAt: string;
@@ -64,14 +63,29 @@ export type Product = {
   id: number;
   name: string;
   price: number;
+  description: string;
+  specs?: string;
   isArchived: boolean;
   isFeatured: boolean;
-  color: Color;
+  color: Color[];
   images: ImageType[];
   category: Category;
   sizes: Size[];
   createdAt: string;
   updatedAt: string;
+};
+
+export type CreateProduct = {
+  name: string;
+  price: number;
+  specs: string;
+  description: string;
+  sizes: { name: string; value: string }[];
+  color: { name: string; value: string }[];
+  category: { name: string; value: string };
+  isArchived: boolean;
+  isFeatured: boolean;
+  images: string[];
 };
 
 export type ProductQuery = {
@@ -114,4 +128,3 @@ export type Billboard = {
 };
 
 export type CreateBillboard = { label: string; image: string };
-

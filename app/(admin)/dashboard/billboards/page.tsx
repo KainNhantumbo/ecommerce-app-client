@@ -7,15 +7,21 @@ import { Label } from '@/components/ui/label';
 import { Loader } from '@/components/ui/loader';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
+import { updateBillboards } from '@/redux/slices/billboards';
+import { AppDispatch, RootState } from '@/redux/store';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { Billboard, HttpError } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 
 export default function Page() {
   const { httpClientAPI } = useAppContext();
+  const dispatch = useDispatch<AppDispatch>();
+  const billboards = useSelector((state: RootState) => state.billboards);
 
   const { data, error, isLoading, isError, refetch } = useQuery({
     queryKey: ['billboards'],
@@ -34,6 +40,10 @@ export default function Page() {
     }
   });
 
+  useEffect(() => {
+    if (data) dispatch(updateBillboards(data));
+  }, [data]);
+
   return (
     <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
       <div className='flex w-full flex-wrap items-center justify-between gap-3'>
@@ -46,7 +56,7 @@ export default function Page() {
       </div>
 
       <section>
-        {!isLoading && !isError && data ? <BillboardTableRender data={data} /> : null}
+        {!isLoading && !isError ? <BillboardTableRender data={billboards} /> : null}
 
         {!isLoading && isError ? (
           <EmptyMessage
