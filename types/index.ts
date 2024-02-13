@@ -18,6 +18,14 @@ export type Order = {
   updatedAt: string;
   createdAt: string;
 };
+export type CartItem = {
+  name: string;
+  productId: number;
+  quantity: number;
+  price: number;
+  category: string;
+  image: ImageType;
+};
 
 export type ImageType = {
   id: number;
@@ -42,14 +50,6 @@ export type Category = {
   updatedAt: string;
 };
 
-export type CartItem = {
-  name: string;
-  productId: number;
-  quantity: number;
-  price: number;
-  category: string;
-  image: ImageType;
-};
 
 export type Size = {
   id: number;

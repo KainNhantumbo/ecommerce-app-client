@@ -4,6 +4,7 @@ import { DropzoneArea } from '@/components/dropzone';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
@@ -11,9 +12,14 @@ import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { CreateProduct, HttpError, Product } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import SizeOptions from '@/shared/sizes.json';
+import CategoryOptions from '@/shared/categories.json';
+import ColorOptions from '@/shared/colors.json';
+import { MultiSelector } from '@/components/multi-selector';
+import { SelectWrapper } from '@/components/select-wrapper';
 
 export type PageProps = { params: { mode: 'create' | 'update'; productId?: string } };
 
@@ -147,7 +153,7 @@ export default function Page({ params }: PageProps) {
   };
 
   return (
-    <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-xl flex-col gap-8 px-4 font-sans-body'>
+    <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
       <h1>Product editor</h1>
       <section className='mb-5 flex flex-col gap-3'>
         {product.images.length > 0 ? (
@@ -179,26 +185,87 @@ export default function Page({ params }: PageProps) {
       </section>
 
       <section className='flex flex-col gap-3 py-3'>
-        <div className='flex flex-col items-center mobile-x:flex-row'>
-          <div className='flex flex-col gap-2'>
-            <Label>Name</Label>
+        <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
+          <div className='flex w-full flex-col gap-2'>
+            <Label>Name *</Label>
             <Input
               type='text'
               placeholder='Product name'
               value={product.name}
+              minLength={0}
+              maxLength={64}
+              className='w-full'
               onChange={(e) =>
                 setProduct((state) => ({ ...state, name: e.target.value }))
               }
             />
+            <span className='self-end text-xs'>{product.name.length}/64</span>
           </div>
           <div className='flex flex-col gap-2'>
-            <Label>Price</Label>
+            <Label>Price *</Label>
             <Input
               type='number'
               placeholder='Product price'
               value={product.price}
+              className='w-full'
+              min={0}
+              minLength={0}
               onChange={(e) =>
                 setProduct((state) => ({ ...state, price: Number(e.target.value) }))
+              }
+            />
+            <span className='self-end text-xs'>{product.price.toString().length}</span>
+          </div>
+        </div>
+        <div className='flex flex-col items-center gap-3'>
+          <div className='flex w-full flex-col gap-2'>
+            <Label>Description *</Label>
+            <Textarea
+              placeholder='Product description'
+              rows={4}
+              value={product.description}
+              onChange={(e) =>
+                setProduct((state) => ({ ...state, description: e.target.value }))
+              }
+            />
+            <span className='self-end text-xs'>{product.description.length}/256</span>
+          </div>
+          <div className='flex w-full flex-col gap-2'>
+            <Label>Specs</Label>
+            <Textarea
+              placeholder='Product specifications or details'
+              rows={6}
+              value={product.specs}
+              onChange={(e) =>
+                setProduct((state) => ({ ...state, specs: e.target.value }))
+              }
+            />
+            <span className='self-end text-xs'>{product.specs.length}/2048</span>
+          </div>
+        </div>
+        <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
+          <div className='flex w-full flex-col gap-2'>
+            <MultiSelector
+              data={ColorOptions}
+              placeholder='Select color...'
+              onChange={(data) =>
+                setProduct((state) => ({
+                  ...state,
+                  color: data.map((color) => ({ name: color.name, value: color.value }))
+                }))
+              }
+            />
+          </div>
+          
+          <div className='flex w-full flex-col gap-2'>
+            <SelectWrapper
+              data={ColorOptions}
+              placeholder='Select category...'
+              onSelect={(value) =>
+                setProduct((state) => ({
+                  ...state,
+                  category: { name: value, value }
+                }))
               }
             />
           </div>

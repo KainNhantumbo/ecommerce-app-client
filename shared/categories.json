@@ -1,206 +1,206 @@
 [
   {
-    "categoryId": "8a7f3175-dc36-4524-9180-3f0887ec8972",
+    "id": "8a7f3175-dc36-4524-9180-3f0887ec8972",
     "name": "Jewelry",
     "value": "jewelry"
   },
   {
-    "categoryId": "edc0ceab-2f8a-48c9-9b9d-a248560e4825",
+    "id": "edc0ceab-2f8a-48c9-9b9d-a248560e4825",
     "name": "Bottoms",
     "value": "bottoms"
   },
   {
-    "categoryId": "5b16c63f-5665-4478-b83e-444b400d9528",
+    "id": "5b16c63f-5665-4478-b83e-444b400d9528",
     "name": "Shirts",
     "value": "shirts"
   },
   {
-    "categoryId": "a7c3ac62-0d2e-4494-9a8a-6d400cdb78e1",
+    "id": "a7c3ac62-0d2e-4494-9a8a-6d400cdb78e1",
     "name": "Formal Wear",
     "value": "formal_wear"
   },
   {
-    "categoryId": "34cc53a2-849d-4d90-b0a3-5fc4e3776ae5",
+    "id": "34cc53a2-849d-4d90-b0a3-5fc4e3776ae5",
     "name": "Petite Clothing",
     "value": "petite_clothing"
   },
   {
-    "categoryId": "43bc1ee2-3fb3-46c8-9b63-0f711ae6f477",
+    "id": "43bc1ee2-3fb3-46c8-9b63-0f711ae6f477",
     "name": "Tops",
     "value": "tops"
   },
   {
-    "categoryId": "34cb6db7-feab-4703-83ba-4976ee7312dd",
+    "id": "34cb6db7-feab-4703-83ba-4976ee7312dd",
     "name": "Sunglasses",
     "value": "sunglasses"
   },
   {
-    "categoryId": "9840fadb-a982-4af1-8e71-f821d7baa230",
+    "id": "9840fadb-a982-4af1-8e71-f821d7baa230",
     "name": "Sneakers",
     "value": "sneakers"
   },
   {
-    "categoryId": "efa28aca-3546-408f-96f0-3984519e87ed",
+    "id": "efa28aca-3546-408f-96f0-3984519e87ed",
     "name": "Heels",
     "value": "heels"
   },
   {
-    "categoryId": "290b89fd-5d2c-4c73-a318-be82cdbfc988",
+    "id": "290b89fd-5d2c-4c73-a318-be82cdbfc988",
     "name": "Belts",
     "value": "belts"
   },
   {
-    "categoryId": "15478d68-f221-49c3-8a3d-a0d5e30cd3e3",
+    "id": "15478d68-f221-49c3-8a3d-a0d5e30cd3e3",
     "name": "Swimwear",
     "value": "swimwear"
   },
   {
-    "categoryId": "44014968-3265-4feb-90e3-e2ae7658fbdd",
+    "id": "44014968-3265-4feb-90e3-e2ae7658fbdd",
     "name": "Handbags",
     "value": "handbags"
   },
   {
-    "categoryId": "70589eaf-efd1-4513-bbdf-e8c6a72f0d3e",
+    "id": "70589eaf-efd1-4513-bbdf-e8c6a72f0d3e",
     "name": "Accessories",
     "value": "accessories"
   },
   {
-    "categoryId": "4078f55c-5052-4db3-ab7c-3af1f63c102c",
+    "id": "4078f55c-5052-4db3-ab7c-3af1f63c102c",
     "name": "Lingerie",
     "value": "lingerie"
   },
   {
-    "categoryId": "5c0a64d7-a8a2-409b-8d30-9dfdf30dad55",
+    "id": "5c0a64d7-a8a2-409b-8d30-9dfdf30dad55",
     "name": "Scarves",
     "value": "scarves"
   },
   {
-    "categoryId": "897b0275-6824-4ed9-9766-b58183767292",
+    "id": "897b0275-6824-4ed9-9766-b58183767292",
     "name": "Activewear",
     "value": "activewear"
   },
   {
-    "categoryId": "81c7d946-bf03-41a2-b7ff-5be3ce10f51a",
+    "id": "81c7d946-bf03-41a2-b7ff-5be3ce10f51a",
     "name": "Outerwear",
     "value": "outerwear"
   },
   {
-    "categoryId": "9295045b-9786-46ca-8851-760f6c63bf1d",
+    "id": "9295045b-9786-46ca-8851-760f6c63bf1d",
     "name": "Boots",
     "value": "boots"
   },
   {
-    "categoryId": "77d7980c-42e6-4e96-bd76-a383749af16e",
+    "id": "77d7980c-42e6-4e96-bd76-a383749af16e",
     "name": "Watches",
     "value": "watches"
   },
   {
-    "categoryId": "01a3690d-d876-47dc-9863-0c74a03aca2e",
+    "id": "01a3690d-d876-47dc-9863-0c74a03aca2e",
     "name": "Plus Size Clothing",
     "value": "plus_size_clothing"
   },
   {
-    "categoryId": "fff546d3-baab-46c4-a806-af053bb9761b",
+    "id": "fff546d3-baab-46c4-a806-af053bb9761b",
     "name": "Athletic Shoes",
     "value": "athletic_shoes"
   },
   {
-    "categoryId": "edc903a9-7976-44f7-9e77-606e7f75fa87",
+    "id": "edc903a9-7976-44f7-9e77-606e7f75fa87",
     "name": "Gloves",
     "value": "gloves"
   },
   {
-    "categoryId": "4f5d5cd3-28da-4007-aea2-d119a4ce880e",
+    "id": "4f5d5cd3-28da-4007-aea2-d119a4ce880e",
     "name": "Sandals",
     "value": "sandals"
   },
   {
-    "categoryId": "003cdaf1-adc3-49bb-ab0c-0be1f9995691",
+    "id": "003cdaf1-adc3-49bb-ab0c-0be1f9995691",
     "name": "Vintage Clothing",
     "value": "vintage_clothing"
   },
   {
-    "categoryId": "08798f74-ae0d-4e53-bf5c-a80710976650",
+    "id": "08798f74-ae0d-4e53-bf5c-a80710976650",
     "name": "Socks & Hosiery",
     "value": "socks_&_hosiery"
   },
   {
-    "categoryId": "dbeb2608-5207-4b3b-a7eb-c122207aa9ff",
+    "id": "dbeb2608-5207-4b3b-a7eb-c122207aa9ff",
     "name": "Dresses",
     "value": "dresses"
   },
   {
-    "categoryId": "b4e3e43e-d329-40cb-bf81-10960802dad2",
+    "id": "b4e3e43e-d329-40cb-bf81-10960802dad2",
     "name": "Flats",
     "value": "flats"
   },
   {
-    "categoryId": "79393cac-11da-466d-9358-55b4cb609dc6",
+    "id": "79393cac-11da-466d-9358-55b4cb609dc6",
     "name": "Hats",
     "value": "hats"
   },
   {
-    "categoryId": "160bea9f-cbba-44d1-9ae8-90bbc571dd94",
+    "id": "160bea9f-cbba-44d1-9ae8-90bbc571dd94",
     "name": "Skirts",
     "value": "skirts"
   },
   {
-    "categoryId": "7b025160-b9c1-4be3-ad8d-821efde1e9b6",
+    "id": "7b025160-b9c1-4be3-ad8d-821efde1e9b6",
     "name": "Maternity Clothing",
     "value": "maternity_clothing"
   },
   {
-    "categoryId": "2f8d970b-765d-4a66-95af-dccb9338f1be",
+    "id": "2f8d970b-765d-4a66-95af-dccb9338f1be",
     "name": "Jeans",
     "value": "jeans"
   },
   {
-    "categoryId": "ce39d253-b106-42fb-8af8-a4e9eda9f722",
+    "id": "ce39d253-b106-42fb-8af8-a4e9eda9f722",
     "name": "Socks",
     "value": "socks"
   },
   {
-    "categoryId": "f4a41bea-fe90-4b35-9959-caf52a8f3f87",
+    "id": "f4a41bea-fe90-4b35-9959-caf52a8f3f87",
     "name": "Sleepwear",
     "value": "sleepwear"
   },
   {
-    "categoryId": "7df998c6-f637-4402-994e-ba714273fb4f",
+    "id": "7df998c6-f637-4402-994e-ba714273fb4f",
     "name": "Workwear",
     "value": "workwear"
   },
   {
-    "categoryId": "a7c03d9b-400f-47b8-b407-c42693b341fc",
+    "id": "a7c03d9b-400f-47b8-b407-c42693b341fc",
     "name": "Suits",
     "value": "suits"
   },
   {
-    "categoryId": "377e8d06-5632-4473-8638-2a6283830963",
+    "id": "377e8d06-5632-4473-8638-2a6283830963",
     "name": "Jackets",
     "value": "jackets"
   },
   {
-    "categoryId": "15c4e080-ce54-434b-af0e-4235a74bf14c",
+    "id": "15c4e080-ce54-434b-af0e-4235a74bf14c",
     "name": "Underwear",
     "value": "underwear"
   },
   {
-    "categoryId": "3ac28d3e-cbb0-4f4b-a0ba-4979b478bf1f",
+    "id": "3ac28d3e-cbb0-4f4b-a0ba-4979b478bf1f",
     "name": "Bags",
     "value": "bags"
   },
   {
-    "categoryId": "cd2e4755-1f4a-48bf-91cf-91ae03291e48",
+    "id": "cd2e4755-1f4a-48bf-91cf-91ae03291e48",
     "name": "Watches",
     "value": "watches"
   },
   {
-    "categoryId": "59e53d06-33ef-4ef3-a756-5675ca620b6c",
+    "id": "59e53d06-33ef-4ef3-a756-5675ca620b6c",
     "name": "Top",
     "value": "top"
   },
   {
-    "categoryId": "4a3caa3b-b7a5-483f-a462-09ba78154601",
+    "id": "4a3caa3b-b7a5-483f-a462-09ba78154601",
     "name": "Socks",
     "value": "socks"
   }

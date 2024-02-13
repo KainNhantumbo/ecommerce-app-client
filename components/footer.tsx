@@ -1,5 +1,13 @@
 import { constants } from '@/shared/constants';
 import {
+  RiAmazonFill,
+  RiAppleFill,
+  RiGoogleFill,
+  RiMastercardFill,
+  RiPaypalFill,
+  RiVisaFill
+} from '@remixicon/react';
+import {
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
@@ -23,6 +31,7 @@ const navigation: Navigation = [
   {
     title: 'Our Company',
     children: [
+      { label: 'Home', url: '/' },
       { label: 'About Us', url: '/about' },
       { label: 'Careers', url: '/careers' },
       { label: 'Stories', url: '/stories' }
@@ -73,25 +82,24 @@ export const Footer = () => {
                   <Link
                     key={i}
                     href={url}
-                    className='sm:text-left; w-fit text-center transition-colors hover:text-primary hover:underline
-  hover:underline-offset-4'>
+                    className='sm:text-left; w-fit text-center transition-colors hover:text-primary hover:underline hover:underline-offset-4'>
                     {label}
                   </Link>
                 ))}
               </div>
             </section>
           ))}
-          {/* <section className='flex flex-col gap-3 max-w-[100px] items-center'>
+          <section className='flex max-w-[100px] flex-col items-center gap-3'>
             <h3>Payments</h3>
             <div className='grid grid-cols-2 place-content-center gap-2 '>
-              <RiAmazonFill className='w-[22px] h-[22px]' />
-              <RiVisaFill className='w-[22px] h-[22px]' />
-              <RiMastercardFill className='w-[22px] h-[22px]' />
-              <RiAppleFill className='w-[22px] h-[22px]' />
-              <RiGoogleFill className='w-[22px] h-[22px]' />
-              <RiPaypalFill className='w-[22px] h-[22px]' />
+              <RiAmazonFill className='h-[22px] w-[22px]' />
+              <RiVisaFill className='h-[22px] w-[22px]' />
+              <RiMastercardFill className='h-[22px] w-[22px]' />
+              <RiAppleFill className='h-[22px] w-[22px]' />
+              <RiGoogleFill className='h-[22px] w-[22px]' />
+              <RiPaypalFill className='h-[22px] w-[22px]' />
             </div>
-          </section> */}
+          </section>
         </nav>
 
         <section className='flex w-full flex-wrap items-center justify-between gap-3'>

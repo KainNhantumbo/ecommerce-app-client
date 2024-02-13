@@ -2,256 +2,256 @@
   {
     "name": "Black",
     "value": "#000000",
-    "colorId": "5ae5317b-e824-42ea-bad1-e55f49f65e94"
+    "id": "5ae5317b-e824-42ea-bad1-e55f49f65e94"
   },
   {
     "name": "White",
     "value": "#FFFFFF",
-    "colorId": "5e71be33-5a9e-4a6e-8bc9-b964483cf01a"
+    "id": "5e71be33-5a9e-4a6e-8bc9-b964483cf01a"
   },
   {
     "name": "Gray",
     "value": "#808080",
-    "colorId": "df35c74f-1fac-4593-bf33-484114f1767e"
+    "id": "df35c74f-1fac-4593-bf33-484114f1767e"
   },
   {
     "name": "Brown",
     "value": "#A52A2A",
-    "colorId": "ed5c4e6c-bc0d-4250-8d39-74fadcec5479"
+    "id": "ed5c4e6c-bc0d-4250-8d39-74fadcec5479"
   },
   {
     "name": "Beige",
     "value": "#F5F5DC",
-    "colorId": "e8cae6fb-2370-410d-8d37-99cffe113814"
+    "id": "e8cae6fb-2370-410d-8d37-99cffe113814"
   },
   {
     "name": "Navy",
     "value": "#000080",
-    "colorId": "71b96148-1c02-4dfb-a45e-997a82360029"
+    "id": "71b96148-1c02-4dfb-a45e-997a82360029"
   },
   {
     "name": "Blue",
     "value": "#0000FF",
-    "colorId": "1d3d98d0-c995-4b0d-9b0f-27f87d53d5d6"
+    "id": "1d3d98d0-c995-4b0d-9b0f-27f87d53d5d6"
   },
   {
     "name": "Teal",
     "value": "#008080",
-    "colorId": "304dfd02-f6f0-449b-ac46-d9c727e72062"
+    "id": "304dfd02-f6f0-449b-ac46-d9c727e72062"
   },
   {
     "name": "Turquoise",
     "value": "#40E0D0",
-    "colorId": "58ff1ef8-98b6-47e0-8cd5-07c320f841d9"
+    "id": "58ff1ef8-98b6-47e0-8cd5-07c320f841d9"
   },
   {
     "name": "Green",
     "value": "#008000",
-    "colorId": "07181b8a-9927-4ba6-a5af-df6c9321c77d"
+    "id": "07181b8a-9927-4ba6-a5af-df6c9321c77d"
   },
   {
     "name": "Olive",
     "value": "#808000",
-    "colorId": "65449a39-48a7-4be5-8652-3ce076cd1d4e"
+    "id": "65449a39-48a7-4be5-8652-3ce076cd1d4e"
   },
   {
     "name": "Yellow",
     "value": "#FFFF00",
-    "colorId": "481eaab1-bee1-41ef-b3ca-4e8820ad97ff"
+    "id": "481eaab1-bee1-41ef-b3ca-4e8820ad97ff"
   },
   {
     "name": "Orange",
     "value": "#FFA500",
-    "colorId": "a2f62a40-d7e8-4852-a839-02a24ee4cd4d"
+    "id": "a2f62a40-d7e8-4852-a839-02a24ee4cd4d"
   },
   {
     "name": "Red",
     "value": "#FF0000",
-    "colorId": "57ec4f5b-61dd-42af-8a65-526d6dad38e8"
+    "id": "57ec4f5b-61dd-42af-8a65-526d6dad38e8"
   },
   {
     "name": "Pink",
     "value": "#FFC0CB",
-    "colorId": "5467a0ec-69a3-4f56-a1a6-882054433d44"
+    "id": "5467a0ec-69a3-4f56-a1a6-882054433d44"
   },
   {
     "name": "Purple",
     "value": "#800080",
-    "colorId": "4ed4a29e-594e-4be2-a7fa-4ec1fe3c9200"
+    "id": "4ed4a29e-594e-4be2-a7fa-4ec1fe3c9200"
   },
   {
     "name": "Lilac",
     "value": "#C8A2C8",
-    "colorId": "bc618eb1-f152-4ecf-a6d7-8bce7a5ca4c7"
+    "id": "bc618eb1-f152-4ecf-a6d7-8bce7a5ca4c7"
   },
   {
     "name": "Magenta",
     "value": "#FF00FF",
-    "colorId": "4535a2a5-4b76-4681-b37b-b2395d403a82"
+    "id": "4535a2a5-4b76-4681-b37b-b2395d403a82"
   },
   {
     "name": "Burgundy",
     "value": "#800020",
-    "colorId": "9fe559f7-14c9-4e28-8d75-675fbc0d4c26"
+    "id": "9fe559f7-14c9-4e28-8d75-675fbc0d4c26"
   },
   {
     "name": "Maroon",
     "value": "#800000",
-    "colorId": "9b11fb6c-753d-44e5-a67d-0b0311f210f4"
+    "id": "9b11fb6c-753d-44e5-a67d-0b0311f210f4"
   },
   {
     "name": "Gold",
     "value": "#FFD700",
-    "colorId": "6c0e6748-5c35-481b-8796-9ab866feab78"
+    "id": "6c0e6748-5c35-481b-8796-9ab866feab78"
   },
   {
     "name": "Silver",
     "value": "#C0C0C0",
-    "colorId": "9f2c4efa-0d1b-48e6-b01b-40bf642e62c0"
+    "id": "9f2c4efa-0d1b-48e6-b01b-40bf642e62c0"
   },
   {
     "name": "Bronze",
     "value": "#CD7F32",
-    "colorId": "a0c81b8b-7385-4739-a881-abee1310a4fe"
+    "id": "a0c81b8b-7385-4739-a881-abee1310a4fe"
   },
   {
     "name": "Copper",
     "value": "#B87333",
-    "colorId": "be1ab318-44ec-4519-b7ee-4b9f0780ed82"
+    "id": "be1ab318-44ec-4519-b7ee-4b9f0780ed82"
   },
   {
     "name": "Multi-color",
     "value": "#000000",
-    "colorId": "fd3cc6c8-6e4d-4133-8692-8f10259951f9"
+    "id": "fd3cc6c8-6e4d-4133-8692-8f10259951f9"
   },
   {
     "name": "Patterned",
     "value": "#808080",
-    "colorId": "8d297cb5-6320-47db-9fd9-218cd3ea6461"
+    "id": "8d297cb5-6320-47db-9fd9-218cd3ea6461"
   },
   {
     "name": "Neon Green",
     "value": "#39FF14",
-    "colorId": "07032f26-83b4-41ff-9a3c-125a63ce41ed"
+    "id": "07032f26-83b4-41ff-9a3c-125a63ce41ed"
   },
   {
     "name": "Pastel Pink",
     "value": "#FF6961",
-    "colorId": "ce20abfc-da61-43f1-9547-5ee3d9770601"
+    "id": "ce20abfc-da61-43f1-9547-5ee3d9770601"
   },
   {
     "name": "Metallic Blue",
     "value": "#4682B4",
-    "colorId": "6fa6ac0b-fc66-4b53-bc7d-f8321d6f6dc1"
+    "id": "6fa6ac0b-fc66-4b53-bc7d-f8321d6f6dc1"
   },
   {
     "name": "Transparent",
     "value": "#FFFFFF",
-    "colorId": "aea685a8-6a90-4d09-a414-8b5d7c1be1dd"
+    "id": "aea685a8-6a90-4d09-a414-8b5d7c1be1dd"
   },
   {
     "name": "Rainbow",
     "value": "#FF0000",
-    "colorId": "c0bea80a-6029-4981-8728-cfc26756c603"
+    "id": "c0bea80a-6029-4981-8728-cfc26756c603"
   },
   {
     "name": "Indigo",
     "value": "#4B0082",
-    "colorId": "b196d076-a4b3-4de1-9427-e7cb0eb5efd9"
+    "id": "b196d076-a4b3-4de1-9427-e7cb0eb5efd9"
   },
   {
     "name": "Crimson",
     "value": "#DC143C",
-    "colorId": "6616f89d-ec9d-49a9-af4f-e0b018ab4b88"
+    "id": "6616f89d-ec9d-49a9-af4f-e0b018ab4b88"
   },
   {
     "name": "Lavender",
     "value": "#E6E6FA",
-    "colorId": "3542c18f-5032-4132-b16e-f8eed0738d6b"
+    "id": "3542c18f-5032-4132-b16e-f8eed0738d6b"
   },
   {
     "name": "Violet",
     "value": "#8A2BE2",
-    "colorId": "7e73303a-30c3-4900-9169-3c8f35a8d1d6"
+    "id": "7e73303a-30c3-4900-9169-3c8f35a8d1d6"
   },
   {
     "name": "Sky Blue",
     "value": "#87CEEB",
-    "colorId": "42df6fce-c309-40a4-abfd-6339886db7f6"
+    "id": "42df6fce-c309-40a4-abfd-6339886db7f6"
   },
   {
     "name": "Forest Green",
     "value": "#228B22",
-    "colorId": "c6134cb7-af07-4950-9767-29698e3f9096"
+    "id": "c6134cb7-af07-4950-9767-29698e3f9096"
   },
   {
     "name": "Slate Gray",
     "value": "#708090",
-    "colorId": "1c5e2a9c-5aed-42d8-a941-e88ee68c4a78"
+    "id": "1c5e2a9c-5aed-42d8-a941-e88ee68c4a78"
   },
   {
     "name": "Chocolate",
     "value": "#D2691E",
-    "colorId": "c4b42d43-ebc2-4202-8701-f248a44aaabc"
+    "id": "c4b42d43-ebc2-4202-8701-f248a44aaabc"
   },
   {
     "name": "Mint Green",
     "value": "#98FF98",
-    "colorId": "dd963f6b-6602-4730-bc4e-ab0177c8370c"
+    "id": "dd963f6b-6602-4730-bc4e-ab0177c8370c"
   },
   {
     "name": "Salmon",
     "value": "#FA8072",
-    "colorId": "f916f253-8104-4e2a-9626-cf6c62edd509"
+    "id": "f916f253-8104-4e2a-9626-cf6c62edd509"
   },
   {
     "name": "Ivory",
     "value": "#FFFFF0",
-    "colorId": "723be07e-73d4-4813-8059-0985da3dc882"
+    "id": "723be07e-73d4-4813-8059-0985da3dc882"
   },
   {
     "name": "Coral",
     "value": "#FF7F50",
-    "colorId": "fc401dbe-eef3-43f7-b553-ceaaa4bd563e"
+    "id": "fc401dbe-eef3-43f7-b553-ceaaa4bd563e"
   },
   {
     "name": "Khaki",
     "value": "#F0E68C",
-    "colorId": "51931ae0-72b1-4c63-8321-5b990c5ce377"
+    "id": "51931ae0-72b1-4c63-8321-5b990c5ce377"
   },
   {
     "name": "Royal Blue",
     "value": "#4169E1",
-    "colorId": "edae5a95-9deb-4517-a27d-426e6cf8e1ac"
+    "id": "edae5a95-9deb-4517-a27d-426e6cf8e1ac"
   },
   {
     "name": "Hot Pink",
     "value": "#FF69B4",
-    "colorId": "5429bf54-bb27-4798-852e-d42b4e365eeb"
+    "id": "5429bf54-bb27-4798-852e-d42b4e365eeb"
   },
   {
     "name": "Pearl",
     "value": "#FDEEF4",
-    "colorId": "3b1a169c-4ffd-4c21-865f-04c7dd2e405f"
+    "id": "3b1a169c-4ffd-4c21-865f-04c7dd2e405f"
   },
   {
     "name": "Firebrick",
     "value": "#B22222",
-    "colorId": "5fc5a447-9299-48a6-9995-c76b8ff926ff"
+    "id": "5fc5a447-9299-48a6-9995-c76b8ff926ff"
   },
   {
     "name": "Periwinkle",
     "value": "#CCCCFF",
-    "colorId": "660e288e-a34d-4667-ae17-19d9d8ba1362"
+    "id": "660e288e-a34d-4667-ae17-19d9d8ba1362"
   },
   {
     "name": "Slate Blue",
     "value": "#6A5ACD",
-    "colorId": "5d06d197-8d3e-4597-9e1a-dfcc3d142621"
+    "id": "5d06d197-8d3e-4597-9e1a-dfcc3d142621"
   },
   {
     "name": "Tomato",
     "value": "#FF6347",
-    "colorId": "fa6fb5b5-b1c5-4be8-9dd8-7e23d213e67e"
+    "id": "fa6fb5b5-b1c5-4be8-9dd8-7e23d213e67e"
   }
 ]

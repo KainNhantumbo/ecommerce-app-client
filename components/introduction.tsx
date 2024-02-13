@@ -1,9 +1,8 @@
-import { constants } from '@/shared/constants';
 import introCoverImage from '@/public/intro-cover-dom-hill-nimElTcTNyY-unsplash.jpg';
+import { constants } from '@/shared/constants';
 import Image from 'next/image';
-import { Separator } from './ui/separator';
-import { Button } from './ui/button';
 import Link from 'next/link';
+import { Button } from './ui/button';
 
 export const Introduction = () => {
   return (
@@ -26,50 +25,35 @@ export const Introduction = () => {
         </h1>
       </div>
 
-      <div className='grid grid-cols-1 flex-wrap place-items-center gap-4 font-medium sm:grid-cols-2'>
-        <p className='max-w-[420px] text-justify'>
-          <i className='text-primary'>
-            You're welcome to our shop, where style meets convenience!
-          </i>{' '}
-          We're thrilled to introduce you to our vibrant online platform, designed to
-          cater to all your fashion needs with ease and sophistication. Whether you're
-          seeking the latest trends or timeless classics, we've curated a collection
-          that reflects the diverse tastes and preferences of our global community.
-        </p>
-
+      <div className='flex flex-wrap place-items-center items-center justify-center gap-4 font-medium'>
         <p className='max-w-[420px] text-justify'>
           At {constants.name}, we believe that fashion is more than just clothing; it's
           a form of self-expression that empowers individuals to showcase their unique
-          personality and creativity. With this philosophy at the heart of everything we
-          do, we've created a shopping experience that combines cutting-edge fashion
-          with unparalleled convenience.
+          personality and creativity.
+        </p>
+        <p className='max-w-[420px] text-justify'>
+          Thank you for choosing us as your go-to destination for all things fashion.
+          We're excited to embark on this adventure with you and help you discover your
+          signature style. <i className='italic text-primary'>Happy shopping!</i>
         </p>
       </div>
 
-      <div className='grid grid-cols-1 flex-wrap place-items-center gap-4 font-medium sm:grid-cols-2'>
-        <p className='max-w-[420px] text-justify'>
-          But we're more than just an online store, we're a community of fashion
-          enthusiasts united by our passion for style and self-expression. Join us on
-          this exciting journey as we explore the latest trends, share style tips, and
-          celebrate the diversity of fashion around the world.
-        </p>
-
-        <p className='max-w-[420px] text-justify'>
-          Thank you for choosing {constants.name} as your go-to destination for all
-          things fashion. We're excited to embark on this adventure with you and help
-          you discover your signature style.{' '}
-          <i className='italic text-primary'>Happy shopping!</i>
-        </p>
-      </div>
       <div className='mx-auto flex w-full flex-wrap justify-center gap-4'>
-        <Button asChild variant={'default'} size={'lg'} className='capitalize'>
+        <Button
+          asChild
+          variant={'default'}
+          size={'lg'}
+          className='w-full capitalize mobile-x:w-fit'>
           <Link href={'/products'}>Explore our products</Link>
         </Button>
-        <Button asChild variant={'default'} size={'lg'} className='capitalize'>
-          <Link href={'/stories'}>read more about our journey</Link>
+        <Button
+          asChild
+          variant={'default'}
+          size={'lg'}
+          className='w-full capitalize mobile-x:w-fit'>
+          <Link href={'/stories'}>read more about us</Link>
         </Button>
       </div>
-      <Separator className='mx-auto w-full max-w-5xl' decorative />
     </section>
   );
 };

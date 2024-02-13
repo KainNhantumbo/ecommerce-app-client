@@ -26,7 +26,7 @@ const cards: { title: string; content: string }[] = [
 export const BrandFeatures = () => {
   return (
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
-      <h2 className='mx-auto max-w-md text-center font-sans text-4xl font-bold leading-normal'>
+      <h2 className='mx-auto text-center font-sans text-4xl font-bold leading-normal'>
         Unveiling four pillars of distinction
       </h2>
       <p className='font-sm mx-auto max-w-2xl text-center'>

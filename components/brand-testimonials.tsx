@@ -25,7 +25,7 @@ const testimonials: Testimonials = [
 export const BrandTestimonials = () => {
   return (
     <section className='mx-auto flex w-full max-w-5xl flex-col gap-8'>
-      <h2 className='mx-auto max-w-md text-center font-sans text-4xl font-bold leading-normal'>
+      <h2 className='mx-auto text-center font-sans text-4xl font-bold leading-normal'>
         Some Testimonials from Our Customers
       </h2>
 
