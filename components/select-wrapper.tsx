@@ -1,14 +1,12 @@
 import {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
-  SelectSeparator,
+  SelectScrollDownButton,
   SelectScrollUpButton,
-  SelectScrollDownButton
+  SelectTrigger,
+  SelectValue
 } from '@/components/ui/select';
 import type { FC } from 'react';
 
@@ -31,7 +29,7 @@ export const SelectWrapper: FC<SelectProps> = ({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className='font-sans-body'>
-        <SelectScrollUpButton/>
+        <SelectScrollUpButton />
         <SelectGroup>
           {data.map(({ id, name, value }) => (
             <SelectItem value={value} key={id}>
@@ -39,7 +37,7 @@ export const SelectWrapper: FC<SelectProps> = ({
             </SelectItem>
           ))}
         </SelectGroup>
-        <SelectScrollDownButton/>
+        <SelectScrollDownButton />
       </SelectContent>
     </Select>
   );

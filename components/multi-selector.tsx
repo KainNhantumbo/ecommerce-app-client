@@ -1,32 +1,27 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { type FC, KeyboardEvent, useCallback, useRef, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Command as CommandPrimitive } from 'cmdk';
 
-type Option = Record<'value' | 'name' | 'id', string>;
+type Data = Record<'value' | 'name' | 'id', string>;
+type Props = { data: Data[]; placeholder: string; onChange: (data: Data[]) => void };
 
-export type MultiSelectorProps = {
-  data: Option[];
-  placeholder: string;
-  onChange: (data: Option[]) => void;
-};
-
-export const MultiSelector: FC<MultiSelectorProps> = ({
-  data,
-  onChange,
-  placeholder
-}) => {
+export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Option[]>([]);
+  const [selected, setSelected] = useState<Data[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  const handleUnselect = useCallback((option: Option) => {
-    setSelected((prev) => prev.filter((s) => s.value !== option.value));
+  const handleUnselect = useCallback((data: Data) => {
+    setSelected((prev) => {
+      const selected = prev.filter((s) => s.value !== data.value);
+      onChange(selected);
+      return selected;
+    });
   }, []);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
@@ -37,6 +32,7 @@ export const MultiSelector: FC<MultiSelectorProps> = ({
           setSelected((prev) => {
             const newSelected = [...prev];
             newSelected.pop();
+            onChange(newSelected);
             return newSelected;
           });
         }
@@ -48,32 +44,30 @@ export const MultiSelector: FC<MultiSelectorProps> = ({
     }
   }, []);
 
-  // useEffect(() => onChange(selected), [selected]);
-
   const selectables = data.filter(
-    (option) => !selected.some((option) => option.value === option.value)
+    (data) => !selected.some((slect_data) => data.value === slect_data.value)
   );
 
   return (
     <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>
       <div className='group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2'>
         <div className='flex flex-wrap gap-1'>
-          {selected.map((option) => {
+          {selected.map((data) => {
             return (
-              <Badge key={option.value} variant='secondary'>
-                {option.name}
+              <Badge key={data.id} variant='secondary'>
+                {data.name}
                 <button
                   className='ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2'
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      handleUnselect(option);
+                      handleUnselect(data);
                     }
                   }}
                   onMouseDown={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                   }}
-                  onClick={() => handleUnselect(option)}>
+                  onClick={() => handleUnselect(data)}>
                   <X className='h-3 w-3 text-muted-foreground hover:text-foreground' />
                 </button>
               </Badge>
@@ -94,21 +88,24 @@ export const MultiSelector: FC<MultiSelectorProps> = ({
       <div className='relative mt-2'>
         {open && selectables.length > 0 ? (
           <div className='absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in'>
-            <CommandGroup className='h-full max-h-[200px] overflow-auto'>
-              {selectables.map((option) => {
+            <CommandGroup className='h-full overflow-auto'>
+              {selectables.map((data) => {
                 return (
                   <CommandItem
-                    key={option.value}
+                    key={data.id}
                     onMouseDown={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                     }}
                     onSelect={(value) => {
                       setInputValue('');
-                      setSelected((prev) => [...prev, option]);
+                      setSelected((prev) => {
+                        onChange([...prev, data]);
+                        return [...prev, data];
+                      });
                     }}
                     className={'cursor-pointer'}>
-                    {option.name}
+                    {data.name}
                   </CommandItem>
                 );
               })}

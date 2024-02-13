@@ -5,7 +5,6 @@ const config = {
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
-    './node_modules/@tremor/**/*.{js,ts,jsx,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}'
   ],
@@ -90,8 +89,6 @@ const config = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    require('@headlessui/tailwindcss'),
-    // require('@tailwindcss/forms')
   ]
 } satisfies Config;
 

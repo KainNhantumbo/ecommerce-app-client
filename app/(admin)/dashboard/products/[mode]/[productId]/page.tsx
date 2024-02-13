@@ -42,10 +42,10 @@ export default function Page({ params }: PageProps) {
   const router = useRouter();
 
   useQuery({
-    queryKey: ['edit-billboard'],
+    queryKey: ['edit-product'],
     queryFn: async () => {
       try {
-        if (!params.productId) return product;
+        if (params.mode === 'create' || !params.productId) return product;
         const { data } = await httpClient<Product>({
           method: 'get',
           url: `/api/v1/products/${params.productId}`
@@ -248,16 +248,17 @@ export default function Page({ params }: PageProps) {
             <MultiSelector
               data={ColorOptions}
               placeholder='Select color...'
-              onChange={(data) =>
+              onChange={(data) => {
                 setProduct((state) => ({
                   ...state,
                   color: data.map((color) => ({ name: color.name, value: color.value }))
-                }))
-              }
+                }));
+              }}
             />
           </div>
-          
+
           <div className='flex w-full flex-col gap-2'>
+           
             <SelectWrapper
               data={ColorOptions}
               placeholder='Select category...'
