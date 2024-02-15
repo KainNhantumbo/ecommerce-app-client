@@ -1,21 +1,13 @@
-import React from "react";
+import type { FC } from 'react';
 
-interface HeadingProps {
+export type HeadingProps = {
   title: string;
   description: string;
-}
-
-export const Heading: React.FC<HeadingProps> = ({
-  title,
-  description
-}) => {
-  return ( 
-    <div>
-      <h2 className="text-3xl font-bold tracking-tight">{title}</h2>
-      <p className="text-sm text-muted-foreground">
-        {description}
-      </p>
-    </div>
-  );
 };
- 
+
+export const Heading: FC<HeadingProps> = ({ title, description }) => (
+  <div>
+    <h2 className='text-3xl font-bold tracking-tight'>{title}</h2>
+    <p className='text-sm text-muted-foreground'>{description}</p>
+  </div>
+);

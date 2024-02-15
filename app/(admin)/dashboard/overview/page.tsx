@@ -69,7 +69,7 @@ export default function Page() {
 
   return (
     <main className='space-x-480 mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
-      <h1 className='font-sans'>Dashboard</h1>
+      <h1 className='font-sans'>Overview</h1>
 
       <section>
 

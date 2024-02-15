@@ -4,8 +4,8 @@ import { BillboardsCarousel } from '@/components/billboards-carousel';
 import httpClient from '@/config/http-client';
 import { currencyFormatter } from '@/lib/utils';
 import type { AppDispatch, RootState } from '@/redux/store';
-import { PRODUCTS_LIMIT_PER_PAGE } from '@/shared/constants';
-import type { Product } from '@/types';
+import { DEFAULT_ERROR_MESSAGE, PRODUCTS_LIMIT_PER_PAGE } from '@/shared/constants';
+import type { HttpError, Product } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
@@ -24,6 +24,7 @@ import {
 import clsx from 'clsx';
 import Image from 'next/image';
 import { EmptyMessage } from '@/components/empty-message';
+import { errorTransformer } from '@/lib/http-error-transformer';
 
 export type ProductProperties = {
   categories: string[];
@@ -53,12 +54,12 @@ export default function Page() {
 
     const { data } = await httpClient<Product[]>({
       method: 'get',
-      url: `/api/v1/products/public?${queryParams.toString()}`
+      url: `/api/v1/products?${queryParams.toString()}`
     });
     return { data, currentOffset: pageParam + 1 };
   };
 
-  const { data, refetch, fetchNextPage, hasNextPage, isLoading, isError } =
+  const { data, refetch, fetchNextPage, hasNextPage, isLoading, isError, error } =
     useInfiniteQuery({
       initialPageParam: 1,
       queryKey: ['public-products'],
@@ -165,10 +166,19 @@ export default function Page() {
           <EmptyMessage icon={LayoutDashboardIcon} message='No products to show yet.' />
         ) : null}
 
+        {!isError && !isLoading && products.length < 1 ? (
+          <EmptyMessage
+            icon={ShoppingBagIcon}
+            message={'No products to show yet. Please come back later.'}
+          />
+        ) : null}
+
         {isError && !isLoading ? (
           <EmptyMessage
             icon={AlertTriangleIcon}
-            message='Failed to fetch products data. Please check your internet connection and try again.'
+            message={
+              errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
+            }
           />
         ) : null}
 

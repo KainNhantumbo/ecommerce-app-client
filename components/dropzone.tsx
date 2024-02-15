@@ -49,7 +49,7 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
 
   if (isLoading) {
     return (
-      <Skeleton className='mx-auto h-[280px] max-h-[280px] w-full max-w-xl  rounded-lg p-4 py-12' />
+      <Skeleton className='mx-auto h-[280px] max-h-[280px] w-full max-w-xl rounded-lg p-4 py-12' />
     );
   }
 
@@ -62,12 +62,12 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
       )}>
       <div className='flex w-full select-none flex-col items-center gap-3'>
         <DownloadIcon />
-        <h3 className='max-w-[260px] text-center text-primary'>
+        <h3 className='mx-auto w-full max-w-[260px] text-center text-primary'>
           {isDragActive
             ? 'Drop your image here'
-            : 'Click to select or drag and drop an image here'}
+            : 'Click or drag and drop an image here'}
         </h3>
-        <span className='description'>Extensions: [.JPEG, .JPG, .PNG].</span>
+        <span className='text-center'>[.JPEG, .JPG, .PNG]</span>
 
         <Input {...getInputProps()} />
       </div>

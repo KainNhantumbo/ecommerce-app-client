@@ -4,6 +4,7 @@ import { DropzoneArea } from '@/components/dropzone';
 import { MultiSelector } from '@/components/multi-selector';
 import { SelectWrapper } from '@/components/select-wrapper';
 import { Button } from '@/components/ui/button';
+import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,9 +14,11 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import CategoryOptions from '@/shared/categories.json';
 import ColorOptions from '@/shared/colors.json';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
-import SizeOptions from '@/shared/sizes.json';
+import SizesOptions from '@/shared/sizes.json';
 import { CreateProduct, HttpError, Product } from '@/types';
+import { Switch } from '@/components/ui/switch';
 import { useQuery } from '@tanstack/react-query';
+import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -153,41 +156,56 @@ export default function Page({ params }: PageProps) {
   };
 
   return (
-    <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
-      <h1>Product editor</h1>
-      <section className='mb-5 flex flex-col gap-3'>
-        {product.images.length > 0 ? (
-          <div className='relative flex flex-wrap items-center gap-2'>
-            {product.images.map((image, index) => (
-              <Image
-                src={image.url}
-                alt={`Product image 0${index + 1}`}
-                key={index}
-                width={500}
-                height={800}
-                className='base-border w-full max-w-[280px] rounded-lg object-cover'
-              />
+    <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
+      <Heading title='Product editor' description='Create and edit store products' />
+      <section className='flex h-full w-full flex-wrap items-center justify-center gap-3'>
+        <div className='flex w-full flex-wrap gap-3'>
+          {product.images.length > 0 &&
+            product.images.map((image, index) => (
+              <div key={image.id} className='relative h-[220px] w-[220px]'>
+                <Image
+                  src={image.url}
+                  alt={`Product image 0${index + 1}`}
+                  key={index}
+                  width={280}
+                  height={420}
+                  className='base-border h-full w-full rounded-lg object-cover'
+                />
+                <Button
+                  className='base-border absolute right-3 top-3 h-6 w-6 rounded-full bg-background p-1'
+                  variant={'destructive'}
+                  onClick={() =>
+                    setProduct((state) => ({
+                      ...state,
+                      images: state.images.filter((item) => image.id !== item.id)
+                    }))
+                  }>
+                  <XIcon />
+                </Button>
+              </div>
             ))}
-          </div>
-        ) : null}
-        {product.images.length >= 5 ? (
-          <div className='flex max-w-[420px] flex-col gap-3'>
-            <DropzoneArea
-              handler={(encodedImage) => {
-                setProduct({
-                  ...product,
-                  images: [
-                    ...product.images,
-                    { id: crypto.randomUUID(), url: encodedImage }
-                  ]
-                });
-              }}
-            />
-          </div>
-        ) : null}
+
+          {product.images.length <= 5 ? (
+            <div className='static max-w-[220px]'>
+              <DropzoneArea
+                width={280}
+                height={420}
+                handler={(encodedImage) => {
+                  setProduct({
+                    ...product,
+                    images: [
+                      ...product.images,
+                      { id: crypto.randomUUID(), url: encodedImage }
+                    ]
+                  });
+                }}
+              />
+            </div>
+          ) : null}
+        </div>
       </section>
 
-      <section className='flex flex-col gap-3 py-3'>
+      <section className='flex w-full flex-col gap-3'>
         <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
           <div className='flex w-full flex-col gap-2'>
             <Label>Name *</Label>
@@ -209,7 +227,7 @@ export default function Page({ params }: PageProps) {
             <Input
               type='number'
               placeholder='Product price'
-              value={product.price}
+              value={product.price.toString()}
               className='w-full'
               min={0}
               minLength={0}
@@ -231,7 +249,7 @@ export default function Page({ params }: PageProps) {
                 setProduct((state) => ({ ...state, description: e.target.value }))
               }
             />
-            <span className='self-end text-xs'>{product.description.length}/256</span>
+            <span className='self-end text-xs'>{product.description.length} / 256</span>
           </div>
           <div className='flex w-full flex-col gap-2'>
             <Label>Specs</Label>
@@ -243,27 +261,70 @@ export default function Page({ params }: PageProps) {
                 setProduct((state) => ({ ...state, specs: e.target.value }))
               }
             />
-            <span className='self-end text-xs'>{product.specs.length}/2048</span>
+            <span className='self-end text-xs'>{product.specs.length} / 2048</span>
           </div>
         </div>
         <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
           <div className='flex w-full flex-col gap-2'>
+            <Label>Colors *</Label>
             <MultiSelector
               data={ColorOptions}
-              placeholder='Select color...'
+              placeholder='Select colors...'
               onChange={(data) => setProduct((state) => ({ ...state, color: data }))}
             />
           </div>
-
           <div className='flex w-full flex-col gap-2'>
+            <Label>Sizes *</Label>
+            <MultiSelector
+              data={SizesOptions}
+              placeholder='Select sizes...'
+              onChange={(data) => setProduct((state) => ({ ...state, sizes: data }))}
+            />
+          </div>
+        </div>
+        <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
+          <div className='flex w-full flex-col gap-2'>
+            <Label>Category *</Label>
             <SelectWrapper
-              data={ColorOptions}
+              data={CategoryOptions}
               placeholder='Select category...'
-              onSelect={(value) =>
+              onSelect={(option) => {
+                const [selected] = CategoryOptions.filter(
+                  (item) => item.value === option
+                );
                 setProduct((state) => ({
                   ...state,
-                  category: { id: 0, label: value, value }
-                }))
+                  category: { ...selected }
+                }));
+              }}
+            />
+          </div>
+        </div>
+        <div className=' flex flex-col gap-3'>
+          <div className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+            <div className='space-y-0.5'>
+              <Label>Featured</Label>
+              <p>Controls if this product will appear as a featured product.</p>
+            </div>
+            <Switch
+              checked={product.isFeatured}
+              onCheckedChange={(checked) =>
+                setProduct((state) => ({ ...state, isFeatured: checked }))
+              }
+            />
+          </div>
+          <div className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+            <div className='space-y-0.5'>
+              <Label>Archived</Label>
+              <p>
+                Controls if this product is archived and will not appear anywhere in the
+                store.
+              </p>
+            </div>
+            <Switch
+              checked={product.isArchived}
+              onCheckedChange={(checked) =>
+                setProduct((state) => ({ ...state, isArchived: checked }))
               }
             />
           </div>
@@ -280,7 +341,7 @@ export default function Page({ params }: PageProps) {
           }
         }}
         className='w-fit self-end capitalize'>
-        {params.mode === 'create' ? 'save' : 'update'}
+        {params.mode === 'create' ? 'save & publish' : 'update & publish'}
       </Button>
     </main>
   );
