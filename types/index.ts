@@ -1,6 +1,8 @@
 import type { OrderSchemaType, UserSignupType } from '@/providers/schemas';
 import type { AxiosError } from 'axios';
 
+export type SortOptions = 'ASC' | 'DESC' | 'asc' | 'desc';
+
 export type User = Omit<UserSignupType, 'password' | 'confirm_password'> & {
   id: string;
 };
@@ -28,39 +30,26 @@ export type CartItem = {
 };
 
 export type ImageType = {
-  id: number;
+  id: number | string;
   url: string;
   createdAt: string;
   updatedAt: string;
 };
 
 export type Color = {
-  id: number;
-  name: string;
+  id: number | string;
+  label: string;
   value: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type Category = {
-  id: number;
-  name: string;
-  value: string;
-  createdAt: string;
-  updatedAt: string;
-};
+export type Category = Color;
 
-
-export type Size = {
-  id: number;
-  name: string;
-  value: string;
-  createdAt: string;
-  updatedAt: string;
-};
+export type Size = Category;
 
 export type Product = {
-  id: number;
+  id: number | string;
   name: string;
   price: number;
   description: string;
@@ -80,12 +69,12 @@ export type CreateProduct = {
   price: number;
   specs: string;
   description: string;
-  sizes: { name: string; value: string }[];
-  color: { name: string; value: string }[];
-  category: { name: string; value: string };
+  sizes: Array<Omit<Size, 'updatedAt' | 'createdAt'>>;
+  color: Array<Omit<Color, 'updatedAt' | 'createdAt'>>;
+  category: Omit<Category, 'updatedAt' | 'createdAt'>;
   isArchived: boolean;
   isFeatured: boolean;
-  images: string[];
+  images: Array<Omit<ImageType, 'updatedAt' | 'createdAt'>>;
 };
 
 export type ProductQuery = {

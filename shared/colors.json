@@ -1,256 +1,256 @@
 [
   {
-    "name": "Black",
+    "label": "Black",
     "value": "#000000",
     "id": "5ae5317b-e824-42ea-bad1-e55f49f65e94"
   },
   {
-    "name": "White",
+    "label": "White",
     "value": "#FFFFFF",
     "id": "5e71be33-5a9e-4a6e-8bc9-b964483cf01a"
   },
   {
-    "name": "Gray",
+    "label": "Gray",
     "value": "#808080",
     "id": "df35c74f-1fac-4593-bf33-484114f1767e"
   },
   {
-    "name": "Brown",
+    "label": "Brown",
     "value": "#A52A2A",
     "id": "ed5c4e6c-bc0d-4250-8d39-74fadcec5479"
   },
   {
-    "name": "Beige",
+    "label": "Beige",
     "value": "#F5F5DC",
     "id": "e8cae6fb-2370-410d-8d37-99cffe113814"
   },
   {
-    "name": "Navy",
+    "label": "Navy",
     "value": "#000080",
     "id": "71b96148-1c02-4dfb-a45e-997a82360029"
   },
   {
-    "name": "Blue",
+    "label": "Blue",
     "value": "#0000FF",
     "id": "1d3d98d0-c995-4b0d-9b0f-27f87d53d5d6"
   },
   {
-    "name": "Teal",
+    "label": "Teal",
     "value": "#008080",
     "id": "304dfd02-f6f0-449b-ac46-d9c727e72062"
   },
   {
-    "name": "Turquoise",
+    "label": "Turquoise",
     "value": "#40E0D0",
     "id": "58ff1ef8-98b6-47e0-8cd5-07c320f841d9"
   },
   {
-    "name": "Green",
+    "label": "Green",
     "value": "#008000",
     "id": "07181b8a-9927-4ba6-a5af-df6c9321c77d"
   },
   {
-    "name": "Olive",
+    "label": "Olive",
     "value": "#808000",
     "id": "65449a39-48a7-4be5-8652-3ce076cd1d4e"
   },
   {
-    "name": "Yellow",
+    "label": "Yellow",
     "value": "#FFFF00",
     "id": "481eaab1-bee1-41ef-b3ca-4e8820ad97ff"
   },
   {
-    "name": "Orange",
+    "label": "Orange",
     "value": "#FFA500",
     "id": "a2f62a40-d7e8-4852-a839-02a24ee4cd4d"
   },
   {
-    "name": "Red",
+    "label": "Red",
     "value": "#FF0000",
     "id": "57ec4f5b-61dd-42af-8a65-526d6dad38e8"
   },
   {
-    "name": "Pink",
+    "label": "Pink",
     "value": "#FFC0CB",
     "id": "5467a0ec-69a3-4f56-a1a6-882054433d44"
   },
   {
-    "name": "Purple",
+    "label": "Purple",
     "value": "#800080",
     "id": "4ed4a29e-594e-4be2-a7fa-4ec1fe3c9200"
   },
   {
-    "name": "Lilac",
+    "label": "Lilac",
     "value": "#C8A2C8",
     "id": "bc618eb1-f152-4ecf-a6d7-8bce7a5ca4c7"
   },
   {
-    "name": "Magenta",
+    "label": "Magenta",
     "value": "#FF00FF",
     "id": "4535a2a5-4b76-4681-b37b-b2395d403a82"
   },
   {
-    "name": "Burgundy",
+    "label": "Burgundy",
     "value": "#800020",
     "id": "9fe559f7-14c9-4e28-8d75-675fbc0d4c26"
   },
   {
-    "name": "Maroon",
+    "label": "Maroon",
     "value": "#800000",
     "id": "9b11fb6c-753d-44e5-a67d-0b0311f210f4"
   },
   {
-    "name": "Gold",
+    "label": "Gold",
     "value": "#FFD700",
     "id": "6c0e6748-5c35-481b-8796-9ab866feab78"
   },
   {
-    "name": "Silver",
+    "label": "Silver",
     "value": "#C0C0C0",
     "id": "9f2c4efa-0d1b-48e6-b01b-40bf642e62c0"
   },
   {
-    "name": "Bronze",
+    "label": "Bronze",
     "value": "#CD7F32",
     "id": "a0c81b8b-7385-4739-a881-abee1310a4fe"
   },
   {
-    "name": "Copper",
+    "label": "Copper",
     "value": "#B87333",
     "id": "be1ab318-44ec-4519-b7ee-4b9f0780ed82"
   },
   {
-    "name": "Multi-color",
+    "label": "Multi-color",
     "value": "#000000",
     "id": "fd3cc6c8-6e4d-4133-8692-8f10259951f9"
   },
   {
-    "name": "Patterned",
+    "label": "Patterned",
     "value": "#808080",
     "id": "8d297cb5-6320-47db-9fd9-218cd3ea6461"
   },
   {
-    "name": "Neon Green",
+    "label": "Neon Green",
     "value": "#39FF14",
     "id": "07032f26-83b4-41ff-9a3c-125a63ce41ed"
   },
   {
-    "name": "Pastel Pink",
+    "label": "Pastel Pink",
     "value": "#FF6961",
     "id": "ce20abfc-da61-43f1-9547-5ee3d9770601"
   },
   {
-    "name": "Metallic Blue",
+    "label": "Metallic Blue",
     "value": "#4682B4",
     "id": "6fa6ac0b-fc66-4b53-bc7d-f8321d6f6dc1"
   },
   {
-    "name": "Transparent",
+    "label": "Transparent",
     "value": "#FFFFFF",
     "id": "aea685a8-6a90-4d09-a414-8b5d7c1be1dd"
   },
   {
-    "name": "Rainbow",
+    "label": "Rainbow",
     "value": "#FF0000",
     "id": "c0bea80a-6029-4981-8728-cfc26756c603"
   },
   {
-    "name": "Indigo",
+    "label": "Indigo",
     "value": "#4B0082",
     "id": "b196d076-a4b3-4de1-9427-e7cb0eb5efd9"
   },
   {
-    "name": "Crimson",
+    "label": "Crimson",
     "value": "#DC143C",
     "id": "6616f89d-ec9d-49a9-af4f-e0b018ab4b88"
   },
   {
-    "name": "Lavender",
+    "label": "Lavender",
     "value": "#E6E6FA",
     "id": "3542c18f-5032-4132-b16e-f8eed0738d6b"
   },
   {
-    "name": "Violet",
+    "label": "Violet",
     "value": "#8A2BE2",
     "id": "7e73303a-30c3-4900-9169-3c8f35a8d1d6"
   },
   {
-    "name": "Sky Blue",
+    "label": "Sky Blue",
     "value": "#87CEEB",
     "id": "42df6fce-c309-40a4-abfd-6339886db7f6"
   },
   {
-    "name": "Forest Green",
+    "label": "Forest Green",
     "value": "#228B22",
     "id": "c6134cb7-af07-4950-9767-29698e3f9096"
   },
   {
-    "name": "Slate Gray",
+    "label": "Slate Gray",
     "value": "#708090",
     "id": "1c5e2a9c-5aed-42d8-a941-e88ee68c4a78"
   },
   {
-    "name": "Chocolate",
+    "label": "Chocolate",
     "value": "#D2691E",
     "id": "c4b42d43-ebc2-4202-8701-f248a44aaabc"
   },
   {
-    "name": "Mint Green",
+    "label": "Mint Green",
     "value": "#98FF98",
     "id": "dd963f6b-6602-4730-bc4e-ab0177c8370c"
   },
   {
-    "name": "Salmon",
+    "label": "Salmon",
     "value": "#FA8072",
     "id": "f916f253-8104-4e2a-9626-cf6c62edd509"
   },
   {
-    "name": "Ivory",
+    "label": "Ivory",
     "value": "#FFFFF0",
     "id": "723be07e-73d4-4813-8059-0985da3dc882"
   },
   {
-    "name": "Coral",
+    "label": "Coral",
     "value": "#FF7F50",
     "id": "fc401dbe-eef3-43f7-b553-ceaaa4bd563e"
   },
   {
-    "name": "Khaki",
+    "label": "Khaki",
     "value": "#F0E68C",
     "id": "51931ae0-72b1-4c63-8321-5b990c5ce377"
   },
   {
-    "name": "Royal Blue",
+    "label": "Royal Blue",
     "value": "#4169E1",
     "id": "edae5a95-9deb-4517-a27d-426e6cf8e1ac"
   },
   {
-    "name": "Hot Pink",
+    "label": "Hot Pink",
     "value": "#FF69B4",
     "id": "5429bf54-bb27-4798-852e-d42b4e365eeb"
   },
   {
-    "name": "Pearl",
+    "label": "Pearl",
     "value": "#FDEEF4",
     "id": "3b1a169c-4ffd-4c21-865f-04c7dd2e405f"
   },
   {
-    "name": "Firebrick",
+    "label": "Firebrick",
     "value": "#B22222",
     "id": "5fc5a447-9299-48a6-9995-c76b8ff926ff"
   },
   {
-    "name": "Periwinkle",
+    "label": "Periwinkle",
     "value": "#CCCCFF",
     "id": "660e288e-a34d-4667-ae17-19d9d8ba1362"
   },
   {
-    "name": "Slate Blue",
+    "label": "Slate Blue",
     "value": "#6A5ACD",
     "id": "5d06d197-8d3e-4597-9e1a-dfcc3d142621"
   },
   {
-    "name": "Tomato",
+    "label": "Tomato",
     "value": "#FF6347",
     "id": "fa6fb5b5-b1c5-4be8-9dd8-7e23d213e67e"
   }

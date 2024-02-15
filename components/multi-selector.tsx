@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Command as CommandPrimitive } from 'cmdk';
 
-type Data = Record<'value' | 'name' | 'id', string>;
+type Data = { id: number | string; label: string; value: string };
 type Props = { data: Data[]; placeholder: string; onChange: (data: Data[]) => void };
 
 export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
@@ -37,15 +37,15 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
           });
         }
       }
-      // This is not a default behaviour of the <input /> field
+      // This is not a default behavior of the <input /> field
       if (e.key === 'Escape') {
         input.blur();
       }
     }
   }, []);
 
-  const selectables = data.filter(
-    (data) => !selected.some((slect_data) => data.value === slect_data.value)
+  const selectable = data.filter(
+    (data) => !selected.some((selected) => data.value === selected.value)
   );
 
   return (
@@ -55,7 +55,7 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
           {selected.map((data) => {
             return (
               <Badge key={data.id} variant='secondary'>
-                {data.name}
+                {data.label}
                 <button
                   className='ml-1 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2'
                   onKeyDown={(e) => {
@@ -86,10 +86,10 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
         </div>
       </div>
       <div className='relative mt-2'>
-        {open && selectables.length > 0 ? (
+        {open && selectable.length > 0 ? (
           <div className='absolute top-0 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in'>
             <CommandGroup className='h-full max-h-[200px] overflow-auto'>
-              {selectables.map((data) => {
+              {selectable.map((data) => {
                 return (
                   <CommandItem
                     key={data.id}
@@ -105,7 +105,7 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
                       });
                     }}
                     className={'cursor-pointer'}>
-                    {data.name}
+                    {data.label}
                   </CommandItem>
                 );
               })}

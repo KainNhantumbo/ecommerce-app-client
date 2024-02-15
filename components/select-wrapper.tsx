@@ -11,7 +11,7 @@ import {
 import type { FC } from 'react';
 
 export type SelectProps = {
-  data: Array<{ id: string; name: string; value: string }>;
+  data: Array<{ id: number | string; label: string; value: string }>;
   onSelect: (value: string) => void;
   placeholder: string;
   className?: string;
@@ -31,9 +31,9 @@ export const SelectWrapper: FC<SelectProps> = ({
       <SelectContent className='font-sans-body'>
         <SelectScrollUpButton />
         <SelectGroup>
-          {data.map(({ id, name, value }) => (
+          {data.map(({ id, label, value }) => (
             <SelectItem value={value} key={id}>
-              {name}
+              {label}
             </SelectItem>
           ))}
         </SelectGroup>

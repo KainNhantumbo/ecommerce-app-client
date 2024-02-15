@@ -1,6 +1,8 @@
 'use client';
 
 import { DropzoneArea } from '@/components/dropzone';
+import { MultiSelector } from '@/components/multi-selector';
+import { SelectWrapper } from '@/components/select-wrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,18 +10,16 @@ import { Textarea } from '@/components/ui/textarea';
 import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
+import CategoryOptions from '@/shared/categories.json';
+import ColorOptions from '@/shared/colors.json';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
+import SizeOptions from '@/shared/sizes.json';
 import { CreateProduct, HttpError, Product } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import SizeOptions from '@/shared/sizes.json';
-import CategoryOptions from '@/shared/categories.json';
-import ColorOptions from '@/shared/colors.json';
-import { MultiSelector } from '@/components/multi-selector';
-import { SelectWrapper } from '@/components/select-wrapper';
 
 export type PageProps = { params: { mode: 'create' | 'update'; productId?: string } };
 
@@ -31,7 +31,7 @@ export default function Page({ params }: PageProps) {
     specs: '',
     description: '',
     sizes: [],
-    category: { name: '', value: '' },
+    category: { id: Number(), label: '', value: '' },
     color: [],
     isArchived: false,
     isFeatured: false
@@ -87,7 +87,7 @@ export default function Page({ params }: PageProps) {
         sizes: [],
         specs: '',
         description: '',
-        category: { name: '', value: '' },
+        category: { id: 0, label: '', value: '' },
         color: [],
         isArchived: false,
         isFeatured: false
@@ -133,7 +133,7 @@ export default function Page({ params }: PageProps) {
         specs: '',
         description: '',
         sizes: [],
-        category: { name: '', value: '' },
+        category: { id: 0, label: '', value: '' },
         color: [],
         isArchived: false,
         isFeatured: false
@@ -160,7 +160,7 @@ export default function Page({ params }: PageProps) {
           <div className='relative flex flex-wrap items-center gap-2'>
             {product.images.map((image, index) => (
               <Image
-                src={image}
+                src={image.url}
                 alt={`Product image 0${index + 1}`}
                 key={index}
                 width={500}
@@ -176,7 +176,10 @@ export default function Page({ params }: PageProps) {
               handler={(encodedImage) => {
                 setProduct({
                   ...product,
-                  images: [...product.images, encodedImage]
+                  images: [
+                    ...product.images,
+                    { id: crypto.randomUUID(), url: encodedImage }
+                  ]
                 });
               }}
             />
@@ -248,24 +251,18 @@ export default function Page({ params }: PageProps) {
             <MultiSelector
               data={ColorOptions}
               placeholder='Select color...'
-              onChange={(data) => {
-                setProduct((state) => ({
-                  ...state,
-                  color: data.map((color) => ({ name: color.name, value: color.value }))
-                }));
-              }}
+              onChange={(data) => setProduct((state) => ({ ...state, color: data }))}
             />
           </div>
 
           <div className='flex w-full flex-col gap-2'>
-           
             <SelectWrapper
               data={ColorOptions}
               placeholder='Select category...'
               onSelect={(value) =>
                 setProduct((state) => ({
                   ...state,
-                  category: { name: value, value }
+                  category: { id: 0, label: value, value }
                 }))
               }
             />

@@ -17,7 +17,7 @@ export const BillboardsCarousel = () => {
   const getBillboards = async () => {
     const { data } = await httpClient<Billboard[]>({
       method: 'get',
-      url: '/billboards'
+      url: '/api/v1/billboards'
     });
     return data;
   };
@@ -30,14 +30,32 @@ export const BillboardsCarousel = () => {
   return (
     <section>
       {data ? (
-        <Carousel>
+        <Carousel
+          opts={{ active: true, loop: true, startIndex: 0 }}
+          setApi={(api) => {
+            if (api) {
+              api.on('init', () => {
+                setInterval(() => {
+                  api.scrollNext();
+                }, 5000);
+              });
+            }
+          }}>
           <CarouselPrevious>
             <ArrowLeftIcon />
           </CarouselPrevious>
           <CarouselContent>
             {data.map((item) => (
               <CarouselItem key={item.id}>
-                <Image key={item.id} src={item.image.url} alt={item.label} />
+                <Image
+                  width={1024}
+                  height={220}
+                  key={item.id}
+                  src={item.image.url}
+                  alt={item.label}
+                  priority
+                  className='h-[220px] w-full rounded-lg object-cover'
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -47,10 +65,10 @@ export const BillboardsCarousel = () => {
         </Carousel>
       ) : null}
 
-      {isLoading && !isError ? <Skeleton className='h-48 w-full' /> : null}
+      {isLoading && !isError ? <Skeleton className='h-[220px] w-full' /> : null}
 
       {isError && !isLoading ? (
-        <Skeleton>
+        <Skeleton className='h-[220px] w-full'>
           <EmptyMessage
             message='Error loading billboard content. Please try again.'
             icon={AlertTriangleIcon}

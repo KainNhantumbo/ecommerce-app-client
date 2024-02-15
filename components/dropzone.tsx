@@ -12,9 +12,11 @@ import Compressor from 'compressorjs';
 
 export type DropzoneProps = {
   handler: (file: string) => void;
+  width: number;
+  height: number;
 };
 
-export const DropzoneArea = ({ handler }: DropzoneProps) => {
+export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -23,12 +25,12 @@ export const DropzoneArea = ({ handler }: DropzoneProps) => {
       <T extends File>(acceptedFiles: T[]) => {
         const file = acceptedFiles[0];
         if (!file || !ALLOWED_MIMETYPES.includes(String(file.type)))
-          return toast.error('Error: file type forbidden.');
+          return toast.error('Error: file extension type forbidden.');
 
         new Compressor(file, {
-          quality: 0.8,
-          maxHeight: 180,
-          resize: 'cover',
+          width,
+          height,
+          quality: 0.9,
           success: (compressedImage: File | Blob) => {
             const reader = new FileReader();
             reader.LOADING && setIsLoading(true);
@@ -55,7 +57,7 @@ export const DropzoneArea = ({ handler }: DropzoneProps) => {
     <div
       {...getRootProps()}
       className={cn(
-        'base-border mx-auto grid w-full max-w-xl place-content-center rounded-lg bg-background px-4 py-12',
+        'base-border grid w-full place-content-center rounded-lg bg-background px-4 py-12',
         { 'border-blue-400/85 divide-dashed': isDragActive }
       )}>
       <div className='flex w-full select-none flex-col items-center gap-3'>

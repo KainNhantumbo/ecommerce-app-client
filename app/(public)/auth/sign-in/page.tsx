@@ -52,7 +52,7 @@ export default function Page() {
         withCredentials: true
       });
       dispatch(updateAuth({ ...response.data }));
-      router.push(`/dashboard`);
+      router.push(`/dashboard/overview`);
     } catch (error: any) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);

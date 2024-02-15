@@ -27,7 +27,6 @@ import { EmptyMessage } from '@/components/empty-message';
 
 export type ProductProperties = {
   categories: string[];
-  colors: string[];
   sizes: string[];
 };
 
@@ -84,10 +83,7 @@ export default function Page() {
         new Set<string>(products.map((product) => product.sizes.toString()))
       ),
       categories: Array.from(
-        new Set<string>(products.map((product) => product.category.name.toString()))
-      ),
-      colors: Array.from(
-        new Set<string>(products.map((product) => product.color.name.toString()))
+        new Set<string>(products.map((product) => product.category.label.toString()))
       )
     };
   }, [products]);
@@ -111,7 +107,7 @@ export default function Page() {
   }, [params, refetch]);
 
   return (
-    <main className='mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
+    <main className='mx-auto mt-16 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
       <BillboardsCarousel />
       <section className=''>
         {products.length > 0

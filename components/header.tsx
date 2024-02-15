@@ -20,13 +20,12 @@ const mainRoutes = [
 ];
 
 const adminRoutes = [
-  { name: 'Overview', href: '/dashboard' },
-  { name: 'Orders', href: '/dashboard/orders' },
+  { name: 'Overview', href: '/dashboard/overview' },
+  { name: 'Billboards', href: '/dashboard/billboards' },
   { name: 'Products', href: '/dashboard/products' },
-  { name: 'Categories', href: '/dashboard/categories' },
-  { name: 'Settings', href: '/dashboard/about' },
-  { name: 'Billboards', href: '/dashboard/billboards' }
-].sort((a, b) => (a.name > b.name ? 1 : -1));
+  { name: 'Orders', href: '/dashboard/orders' },
+  { name: 'Users', href: '/dashboard/users' }
+];
 
 export const Header = () => {
   const pathname = usePathname();
@@ -59,7 +58,10 @@ export const Header = () => {
                   <Link
                     href={route.href}
                     key={i}
-                    className='ext-sm font-semibold leading-6 hover:text-primary hover:underline hover:decoration-dashed hover:underline-offset-4'>
+                    className={clsx(
+                      'text-sm font-semibold leading-6 hover:text-primary hover:underline hover:decoration-dashed hover:underline-offset-4',
+                      { 'text-primary': pathname.includes(route.name) }
+                    )}>
                     {route.name}
                   </Link>
                 ))
@@ -67,7 +69,10 @@ export const Header = () => {
                   <Link
                     href={route.href}
                     key={i}
-                    className='text-sm font-semibold leading-6 hover:text-primary hover:underline hover:decoration-dashed hover:underline-offset-4'>
+                    className={clsx(
+                      'text-sm font-semibold leading-6 hover:text-primary hover:underline hover:decoration-dashed hover:underline-offset-4',
+                      { 'text-primary': pathname.includes(route.name) }
+                    )}>
                     {route.name}
                   </Link>
                 ))}
@@ -95,7 +100,7 @@ export const Header = () => {
           variant={'ghost'}
           size={'icon'}
           onClick={onToggleReveal}
-          className={clsx('group fixed right-5 top-1 border-none  md:hidden', {
+          className={clsx('group fixed right-5 top-1 border-none md:hidden', {
             'bg-transparent': isBreakPoint
           })}>
           {!isBreakPoint ? (

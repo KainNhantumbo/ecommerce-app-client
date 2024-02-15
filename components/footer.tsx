@@ -57,7 +57,7 @@ const navigation: Navigation = [
     children: [
       { label: 'Sign In', url: '/auth/sign-in' },
       { label: 'Sign Up', url: '/auth/sign-up' },
-      { label: 'Manage', url: '/dashboard' }
+      { label: 'Manage', url: '/dashboard/overview' }
     ]
   }
 ];
