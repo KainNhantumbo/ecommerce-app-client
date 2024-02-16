@@ -1,3 +1,5 @@
+'use client';
+
 import { EmptyMessage } from '@/components/empty-message';
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';

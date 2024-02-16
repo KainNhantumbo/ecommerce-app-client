@@ -118,6 +118,53 @@ export const userSignupSchema = z
     path: ['confirm_password']
   });
 
+export const updateUserSchema = z
+  .object({
+    firstName: z
+      .string()
+      .min(2, { message: 'First name must have a minimum of 2 characters.' })
+      .max(21, { message: 'First name must have less than 21 characters.' })
+      .trim(),
+    lastName: z
+      .string()
+      .min(2, { message: 'Last name must have a minimum of 2 characters.' })
+      .max(21, { message: 'Last name must have less than 21 characters.' })
+      .trim(),
+    employeeId: z
+      .string()
+      .nonempty({ message: 'Please insert your employer ID.' })
+      .trim(),
+    role: z.string().nonempty({ message: 'Please select your role.' }).trim(),
+    password: z
+      .string()
+      .trim()
+      .min(8, { message: 'Your password must have at least 8 characters.' })
+      .max(20, { message: 'Your password must have less than 20 characters.' })
+      .optional(),
+    confirm_password: z
+      .string()
+      .trim()
+      .min(8, { message: 'Your password must have at least 8 characters.' })
+      .max(20, { message: 'Your password must have less than 20 characters.' })
+      .optional()
+  })
+  .refine(
+    function (data) {
+      if (data?.password && data.password.length > 0) {
+        if (data.password === data.confirm_password) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    {
+      message: "Passwords don't match",
+      path: ['confirm_password']
+    }
+  );
+
+export type UpdateUserSchemaType = z.infer<typeof updateUserSchema>;
 export type UserLoginType = z.infer<typeof userLoginSchema>;
 export type UserSignupType = z.infer<typeof userSignupSchema>;
 export type ContactType = z.infer<typeof contactSchema>;

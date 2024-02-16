@@ -11,39 +11,31 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { updateUsers } from '@/redux/slices/users';
-import { AppDispatch, RootState } from '@/redux/store';
+import { updateAuth } from '@/redux/slices/auth';
+import { AppDispatch } from '@/redux/store';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
-import { Trash2Icon, XIcon } from 'lucide-react';
+import { CheckIcon, LogOutIcon, XIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
-import { useRouter } from 'next/navigation';
 
-type Props = { id: number };
-
-export const DeleteUserAlert: FC<Props> = ({ id }) => {
+export const LogoutAlert: FC = () => {
   const { httpClientAPI } = useAppContext();
-  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const users = useSelector((state: RootState) => state.users);
-  const auth = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const onDelete = async () => {
+  const handleLogout = async () => {
     try {
       await httpClientAPI({
         method: 'delete',
-        url: `/api/v1/users/${id}`
+        url: `/api/v1/auth/sign-out`
       });
-      dispatch(updateUsers(users.filter((item) => +item.id !== id)));
-
-      toast.success('User account deleted.');
-      if (auth.id === id) {
-        router.push('/auth/sign-in');
-      }
+      dispatch(updateAuth({ id: 0, email: '', name: '', token: '' }));
+      router.push('/auth/sign-in');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);
@@ -53,19 +45,20 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant={'ghost'}>
-          <TooltipWrapper content='Delete product'>
-            <Trash2Icon className='h-auto w-4' />
-          </TooltipWrapper>
-        </Button>
+      <AlertDialogTrigger>
+        <TooltipWrapper content='Log out and exit this session'>
+          <Button
+            variant={'ghost'}
+            className='fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
+            <LogOutIcon className='h-auto w-4' />
+          </Button>
+        </TooltipWrapper>
       </AlertDialogTrigger>
       <AlertDialogContent className='font-sans-body'>
         <AlertDialogHeader>
-          <AlertDialogTitle className='font-sans'>Delete User Account</AlertDialogTitle>
+          <AlertDialogTitle className='font-sans'>Log out</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this user
-            account.
+            Do you really want to exit this session and log out?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -76,11 +69,11 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
             </span>
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={onDelete}
+            onClick={handleLogout}
             className='base-border bg-background-default group flex items-center gap-2 rounded-lg shadow-none'>
-            <Trash2Icon className='w-4 transition-colors group-hover:stroke-white group-active:stroke-red-500' />
+            <CheckIcon className='w-4 transition-colors group-hover:stroke-white' />
             <span className='font-medium capitalize transition-colors group-hover:text-white'>
-              Confirm
+              Yes, log out.
             </span>
           </AlertDialogAction>
         </AlertDialogFooter>

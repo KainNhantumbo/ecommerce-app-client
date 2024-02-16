@@ -17,7 +17,7 @@ import {
   TableRow
 } from '@/components/ui/table';
 import { formatDate } from '@/lib/utils';
-import type { Product, User } from '@/types';
+import type { User } from '@/types';
 import { CaretSortIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 import {
   ColumnDef,
@@ -39,7 +39,7 @@ import { DeleteUserAlert } from './user-delete-alert';
 
 export const createColumns: ColumnDef<User>[] = [
   {
-    accessorKey: 'name',
+    accessorKey: 'firstName',
     header: ({ column }) => {
       return (
         <Button
@@ -50,11 +50,21 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className='capitalize'>
-        {row.getValue('firstName')} {row.getValue('lastName')}
-      </div>
-    )
+    cell: ({ row }) => <div className='capitalize'>{row.getValue('firstName')}</div>
+  },
+  {
+    accessorKey: 'lastName',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Surname
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className='capitalize'>{row.getValue('lastName')}</div>
   },
   {
     accessorKey: 'role',
@@ -68,21 +78,21 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('role')}</div>
+    cell: ({ row }) => <div className='uppercase'>{row.getValue('role')}</div>
   },
   {
-    accessorKey: 'employeeId',
+    accessorKey: 'email',
     header: ({ column }) => {
       return (
         <Button
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          Employee ID
+          Email
           <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       );
     },
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('employeeId')}</div>
+    cell: ({ row }) => <div className='normal-case'>{row.getValue('email')}</div>
   },
   {
     accessorKey: 'createdAt',

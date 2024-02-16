@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { Button } from './ui/button';
+import { LogoutAlert } from './user-log-out';
 
 const mainRoutes = [
   { name: 'Home', href: '/' },
@@ -24,7 +25,7 @@ const adminRoutes = [
   { name: 'Billboards', href: '/dashboard/billboards' },
   { name: 'Products', href: '/dashboard/products' },
   { name: 'Orders', href: '/dashboard/orders' },
-  { name: 'Users', href: '/dashboard/users' },
+  { name: 'Users', href: '/dashboard/users' }
 ];
 
 export const Header = () => {
@@ -86,15 +87,21 @@ export const Header = () => {
           <ThemeToggle />
         </div>
 
-        <Button
-          asChild
-          variant={'ghost'}
-          className=' fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
-          <Link href={'/checkout'} className='group flex w-fit items-center gap-2 px-2'>
-            <ShoppingCartIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
-            <span className='font-bold group-hover:text-primary'>{cart.length}</span>
-          </Link>
-        </Button>
+        {isProtectedRoutes ? (
+          <LogoutAlert />
+        ) : (
+          <Button
+            asChild
+            variant={'ghost'}
+            className='fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
+            <Link
+              href={'/checkout'}
+              className='group flex w-fit items-center gap-2 px-2'>
+              <ShoppingCartIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
+              <span className='font-bold group-hover:text-primary'>{cart.length}</span>
+            </Link>
+          </Button>
+        )}
 
         <Button
           variant={'ghost'}
