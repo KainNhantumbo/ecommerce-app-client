@@ -3,7 +3,7 @@
 import { EmptyMessage } from '@/components/empty-message';
 import { ProductTableRender } from '@/components/product-table-render';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import { Heading } from '@/components/ui/heading';
 import { Loader } from '@/components/ui/loader';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
@@ -47,7 +47,7 @@ export default function Page() {
   return (
     <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
       <div className='flex w-full flex-wrap items-center justify-between gap-3'>
-        <Label className='font-sans text-4xl leading-relaxed'>Products</Label>
+        <Heading title='Products' description='View and manage store products' />
         <Button asChild>
           <Link href={`/dashboard/products/create/new`} className='text-white'>
             Create Product

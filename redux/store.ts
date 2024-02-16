@@ -7,6 +7,7 @@ import authReducer from './slices/auth';
 import productReducer from '@/redux/slices/products';
 import cartReducer from '@/redux/slices/cart';
 import billboardReducer from '@/redux/slices/billboards';
+import usersReducer from '@/redux/slices/users';
 import modalsReducer from '@/redux/slices/modals';
 
 export const store = configureStore({
@@ -15,7 +16,8 @@ export const store = configureStore({
     products: productReducer,
     cart: cartReducer,
     billboards: billboardReducer,
-    modals: modalsReducer
+    modals: modalsReducer,
+    users: usersReducer
   }
 });
 
