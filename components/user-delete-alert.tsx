@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { updateProducts } from '@/redux/slices/products';
+import { updateUsers } from '@/redux/slices/users';
 import { AppDispatch, RootState } from '@/redux/store';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
@@ -26,19 +26,19 @@ type Props = {
   id: number;
 };
 
-export const DeleteProductAlert: FC<Props> = ({ id }) => {
+export const DeleteUserAlert: FC<Props> = ({ id }) => {
   const { httpClientAPI } = useAppContext();
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: RootState) => state.products);
+  const users = useSelector((state: RootState) => state.users);
 
   const onDelete = async () => {
     try {
       await httpClientAPI({
         method: 'delete',
-        url: `/api/v1/products/${id}`
+        url: `/api/v1/users/${id}`
       });
-      dispatch(updateProducts(products.filter((item) => item.id !== id)));
-      toast.success('Product deleted.');
+      dispatch(updateUsers(users.filter((item) => +item.id !== id)));
+      toast.success('User account deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE);
@@ -57,13 +57,14 @@ export const DeleteProductAlert: FC<Props> = ({ id }) => {
       </AlertDialogTrigger>
       <AlertDialogContent className='font-sans-body'>
         <AlertDialogHeader>
-          <AlertDialogTitle className='font-sans'>Delete Product</AlertDialogTitle>
+          <AlertDialogTitle className='font-sans'>Delete User Account</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this product.
+            This action cannot be undone. This will permanently delete this user
+            account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='border-none group flex items-center gap-2 rounded-lg bg-transparent shadow-none'>
+          <AlertDialogCancel className='group flex items-center gap-2 rounded-lg border-none bg-transparent shadow-none'>
             <XIcon className='w-4 transition-colors group-hover:stroke-blue-400 group-active:stroke-blue-400' />
             <span className='capitalize transition-colors group-hover:text-blue-400'>
               Cancel

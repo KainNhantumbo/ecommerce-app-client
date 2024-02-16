@@ -2,6 +2,7 @@ import { EmptyMessage } from '@/components/empty-message';
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Loader } from '@/components/ui/loader';
+import { UserTableRender } from '@/components/user-table-render';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateUsers } from '@/redux/slices/users';
@@ -53,7 +54,7 @@ export default function Page() {
       </div>
 
       <section>
-        {/* {!isLoading && !isError ? <ProductTableRender data={products} /> : null} */}
+        {!isLoading && !isError ? <UserTableRender data={users} /> : null}
 
         {!isLoading && isError ? (
           <EmptyMessage

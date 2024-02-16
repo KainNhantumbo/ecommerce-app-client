@@ -24,7 +24,7 @@ const adminRoutes = [
   { name: 'Billboards', href: '/dashboard/billboards' },
   { name: 'Products', href: '/dashboard/products' },
   { name: 'Orders', href: '/dashboard/orders' },
-  { name: 'Users', href: '/dashboard/users' }
+  { name: 'Users', href: '/dashboard/users' },
 ];
 
 export const Header = () => {

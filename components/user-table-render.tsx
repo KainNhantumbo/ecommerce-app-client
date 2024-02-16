@@ -17,7 +17,7 @@ import {
   TableRow
 } from '@/components/ui/table';
 import { formatDate } from '@/lib/utils';
-import type { Product } from '@/types';
+import type { Product, User } from '@/types';
 import { CaretSortIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 import {
   ColumnDef,
@@ -34,13 +34,13 @@ import {
 import { EditIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useState, type FC } from 'react';
-import { DeleteProductAlert } from './product-delete-alert';
 import { TooltipWrapper } from './tooltip-wrapper';
+import { DeleteUserAlert } from './user-delete-alert';
 
-export const createColumns: ColumnDef<Product>[] = [
+export const createColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'name',
-    header: ({ column }: any) => {
+    header: ({ column }) => {
       return (
         <Button
           variant='ghost'
@@ -50,11 +50,43 @@ export const createColumns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => <div className='capitalize'>{row.getValue('name')}</div>
+    cell: ({ row }) => (
+      <div className='capitalize'>
+        {row.getValue('firstName')} {row.getValue('lastName')}
+      </div>
+    )
+  },
+  {
+    accessorKey: 'role',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Role
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className='capitalize'>{row.getValue('role')}</div>
+  },
+  {
+    accessorKey: 'employeeId',
+    header: ({ column }) => {
+      return (
+        <Button
+          variant='ghost'
+          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+          Employee ID
+          <CaretSortIcon className='ml-2 h-4 w-4' />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className='capitalize'>{row.getValue('employeeId')}</div>
   },
   {
     accessorKey: 'createdAt',
-    header: ({ column }: any) => {
+    header: ({ column }) => {
       return (
         <Button
           variant='ghost'
@@ -64,43 +96,27 @@ export const createColumns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => (
+    cell: ({ row }) => (
       <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
-    )
-  },
-  {
-    accessorKey: 'updatedAt',
-    header: ({ column }: any) => {
-      return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          Updated
-          <CaretSortIcon className='ml-2 h-4 w-4' />
-        </Button>
-      );
-    },
-    cell: ({ row }: any) => (
-      <div className='capitalize'>{formatDate(row.getValue('updatedAt'))}</div>
     )
   },
   {
     id: 'delete',
     enableHiding: false,
-    cell: ({ row }: any) => {
-      const product = row.original as Product;
-      return <DeleteProductAlert id={+product.id} />;
+    cell: ({ row }) => {
+      const user = row.original as User;
+      return <DeleteUserAlert id={+user.id} />;
     }
   },
   {
     id: 'edit',
     enableHiding: false,
-    cell: ({ row }: any) => {
-      const product = row.original as Product;
+    cell: ({ row }) => {
+      const user = row.original as User;
       return (
         <Button asChild variant={'ghost'}>
-          <Link href={`/dashboard/products/update/${product.id}`}>
-            <TooltipWrapper content='Edit product'>
+          <Link href={`/dashboard/users/update/${user.id}`}>
+            <TooltipWrapper content='Edit user'>
               <EditIcon className='h-auto w-4' />
             </TooltipWrapper>
           </Link>
@@ -110,11 +126,11 @@ export const createColumns: ColumnDef<Product>[] = [
   }
 ];
 
-export type ProductTableRenderProps = {
-  data: Product[];
+export type UserTableRenderProps = {
+  data: User[];
 };
 
-export const ProductTableRender: FC<ProductTableRenderProps> = (props) => {
+export const UserTableRender: FC<UserTableRenderProps> = (props) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
