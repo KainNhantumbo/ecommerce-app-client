@@ -1,9 +1,9 @@
-import { Label } from '@/components/ui/label';
+import { Heading } from '@/components/ui/heading';
 
 export default function Page() {
   return (
     <main>
-      <Label>Orders</Label>
+      <Heading title='Orders' description='View and manage store orders' />
     </main>
   );
 }
