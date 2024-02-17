@@ -35,7 +35,7 @@ export default function Page({ params }: PageProps) {
     description: '',
     sizes: [],
     category: { id: Number(), label: '', value: '' },
-    color: [],
+    colors: [],
     isArchived: false,
     isFeatured: false
   });
@@ -61,7 +61,7 @@ export default function Page({ params }: PageProps) {
           images: [],
           sizes: [],
           category: data.category,
-          color: [],
+          colors: [],
           isArchived: data.isArchived,
           isFeatured: data.isFeatured
         };
@@ -91,7 +91,7 @@ export default function Page({ params }: PageProps) {
         specs: '',
         description: '',
         category: { id: 0, label: '', value: '' },
-        color: [],
+        colors: [],
         isArchived: false,
         isFeatured: false
       });
@@ -121,7 +121,12 @@ export default function Page({ params }: PageProps) {
       await httpClientAPI({
         method: 'post',
         url: '/api/v1/products',
-        data: product
+        data: {
+          ...product,
+          images: product.images.map(({ url }) => ({ url })),
+          colors: product.colors.map(({ label, value }) => ({ label, value })),
+          sizes: product.sizes.map(({ label, value }) => ({ label, value }))
+        }
       });
       toast.success('Product created.', {
         action: {
@@ -137,7 +142,7 @@ export default function Page({ params }: PageProps) {
         description: '',
         sizes: [],
         category: { id: 0, label: '', value: '' },
-        color: [],
+        colors: [],
         isArchived: false,
         isFeatured: false
       });
@@ -190,12 +195,13 @@ export default function Page({ params }: PageProps) {
               <DropzoneArea
                 width={280}
                 height={420}
-                handler={(encodedImage) => {
+                handler={(encodedImages) => {
+                  console.log(encodedImages)
                   setProduct({
                     ...product,
                     images: [
                       ...product.images,
-                      { id: crypto.randomUUID(), url: encodedImage }
+                      ...encodedImages.map((url) => ({ id: crypto.randomUUID(), url }))
                     ]
                   });
                 }}
@@ -270,7 +276,7 @@ export default function Page({ params }: PageProps) {
             <MultiSelector
               data={ColorOptions}
               placeholder='Select colors...'
-              onChange={(data) => setProduct((state) => ({ ...state, color: data }))}
+              onChange={(data) => setProduct((state) => ({ ...state, colors: data }))}
             />
           </div>
           <div className='flex w-full flex-col gap-2'>

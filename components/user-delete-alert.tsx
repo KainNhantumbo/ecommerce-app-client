@@ -11,17 +11,18 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
+import { updateAuth } from '@/redux/slices/auth';
 import { updateUsers } from '@/redux/slices/users';
 import { AppDispatch, RootState } from '@/redux/store';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { Trash2Icon, XIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
-import { useRouter } from 'next/navigation';
 
 type Props = { id: number };
 
@@ -42,6 +43,7 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
 
       toast.success('User account deleted.');
       if (auth.id === id) {
+        dispatch(updateAuth({ id: 0, email: '', name: '', token: '' }));
         router.push('/auth/sign-in');
       }
     } catch (error) {

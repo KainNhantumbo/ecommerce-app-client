@@ -56,7 +56,7 @@ export type Product = {
   specs?: string;
   isArchived: boolean;
   isFeatured: boolean;
-  color: Color[];
+  colors: Color[];
   images: ImageType[];
   category: Category;
   sizes: Size[];
@@ -70,7 +70,7 @@ export type CreateProduct = {
   specs: string;
   description: string;
   sizes: Array<Omit<Size, 'updatedAt' | 'createdAt'>>;
-  color: Array<Omit<Color, 'updatedAt' | 'createdAt'>>;
+  colors: Array<Omit<Color, 'updatedAt' | 'createdAt'>>;
   category: Omit<Category, 'updatedAt' | 'createdAt'>;
   isArchived: boolean;
   isFeatured: boolean;

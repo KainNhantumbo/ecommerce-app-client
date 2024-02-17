@@ -65,7 +65,7 @@ export default function Page() {
   return (
     <main
       className='flex w-full flex-col gap-12 bg-background px-4 font-sans'
-      style={{ minHeight: innerHeight  }}>
+      style={{ minHeight: innerHeight }}>
       <section className='m-auto flex w-full max-w-5xl items-center justify-between gap-8 p-8'>
         <div className=' mx-auto flex w-full max-w-[400px] flex-col justify-between gap-12 md:w-full'>
           <div className='flex w-full flex-col gap-3'>

@@ -150,7 +150,10 @@ export default function Page() {
                         </FormControl>
                         <SelectContent>
                           {USER_ROLES.map((role, i) => (
-                            <SelectItem value={role} key={i} className='capitalize'>
+                            <SelectItem
+                              value={role}
+                              key={i}
+                              className='font-sans-body capitalize'>
                               {role}
                             </SelectItem>
                           ))}
@@ -177,7 +180,10 @@ export default function Page() {
                         </FormControl>
                         <SelectContent>
                           {USER_ROLES.map((role, i) => (
-                            <SelectItem value={role} key={i} className='capitalize'>
+                            <SelectItem
+                              value={role}
+                              key={i}
+                              className='font-sans-body capitalize'>
                               {role}
                             </SelectItem>
                           ))}

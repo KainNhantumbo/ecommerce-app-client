@@ -11,7 +11,7 @@ import { Skeleton } from './ui/skeleton';
 import Compressor from 'compressorjs';
 
 export type DropzoneProps = {
-  handler: (file: string) => void;
+  handler: (files: string[]) => void;
   width: number;
   height: number;
 };
@@ -20,10 +20,10 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    maxFiles: 1,
-    onDrop: useCallback(
-      <T extends File>(acceptedFiles: T[]) => {
-        const file = acceptedFiles[0];
+    maxFiles: 6,
+    onDrop: useCallback(<T extends File>(acceptedFiles: T[]) => {
+      const encodedImages: string[] = [];
+      for (const file of acceptedFiles) {
         if (!file || !ALLOWED_MIMETYPES.includes(String(file.type)))
           return toast.error('Error: file extension type forbidden.');
 
@@ -37,14 +37,14 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
             reader.readAsDataURL(compressedImage);
             reader.onloadend = function (e: ProgressEvent<FileReader>) {
               const encodedImage: string = e.target?.result as string;
-              handler(encodedImage);
+              encodedImages.push(encodedImage);
               setIsLoading(false);
             };
           }
         });
-      },
-      [handler]
-    )
+      }
+      handler(encodedImages);
+    }, [])
   });
 
   if (isLoading) {
