@@ -52,6 +52,8 @@ export default function Page({ params: { category, productId } }: PageProps) {
                     <CarouselItem key={image.id}>
                       <Image
                         src={image.url}
+                        width={280}
+                        height={420}
                         alt={`${product.name} ${index + 1} image.`}
                       />
                     </CarouselItem>

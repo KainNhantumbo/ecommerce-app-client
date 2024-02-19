@@ -41,7 +41,7 @@ export const BillboardsCarousel = () => {
               });
             }
           }}>
-          <CarouselPrevious>
+          <CarouselPrevious className='hidden sm:flex'>
             <ArrowLeftIcon />
           </CarouselPrevious>
           <CarouselContent>
@@ -59,7 +59,7 @@ export const BillboardsCarousel = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselNext>
+          <CarouselNext className='hidden sm:flex'>
             <ArrowRightIcon />
           </CarouselNext>
         </Carousel>
