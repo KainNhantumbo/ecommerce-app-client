@@ -1,7 +1,14 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { type FC, KeyboardEvent, useCallback, useRef, useState } from 'react';
+import {
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FC
+} from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
@@ -19,7 +26,7 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
   const handleUnselect = useCallback((data: Data) => {
     setSelected((prev) => {
       const selected = prev.filter((s) => s.value !== data.value);
-      onChange(selected);
+      // onChange(selected);
       return selected;
     });
   }, []);
@@ -32,7 +39,7 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
           setSelected((prev) => {
             const newSelected = [...prev];
             newSelected.pop();
-            onChange(newSelected);
+            // onChange(newSelected);
             return newSelected;
           });
         }
@@ -47,6 +54,10 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
   const selectable = data.filter(
     (data) => !selected.some((selected) => data.value === selected.value)
   );
+
+  useEffect(() => {
+    onChange(selected);
+  }, [selected]);
 
   return (
     <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>
@@ -100,7 +111,6 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
                     onSelect={(value) => {
                       setInputValue('');
                       setSelected((prev) => {
-                        onChange([...prev, data]);
                         return [...prev, data];
                       });
                     }}

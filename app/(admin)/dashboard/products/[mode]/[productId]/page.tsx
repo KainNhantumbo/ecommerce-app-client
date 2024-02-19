@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
@@ -16,7 +17,6 @@ import ColorOptions from '@/shared/colors.json';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import SizesOptions from '@/shared/sizes.json';
 import { CreateProduct, HttpError, Product } from '@/types';
-import { Switch } from '@/components/ui/switch';
 import { useQuery } from '@tanstack/react-query';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';
@@ -195,13 +195,12 @@ export default function Page({ params }: PageProps) {
               <DropzoneArea
                 width={280}
                 height={420}
-                handler={(encodedImages) => {
-                  console.log(encodedImages)
+                handler={(encodedImage) => {
                   setProduct({
                     ...product,
                     images: [
                       ...product.images,
-                      ...encodedImages.map((url) => ({ id: crypto.randomUUID(), url }))
+                      { id: crypto.randomUUID(), url: encodedImage }
                     ]
                   });
                 }}
