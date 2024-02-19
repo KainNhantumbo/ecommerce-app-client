@@ -19,10 +19,12 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { useInnerWindowSize } from '@/hooks/inner-window-size-hook';
 
 export default function Page() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const { height: innerHeight } = useInnerWindowSize();
 
   const form = useForm<EmailSchemaType>({
     resolver: zodResolver(emailSchema),
@@ -38,7 +40,7 @@ export default function Page() {
       router.push(`/dashboard`);
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
-      console.error(error)
+      console.error(error);
     } finally {
       setLoading(false);
     }
