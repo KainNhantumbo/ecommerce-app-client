@@ -20,12 +20,11 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateUserSchema, type UpdateUserSchemaType } from '@/providers/schemas';
 import { DEFAULT_ERROR_MESSAGE, USER_ROLES } from '@/shared/constants';
-import { HttpError, User } from '@/types';
+import type { HttpError, User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -46,7 +45,7 @@ export default function Page({ params: { userId } }: PageProps) {
   const [loading, setLoading] = useState(false);
   const { httpClientAPI } = useAppContext();
 
-  const { data, isError, isLoading, error } = useQuery({
+  const { data, isError, isLoading, error, refetch } = useQuery({
     queryKey: [`query-user-${userId}`],
     queryFn: async () => {
       try {
@@ -77,9 +76,15 @@ export default function Page({ params: { userId } }: PageProps) {
   });
 
   const onSubmit = async (data: UpdateUserSchemaType) => {
-    setLoading(true);
     try {
-      await httpClient<UpdateUserSchemaType>({
+      setLoading(true);
+
+      if (data.password && data.password.length > 0) {
+        if (data.password !== data.confirm_password) {
+          return toast.error("Passwords don't match. Please check and try again.");
+        }
+      }
+      await httpClientAPI<UpdateUserSchemaType>({
         method: 'patch',
         url: `/api/v1/users/${userId}`,
         data: {
@@ -95,7 +100,8 @@ export default function Page({ params: { userId } }: PageProps) {
         }
       });
     } catch (error: any) {
-      toast.error('Something went wrong. Please try again.', {
+      const { message } = errorTransformer(error as HttpError);
+      toast.error(message || DEFAULT_ERROR_MESSAGE, {
         action: {
           label: 'Retry',
           onClick: () => onSubmit(data)
@@ -288,6 +294,7 @@ export default function Page({ params: { userId } }: PageProps) {
       {isError && !isLoading ? (
         <EmptyMessage
           icon={AlertTriangleIcon}
+          action={{ handler: () => refetch(), label: 'Retry' }}
           message={
             errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
           }

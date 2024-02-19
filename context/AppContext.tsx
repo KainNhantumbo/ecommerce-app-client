@@ -38,7 +38,7 @@ export const AppContext: FC<Props> = ({ children }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state: RootState) => state.auth);
 
-  // loads cart data from localstorage
+  // loads cart data from localStorage
   useLoadCart();
 
   const authenticateUser = async () => {
@@ -66,7 +66,6 @@ export const AppContext: FC<Props> = ({ children }) => {
           authenticateUser().catch((error) => {
             const { message } = errorTransformer(error as HttpError);
             console.error(message || error);
-            console.warn(message);
             router.push('/auth/sign-in');
           });
         }
@@ -89,11 +88,10 @@ export const AppContext: FC<Props> = ({ children }) => {
         method: 'get',
         url: '/api/v1/health'
       });
-      console.info(`Service response code ${statusCode}. ${message}`);
+      console.info(`Service response status code: ${statusCode}. ${message}`);
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      console.warn(message);
-      console.error(error);
+      console.error(message || error);
     }
   }
 

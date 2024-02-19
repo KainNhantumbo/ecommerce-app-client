@@ -7,7 +7,8 @@ import {
   useEffect,
   useRef,
   useState,
-  type FC
+  type FC,
+  useMemo
 } from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -15,21 +16,30 @@ import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Command as CommandPrimitive } from 'cmdk';
 
 type Data = { id: number | string; label: string; value: string };
-type Props = { data: Data[]; placeholder: string; onChange: (data: Data[]) => void };
+type Props = {
+  data: Data[];
+  defaultValues: Data[];
+  placeholder: string;
+  onChange: (data: Data[]) => void;
+};
 
-export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
+export const MultiSelector: FC<Props> = ({
+  defaultValues,
+  data,
+  placeholder,
+  onChange
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<Data[]>([]);
+  const [selected, setSelected] = useState<Data[]>(defaultValues);
   const [inputValue, setInputValue] = useState('');
 
   const handleUnselect = useCallback((data: Data) => {
     setSelected((prev) => {
       const selected = prev.filter((s) => s.value !== data.value);
-      // onChange(selected);
       return selected;
     });
-  }, []);
+  }, [defaultValues]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
     const input = inputRef.current;
@@ -51,13 +61,13 @@ export const MultiSelector: FC<Props> = ({ data, placeholder, onChange }) => {
     }
   }, []);
 
-  const selectable = data.filter(
+  const selectable = useMemo(()=>  data.filter(
     (data) => !selected.some((selected) => data.value === selected.value)
-  );
+  ), [defaultValues, data])
 
   useEffect(() => {
     onChange(selected);
-  }, [selected]);
+  }, [selected, defaultValues]);
 
   return (
     <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>

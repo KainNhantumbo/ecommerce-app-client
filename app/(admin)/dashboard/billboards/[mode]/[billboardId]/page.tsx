@@ -130,16 +130,13 @@ export default function Page({ params }: PageProps) {
               </Button>
             </div>
           ) : (
-            <div>
-              <DropzoneArea
-                width={2048}
-                height={440}
-                handler={(encodedImage) => {
-                  setBillboard({ ...billboard, image: encodedImage });
-                }}
-              />
-              <p className='py-4'>Resolution: 1024 x 220px</p>
-            </div>
+            <DropzoneArea
+              width={2048}
+              height={440}
+              handler={(encodedImage) => {
+                setBillboard({ ...billboard, image: encodedImage });
+              }}
+            />
           )}
         </div>
       </section>

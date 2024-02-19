@@ -29,7 +29,8 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
+  type Row
 } from '@tanstack/react-table';
 import { EditIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -50,7 +51,9 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('firstName')}</div>
+    cell: ({ row }: { row: Row<User> }) => (
+      <div className='capitalize'>{row.getValue('firstName')}</div>
+    )
   },
   {
     accessorKey: 'lastName',
@@ -59,12 +62,14 @@ export const createColumns: ColumnDef<User>[] = [
         <Button
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-          Surname
+          Last Name
           <CaretSortIcon className='ml-2 h-4 w-4' />
         </Button>
       );
     },
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('lastName')}</div>
+    cell: ({ row }: { row: Row<User> }) => (
+      <div className='capitalize'>{row.getValue('lastName')}</div>
+    )
   },
   {
     accessorKey: 'role',
@@ -78,7 +83,9 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className='uppercase'>{row.getValue('role')}</div>
+    cell: ({ row }: { row: Row<User> }) => (
+      <div className='uppercase'>{row.getValue('role')}</div>
+    )
   },
   {
     accessorKey: 'email',
@@ -92,7 +99,9 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className='normal-case'>{row.getValue('email')}</div>
+    cell: ({ row }: { row: Row<User> }) => (
+      <div className='normal-case'>{row.getValue('email')}</div>
+    )
   },
   {
     accessorKey: 'createdAt',
@@ -106,23 +115,23 @@ export const createColumns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
+    cell: ({ row }: { row: Row<User> }) => (
       <div className='capitalize'>{formatDate(row.getValue('createdAt'))}</div>
     )
   },
   {
     id: 'delete',
     enableHiding: false,
-    cell: ({ row }) => {
-      const user = row.original as User;
+    cell: ({ row }: { row: Row<User> }) => {
+      const user = row.original;
       return <DeleteUserAlert id={+user.id} />;
     }
   },
   {
     id: 'edit',
     enableHiding: false,
-    cell: ({ row }) => {
-      const user = row.original as User;
+    cell: ({ row }: { row: Row<User> }) => {
+      const user = row.original;
       return (
         <Button asChild variant={'ghost'}>
           <Link href={`/dashboard/users/update/${user.id}`}>
@@ -170,9 +179,9 @@ export const UserTableRender: FC<UserTableRenderProps> = (props) => {
       <div className='flex items-center py-4'>
         <Input
           placeholder='Filter by name...'
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+          value={(table.getColumn('firstName')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
+            table.getColumn('firstName')?.setFilterValue(event.target.value)
           }
           className='max-w-sm'
         />

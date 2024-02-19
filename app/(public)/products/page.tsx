@@ -140,7 +140,6 @@ export default function Page() {
                       src={product.images[0].url}
                       width={250}
                       height={250}
-                      placeholder='blur'
                       alt={`${product.name} image`}
                     />
                   </Link>

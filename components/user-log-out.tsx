@@ -45,14 +45,12 @@ export const LogoutAlert: FC = () => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <TooltipWrapper content='Log out and exit this session'>
-          <Button
-            variant={'ghost'}
-            className='fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
-            <LogOutIcon className='h-auto w-4' />
-          </Button>
-        </TooltipWrapper>
+      <AlertDialogTrigger asChild>
+        <Button
+          variant={'ghost'}
+          className='fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
+          <LogOutIcon className='h-auto w-4' />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className='font-sans-body'>
         <AlertDialogHeader>

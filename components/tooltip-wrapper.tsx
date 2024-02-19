@@ -21,7 +21,7 @@ export const TooltipWrapper: FC<TooltipProps> = ({
 }) => (
   <TooltipProvider>
     <Tooltip>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipTrigger asChild={true}>{children}</TooltipTrigger>
       <TooltipContent className='base-border bg-background' sideOffset={offsetDistance}>
         <p>{content}</p>
       </TooltipContent>

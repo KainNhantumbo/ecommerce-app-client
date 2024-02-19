@@ -53,20 +53,8 @@ export default function Page({ params }: PageProps) {
           method: 'get',
           url: `/api/v1/products/${params.productId}`
         });
-        const result = {
-          name: data.name,
-          price: data.price,
-          specs: data?.specs || '',
-          description: '',
-          images: [],
-          sizes: [],
-          category: data.category,
-          colors: [],
-          isArchived: data.isArchived,
-          isFeatured: data.isFeatured
-        };
-        setProduct(result);
-        return result;
+        setProduct(data as CreateProduct);
+        return data as CreateProduct;
       } catch (error) {
         const { message } = errorTransformer(error as HttpError);
         toast.error(message || DEFAULT_ERROR_MESSAGE);
@@ -82,18 +70,6 @@ export default function Page({ params }: PageProps) {
         method: 'patch',
         url: `/api/v1/products/${productId}`,
         data: product
-      });
-      setProduct({
-        name: '',
-        price: 0,
-        images: [],
-        sizes: [],
-        specs: '',
-        description: '',
-        category: { id: 0, label: '', value: '' },
-        colors: [],
-        isArchived: false,
-        isFeatured: false
       });
       toast.success('Product data updated successfully.', {
         action: {
@@ -273,6 +249,7 @@ export default function Page({ params }: PageProps) {
           <div className='flex w-full flex-col gap-2'>
             <Label>Colors *</Label>
             <MultiSelector
+              defaultValues={product.colors}
               data={ColorOptions}
               placeholder='Select colors...'
               onChange={(data) => setProduct((state) => ({ ...state, colors: data }))}
@@ -281,6 +258,7 @@ export default function Page({ params }: PageProps) {
           <div className='flex w-full flex-col gap-2'>
             <Label>Sizes *</Label>
             <MultiSelector
+              defaultValues={product.sizes}
               data={SizesOptions}
               placeholder='Select sizes...'
               onChange={(data) => setProduct((state) => ({ ...state, sizes: data }))}
