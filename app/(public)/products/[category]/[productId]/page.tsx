@@ -1,31 +1,35 @@
 'use client';
 
+import { EmptyMessage } from '@/components/empty-message';
+import { ProductCarousel } from '@/components/product-carousel';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext
+  CarouselNext,
+  CarouselPrevious
 } from '@/components/ui/carousel';
-import { HttpError, Product } from '@/types';
 import httpClient from '@/config/http-client';
 import { useCartManager } from '@/hooks/cart-manager-hook';
-import { useQuery } from '@tanstack/react-query';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { toast } from 'sonner';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
+import { HttpError, Product } from '@/types';
+import { useQuery } from '@tanstack/react-query';
+import { AlertTriangleIcon } from 'lucide-react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 type PageProps = { params: { category?: string; productId?: string } };
 
 export default function Page({ params: { category, productId } }: PageProps) {
-  const { dispatch, addCartItem, increaseQuantity, decreaseQuantity } =
-    useCartManager();
+  const { addCartItem, increaseQuantity, decreaseQuantity } = useCartManager();
 
   const {
     data: product,
     isError,
     isLoading,
-    error
+    error,
+    refetch
   } = useQuery({
     queryKey: [`${category}-product-${productId}`],
     queryFn: async () => {
@@ -41,26 +45,21 @@ export default function Page({ params: { category, productId } }: PageProps) {
   });
   return (
     <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
-      <section>
-        <section>
-          <div>
+      <section className='w-full'>
+        {isError && !isLoading ? (
+          <EmptyMessage
+            icon={AlertTriangleIcon}
+            action={{ label: 'Try again.', handler: () => refetch() }}
+            message={
+              errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
+            }
+          />
+        ) : null}
+
+        <section className='flex w-full flex-col gap-3 sm:flex-row'>
+          <div className='w-full  max-w-[400px]'>
             {!isLoading && !isError && product ? (
-              <Carousel>
-                <CarouselPrevious />
-                <CarouselContent>
-                  {product.images.map((image, index) => (
-                    <CarouselItem key={image.id}>
-                      <Image
-                        src={image.url}
-                        width={280}
-                        height={420}
-                        alt={`${product.name} ${index + 1} image.`}
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselNext />
-              </Carousel>
+              <ProductCarousel images={product.images} />
             ) : null}
           </div>
         </section>

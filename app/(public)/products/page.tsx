@@ -2,9 +2,11 @@
 
 import { BillboardsCarousel } from '@/components/billboards-carousel';
 import { EmptyMessage } from '@/components/empty-message';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { useQueryProducts } from '@/hooks/query-products-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { currencyFormatter } from '@/lib/utils';
+import { currencyFormatter, scrollToTop } from '@/lib/utils';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { HttpError } from '@/types';
 import {
@@ -17,9 +19,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Page() {
-  const { products, inViewRef, isLoading, isError, error } = useQueryProducts();
-
-  [{ la: '' }];
+  const { products, inViewRef, isLoading, isError, error, refetch, hasNextPage } =
+    useQueryProducts();
 
   return (
     <main className='mx-auto mt-16 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
@@ -50,6 +51,18 @@ export default function Page() {
           : null}
       </section>
 
+      {!hasNextPage ? (
+        <div>
+          <Separator decorative className='mb-2' />
+          <div className='mx-auto flex w-full max-w-[300px] flex-col items-center gap-3'>
+            <p className='font-sans text-sm font-medium'>Reached the end.</p>
+            <Button variant={'secondary'} onClick={scrollToTop}>
+              Scroll back to top
+            </Button>
+          </div>
+        </div>
+      ) : null}
+
       {products.length < 0 && !isError && !isLoading ? (
         <EmptyMessage icon={LayoutDashboardIcon} message='No products to show yet.' />
       ) : null}
@@ -64,6 +77,7 @@ export default function Page() {
       {isError && !isLoading ? (
         <EmptyMessage
           icon={AlertTriangleIcon}
+          action={{ label: 'Try again.', handler: () => refetch() }}
           message={
             errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
           }

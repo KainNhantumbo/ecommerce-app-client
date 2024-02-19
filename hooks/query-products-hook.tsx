@@ -16,7 +16,6 @@ export const useQueryProducts = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products);
-
   const params = useSearchParams();
 
   const { data, refetch, fetchNextPage, hasNextPage, isLoading, isError, error } =
