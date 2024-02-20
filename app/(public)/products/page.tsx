@@ -2,19 +2,16 @@
 
 import { BillboardsCarousel } from '@/components/billboards-carousel';
 import { EmptyMessage } from '@/components/empty-message';
+import { QueryProductsBar } from '@/components/query-products-bar';
 import { Button } from '@/components/ui/button';
+import { Loader } from '@/components/ui/loader';
 import { Separator } from '@/components/ui/separator';
 import { useQueryProducts } from '@/hooks/query-products-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter, scrollToTop } from '@/lib/utils';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { HttpError } from '@/types';
-import {
-  AlertTriangleIcon,
-  LayoutDashboardIcon,
-  LoaderIcon,
-  ShoppingBagIcon
-} from 'lucide-react';
+import { AlertTriangleIcon, LayoutDashboardIcon, ShoppingBagIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -25,6 +22,9 @@ export default function Page() {
   return (
     <main className='mx-auto mt-16 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
       <BillboardsCarousel />
+
+      <QueryProductsBar />
+
       <section className='grid w-full grid-cols-1 gap-3 mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'>
         {products.length > 0
           ? products.map((product, index) => (
@@ -51,7 +51,7 @@ export default function Page() {
           : null}
       </section>
 
-      {!hasNextPage ? (
+      {!isError && !isLoading && !hasNextPage ? (
         <div>
           <Separator decorative className='mb-2' />
           <div className='mx-auto flex w-full max-w-[300px] flex-col items-center gap-3'>
@@ -85,7 +85,10 @@ export default function Page() {
       ) : null}
 
       {!isError && isLoading ? (
-        <EmptyMessage icon={LoaderIcon} message='Loading products data, please wait.' />
+        <div className='mx-auto flex w-full max-w-xs flex-col items-center gap-3'>
+          <Loader />
+          <p className='text-sm font-semibold'>Loading products, please wait...</p>
+        </div>
       ) : null}
     </main>
   );
