@@ -21,7 +21,7 @@ const CarouselNodes: FC<ProductCarouselProps> = ({ images }) => {
   };
 
   return (
-    <div className='mt-2 flex w-full items-center justify-between gap-1'>
+    <div className='mt-2 flex w-full items-center gap-1'>
       {images.map((image, index) => (
         <Button
           asChild
@@ -30,7 +30,7 @@ const CarouselNodes: FC<ProductCarouselProps> = ({ images }) => {
           onClick={() => {
             onSelect(index);
           }}
-          className={cn('h-12 w-12 p-[2px] rounded-lg', {
+          className={cn('h-12 w-12 rounded-lg p-[2px]', {
             'base-border border-[2px] border-font': selected === index
           })}>
           <Image

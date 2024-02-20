@@ -2,7 +2,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { useToggleHeader } from '@/hooks/toggle-header-hook';
 import { RootState } from '@/redux/store';
 import clsx from 'clsx';
-import { MenuIcon, ShoppingCartIcon, XIcon } from 'lucide-react';
+import { MenuIcon, ShoppingBagIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -95,7 +95,7 @@ export const Header = () => {
             <Link
               href={'/checkout'}
               className='group flex w-fit items-center gap-2 px-2'>
-              <ShoppingCartIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
+              <ShoppingBagIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
               <span className='font-bold group-hover:text-primary'>{cart.length}</span>
             </Link>
           </Button>

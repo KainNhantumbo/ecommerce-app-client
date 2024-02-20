@@ -23,7 +23,7 @@
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 171 125 65;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --transparent: transparent;
     --error: 253 56 79;
@@ -52,7 +52,7 @@
     --border: 12 6.5% 15.1%;
     --input: 12 6.5% 15.1%;
     --ring: 221 133 27;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --transparent: transparent;
     --error: 253 56 79;
