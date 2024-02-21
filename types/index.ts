@@ -25,10 +25,10 @@ export type CartItem = {
   productId: number;
   quantity: number;
   price: number;
-  category: string;
+  category: Category;
   image: ImageType;
-  color: string
-  size: string
+  color: Color[]
+  size: Size[]
 };
 
 export type ImageType = {

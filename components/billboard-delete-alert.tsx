@@ -13,14 +13,13 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateBillboards } from '@/redux/slices/billboards';
 import { AppDispatch, RootState } from '@/redux/store';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { Trash2Icon, XIcon } from 'lucide-react';
 import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
-import { Button } from './ui/button';
 import { TooltipWrapper } from './tooltip-wrapper';
+import { Button } from './ui/button';
 
 type Props = {
   id: number;
@@ -41,7 +40,7 @@ export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
       toast.success('Billboard deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };

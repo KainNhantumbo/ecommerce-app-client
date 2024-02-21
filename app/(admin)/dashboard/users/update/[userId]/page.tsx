@@ -23,7 +23,7 @@ import {
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateUserSchema, type UpdateUserSchemaType } from '@/providers/schemas';
-import { DEFAULT_ERROR_MESSAGE, USER_ROLES } from '@/shared/constants';
+import { USER_ROLES } from '@/shared/constants';
 import type { HttpError, User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
@@ -101,7 +101,7 @@ export default function Page({ params: { userId } }: PageProps) {
       });
     } catch (error: any) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+      toast.error(message, {
         action: {
           label: 'Retry',
           onClick: () => onSubmit(data)
@@ -295,9 +295,7 @@ export default function Page({ params: { userId } }: PageProps) {
         <EmptyMessage
           icon={AlertTriangleIcon}
           action={{ handler: () => refetch(), label: 'Retry' }}
-          message={
-            errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
-          }
+          message={errorTransformer(error as HttpError).message}
         />
       ) : null}
 

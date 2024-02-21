@@ -13,7 +13,6 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateProducts } from '@/redux/slices/products';
 import { AppDispatch, RootState } from '@/redux/store';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { Trash2Icon, XIcon } from 'lucide-react';
 import type { FC } from 'react';
@@ -41,7 +40,7 @@ export const DeleteProductAlert: FC<Props> = ({ id }) => {
       toast.success('Product deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };
@@ -63,7 +62,7 @@ export const DeleteProductAlert: FC<Props> = ({ id }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='border-none group flex items-center gap-2 rounded-lg bg-transparent shadow-none'>
+          <AlertDialogCancel className='group flex items-center gap-2 rounded-lg border-none bg-transparent shadow-none'>
             <XIcon className='w-4 transition-colors group-hover:stroke-blue-400 group-active:stroke-blue-400' />
             <span className='capitalize transition-colors group-hover:text-blue-400'>
               Cancel

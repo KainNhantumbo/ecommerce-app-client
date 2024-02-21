@@ -13,14 +13,12 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateAuth } from '@/redux/slices/auth';
 import { AppDispatch } from '@/redux/store';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { CheckIcon, LogOutIcon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
-import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
 
 export const LogoutAlert: FC = () => {
@@ -38,7 +36,7 @@ export const LogoutAlert: FC = () => {
       router.push('/auth/sign-in');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };

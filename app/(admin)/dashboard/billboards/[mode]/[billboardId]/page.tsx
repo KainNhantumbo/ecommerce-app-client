@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import httpClient from '@/config/http-client';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { Billboard, CreateBillboard, HttpError } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { XIcon } from 'lucide-react';
@@ -37,7 +36,7 @@ export default function Page({ params }: PageProps) {
         return { label: data.label, image: data.image.url };
       } catch (error) {
         const { message } = errorTransformer(error as HttpError);
-        toast.error(message || DEFAULT_ERROR_MESSAGE);
+        toast.error(message);
         console.warn(message || error);
       }
     }
@@ -60,7 +59,7 @@ export default function Page({ params }: PageProps) {
       });
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+      toast.error(message, {
         action: {
           label: 'Retry',
           onClick: () => handleUpdate(billboardId)
@@ -89,7 +88,7 @@ export default function Page({ params }: PageProps) {
       setBillboard({ label: '', image: '' });
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+      toast.error(message, {
         action: {
           label: 'Retry',
           onClick: () => handleCreate()

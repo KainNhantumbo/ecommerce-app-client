@@ -8,16 +8,28 @@ import httpClient from '@/config/http-client';
 import { useCartManager } from '@/hooks/cart-manager-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError, Product } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AlertTriangleIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 type PageProps = { params: { category?: string; productId?: string } };
 
 export default function Page({ params: { category, productId } }: PageProps) {
-  const { addCartItem, increaseQuantity, decreaseQuantity } = useCartManager();
+  const router = useRouter();
+
+  const {
+    addCartItem,
+    removeCartItem,
+    dispatch,
+    cart,
+    updateCart,
+    updateQuantity,
+    isInCart,
+    increaseQuantity,
+    decreaseQuantity
+  } = useCartManager();
 
   const {
     data: product,
@@ -39,57 +51,101 @@ export default function Page({ params: { category, productId } }: PageProps) {
     }
   });
   return (
-    <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-5xl flex-col gap-8 px-4 font-sans-body'>
+    <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-4xl flex-col gap-8 px-4 font-sans-body'>
       <section className='w-full'>
         {isError && !isLoading ? (
           <EmptyMessage
             icon={AlertTriangleIcon}
             action={{ label: 'Try again.', handler: () => refetch() }}
-            message={
-              errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
-            }
+            message={errorTransformer(error as HttpError).message}
           />
         ) : null}
 
         {!isLoading && !isError && product ? (
-          <section className='flex w-full flex-col gap-2 sm:flex-row'>
-            <div className='w-full max-w-sm'>
-              <p className='mb-3 font-sans text-sm font-medium'>
-                Collections / {product.category.label} /{' '}
-                {product.isArchived ? 'Featured' : 'Premiere'} /{' '}
-                <i className='font-semibold text-primary'>{product.name}</i>
-              </p>
-              <ProductCarousel images={product.images} />
-            </div>
-            <div className='flex w-full flex-col gap-3 sm:mt-6'>
-              <h1>{product.name}</h1>
-
-              <h2>{currencyFormatter(product.price)}</h2>
-
-              <div className='flex w-full items-center gap-3 font-sans'>
-                <Button
-                  size={'lg'}
-                  className='flex w-full items-center gap-1 rounded-full  bg-black font-semibold'>
-                  <span className='text-white'>Buy Now</span>
-                </Button>
-                <Button
-                  size={'lg'}
-                  variant={'outline'}
-                  className='flex w-full items-center gap-1 rounded-full font-semibold'>
-                  <span className=''>Add to cart</span>
-                </Button>
+          <section className='flex flex-col gap-5'>
+            <section className='flex w-full flex-col gap-2 sm:flex-row'>
+              <div className='w-full max-w-[360px]'>
+                <p className='mb-3 font-sans text-sm font-medium'>
+                  Collections / {product.category.label} /{' '}
+                  {product.isArchived ? 'Featured' : 'Premiere'} /{' '}
+                  <i className='font-semibold text-primary'>{product.name}</i>
+                </p>
+                <ProductCarousel images={product.images} />
               </div>
+              <div className='flex w-full flex-col gap-6 sm:mt-6'>
+                <h1>{product.name}</h1>
 
-              <Separator decorative className='my-2' />
+                <h2 className='text-3xl font-extrabold'>
+                  {currencyFormatter(product.price)}
+                </h2>
 
+                <div className='flex w-full flex-wrap gap-2 font-sans'>
+                  <h3 className='capitalize'>
+                    {product.colors.length} colors available
+                  </h3>
+                  <div className='flex items-center gap-2'>
+                    {product.colors.map((color) => (
+                      <div
+                        key={color.id}
+                        className='base-border h-6 w-6 rounded-full'
+                        style={{ background: color.value }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className='flex w-full items-center gap-3 font-sans'>
+                  <Button
+                    size={'lg'}
+                    className='flex w-full items-center gap-1 rounded-full  bg-black font-semibold'
+                    onClick={() => {
+                      if (!isInCart(+product.id)) addCartItem(product);
+                      router.push('/checkout');
+                    }}>
+                    <span className='text-white'>Buy Now</span>
+                  </Button>
+
+                  {isInCart(+product.id) ? (
+                    <Button
+                      size={'lg'}
+                      variant={'outline'}
+                      className='flex w-full items-center gap-1 rounded-full font-semibold'
+                      onClick={() => removeCartItem(+product.id)}>
+                      Remove
+                    </Button>
+                  ) : (
+                    <Button
+                      size={'lg'}
+                      variant={'outline'}
+                      className='flex w-full items-center gap-1 rounded-full font-semibold'
+                      onClick={() => addCartItem(product)}>
+                      Add to cart
+                    </Button>
+                  )}
+                </div>
+
+                <Separator decorative className='my-2' />
+
+                <div className='flex flex-col gap-2'>
+                  <h2 className='text-base'>Description</h2>
+                  <p className='text-base'>{product.description}</p>
+                </div>
+              </div>
+            </section>
+            <section className='mt-16'>
               <div className='flex flex-col gap-2'>
-                <h2 className='text-base'>Description</h2>
-                <p className='text-base'>{product.description}</p>S
+                <h2 className='text-base'>Product Details</h2>
+                {product.specs && product.specs.includes('\n') ? (
+                  product.specs
+                    .split('\n')
+                    .map((phrase, index) => <p key={index}>{phrase}</p>)
+                ) : (
+                  <p>{product.specs}</p>
+                )}
               </div>
-            </div>
+            </section>
           </section>
         ) : null}
-        <section></section>
       </section>
     </main>
   );

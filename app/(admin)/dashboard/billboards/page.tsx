@@ -9,7 +9,6 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateBillboards } from '@/redux/slices/billboards';
 import { AppDispatch, RootState } from '@/redux/store';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { Billboard, HttpError } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AlertTriangle } from 'lucide-react';
@@ -34,7 +33,7 @@ export default function Page() {
         return data;
       } catch (error) {
         const { message } = errorTransformer(error as HttpError);
-        toast.error(message || DEFAULT_ERROR_MESSAGE);
+        toast.error(message);
         console.warn(message || error);
       }
     }
@@ -62,9 +61,7 @@ export default function Page() {
           <EmptyMessage
             icon={AlertTriangle}
             action={{ handler: () => refetch(), label: 'Retry' }}
-            message={
-              errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
-            }
+            message={errorTransformer(error as HttpError).message}
           />
         ) : null}
 

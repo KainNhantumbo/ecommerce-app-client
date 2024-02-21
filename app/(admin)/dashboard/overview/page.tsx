@@ -2,7 +2,6 @@
 
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { HttpError, Order, Product, User } from '@/types';
 import { useQueries } from '@tanstack/react-query';
 import { useEffect } from 'react';
@@ -20,7 +19,7 @@ export default function Page() {
       return data;
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };
@@ -35,7 +34,7 @@ export default function Page() {
       return data;
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message);
     }
   };
@@ -49,7 +48,7 @@ export default function Page() {
       return data;
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };
@@ -71,9 +70,7 @@ export default function Page() {
     <main className='space-x-480 mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
       <h1 className='font-sans'>Overview</h1>
 
-      <section>
-
-      </section>
+      <section></section>
     </main>
   );
 }

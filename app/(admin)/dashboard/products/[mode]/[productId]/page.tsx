@@ -14,7 +14,6 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import CategoryOptions from '@/shared/categories.json';
 import ColorOptions from '@/shared/colors.json';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import SizesOptions from '@/shared/sizes.json';
 import { CreateProduct, HttpError, Product } from '@/types';
 import { useQuery } from '@tanstack/react-query';
@@ -57,7 +56,7 @@ export default function Page({ params }: PageProps) {
         return data as CreateProduct;
       } catch (error) {
         const { message } = errorTransformer(error as HttpError);
-        toast.error(message || DEFAULT_ERROR_MESSAGE);
+        toast.error(message);
         console.warn(message || error);
       }
     }
@@ -79,7 +78,7 @@ export default function Page({ params }: PageProps) {
       });
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+      toast.error(message, {
         action: {
           label: 'Retry',
           onClick: () => handleUpdate(productId)
@@ -124,7 +123,7 @@ export default function Page({ params }: PageProps) {
       });
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+      toast.error(message, {
         action: {
           label: 'Retry',
           onClick: () => handleCreate()

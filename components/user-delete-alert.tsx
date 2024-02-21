@@ -14,7 +14,6 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateAuth } from '@/redux/slices/auth';
 import { updateUsers } from '@/redux/slices/users';
 import { AppDispatch, RootState } from '@/redux/store';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { Trash2Icon, XIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -48,7 +47,7 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
       }
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message);
       console.warn(message || error);
     }
   };

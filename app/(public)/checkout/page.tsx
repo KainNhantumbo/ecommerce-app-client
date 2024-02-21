@@ -16,7 +16,6 @@ import { useCartManager } from '@/hooks/cart-manager-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
 import { OrderSchemaType, orderSchema } from '@/providers/schemas';
-import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { CreateOrder, HttpError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -63,7 +62,12 @@ export default function Page() {
       router.push('/checkout/success');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message || DEFAULT_ERROR_MESSAGE);
+      toast.error(message, {
+        action: {
+          label: 'Retry',
+          onClick: () => onSubmit(orderData)
+        }
+      });
       console.warn(message || error);
     } finally {
       setLoading(false);
@@ -96,7 +100,7 @@ export default function Page() {
                 />
                 <div className='flex flex-col gap-3'>
                   <h2>{product.name}</h2>
-                  <p>{product.category}</p>
+                  <p>{product.category.label}</p>
                   <p>{currencyFormatter(product.price)}</p>
 
                   <div className='flex w-full items-center justify-between'>
@@ -104,11 +108,11 @@ export default function Page() {
                       <Button onClick={() => decreaseQuantity(product)}>
                         <MinusIcon />
                       </Button>
-                      <input
+                      <Input
                         type='number'
-                        title='Quantity'
+                        title='Product Quantity'
                         min={1}
-                        value={product.quantity}
+                        value={String(product.quantity)}
                         onChange={(e) =>
                           updateQuantity(product.productId, +e.target.value)
                         }
