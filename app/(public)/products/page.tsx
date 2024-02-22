@@ -36,6 +36,7 @@ export default function Page() {
                   src={product.images[0].url}
                   width={280}
                   height={420}
+                  priority
                   alt={`${product.name} image`}
                   className='h-full max-h-[220px] w-full rounded-t-lg object-cover'
                 />

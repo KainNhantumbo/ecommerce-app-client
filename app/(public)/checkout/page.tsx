@@ -55,7 +55,9 @@ export default function Page() {
           ...orderData,
           items: cart.map((item) => ({
             productId: item.productId,
-            quantity: item.quantity
+            quantity: item.quantity,
+            sizes: item.sizes,
+            colors: item.colors
           }))
         }
       });
@@ -90,45 +92,77 @@ export default function Page() {
             cart.map((product) => (
               <div
                 key={product.productId}
-                className='base-border flex w-full flex-col gap-8 rounded-lg p-4'>
+                className='base-border flex w-full flex-col gap-8 rounded-lg p-4 sm:flex-row'>
                 <Image
-                  src={product.image.url}
+                  src={product.image}
                   alt={`${product.name} image`}
-                  width={600}
-                  height={600}
-                  className='base-border rounded-lg object-cover'
+                  width={280}
+                  height={420}
+                  className='base-border h-[160px] w-[160px] rounded-lg object-cover'
                 />
-                <div className='flex flex-col gap-3'>
-                  <h2>{product.name}</h2>
-                  <p>{product.category.label}</p>
-                  <p>{currencyFormatter(product.price)}</p>
+                <div className='flex w-full flex-col gap-3 font-sans'>
+                  <div className='flex w-full items-center justify-between gap-3'>
+                    <h2 className='text-lg'>{product.name}</h2>
+                    <p className='text-xl font-bold'>
+                      {currencyFormatter(product.price)}
+                    </p>
+                  </div>
+                  <div className='space-y-2 text-sm'>
+                    <p>
+                      <i>Colors</i>:{' '}
+                      {product.colors.map((color, i) => (
+                        <p key={i} className='base-border rounded-full p-1 px-2'>
+                          {color}
+                        </p>
+                      ))}
+                    </p>
+                    <p>
+                      <i>Sizes</i>:{' '}
+                      {product.sizes.map((size, i) => (
+                        <p key={i} className='base-border rounded-full p-1 px-2'>
+                          {size}
+                        </p>
+                      ))}
+                    </p>
+                  </div>
 
-                  <div className='flex w-full items-center justify-between'>
-                    <div className=''>
-                      <Button onClick={() => decreaseQuantity(product)}>
+                  <div className='flex w-full items-center justify-between gap-3'>
+                    <div className='flex items-center gap-2'>
+                      <Button
+                        size={'icon'}
+                        variant={'outline'}
+                        className='rounded-full'
+                        onClick={() => decreaseQuantity(product)}>
                         <MinusIcon />
+                        <span className='sr-only'>Decrease quantity</span>
                       </Button>
                       <Input
                         type='number'
                         title='Product Quantity'
                         min={1}
+                        className='w-full max-w-[67px]'
                         value={String(product.quantity)}
                         onChange={(e) =>
                           updateQuantity(product.productId, +e.target.value)
                         }
                       />
                       <Button
-                        value={'ghost'}
-                        size={'sm'}
+                        size={'icon'}
+                        variant={'outline'}
+                        className='rounded-full'
                         onClick={() => increaseQuantity(product)}>
                         <PlusIcon />
+                        <span className='sr-only'>Increase quantity</span>
                       </Button>
                     </div>
 
                     <Button
-                      className=''
+                      size={'icon'}
+                      variant={'outline'}
+                      className='group rounded-full'
                       onClick={() => removeCartItem(product.productId)}>
-                      <Trash2Icon />
+                      <Trash2Icon className='group-hover:stroke-destructive' />
+                      <span className='sr-only'>Remove product from cart</span>
                     </Button>
                   </div>
                 </div>
@@ -216,7 +250,7 @@ export default function Page() {
                   <Separator decorative />
                   <div className='flex w-full items-center justify-between gap-4'>
                     <p className='font-semibold'>Subtotal</p>
-                    <p className='font-bold'>{currencyFormatter(subTotal)}</p>S
+                    <p className='font-bold'>{currencyFormatter(subTotal)}</p>
                   </div>
                   <div className='flex w-full items-center justify-between gap-4'>
                     <p className='font-semibold'>Delivery & Handling</p>

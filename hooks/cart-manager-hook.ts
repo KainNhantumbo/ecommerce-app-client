@@ -1,7 +1,6 @@
 import { updateCart } from '@/redux/slices/cart';
 import { AppDispatch, RootState } from '@/redux/store';
-import { CartItem, Product } from '@/types';
-import { it } from 'node:test';
+import { CartItem } from '@/types';
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
@@ -22,17 +21,7 @@ export const useCartManager = () => {
     dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
   };
 
-  const addCartItem = (product: Product) => {
-    const item = {
-      name: product.name,
-      productId: +product.id,
-      category: product.category,
-      image: product.images[0],
-      color: [],
-      size: [],
-      price: product.price,
-      quantity: 1
-    };
+  const addCartItem = (item: CartItem) => {
     if (isInCart(item.productId)) return toast.error('Product already in cart.');
     dispatch(updateCart([...cart, item]));
   };

@@ -40,15 +40,18 @@ import { useRouter, useSearchParams } from 'next/navigation';
 type Props = {};
 
 export const QueryProductsBar: FC<Props> = () => {
-  const [queryParams, setQueryParams] = useState({
-    search: '',
-    color: '',
-    category: '',
-    limit: '',
-    offset: '',
-    featured: '',
-    size: '',
-    sort: ''
+  const [queryParams, setQueryParams] = useState(() => {
+    const queryParams = new URLSearchParams();
+    return {
+      search: queryParams.get('search') || '',
+      color: queryParams.get('color') || '',
+      category: queryParams.get('category') || '',
+      limit: queryParams.get('limit') || '',
+      offset: queryParams.get('offset') || '',
+      featured: queryParams.get('featured') || '',
+      size: queryParams.get('size') || '',
+      sort: queryParams.get('sort') || ''
+    };
   });
 
   const router = useRouter();

@@ -2,34 +2,26 @@
 
 import { EmptyMessage } from '@/components/empty-message';
 import { ProductCarousel } from '@/components/product-carousel';
+import { TooltipWrapper } from '@/components/tooltip-wrapper';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import httpClient from '@/config/http-client';
 import { useCartManager } from '@/hooks/cart-manager-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
-import { HttpError, Product } from '@/types';
+import { CartItem, HttpError, Product } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AlertTriangleIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useMemo } from 'react';
 import { toast } from 'sonner';
 
 type PageProps = { params: { category?: string; productId?: string } };
 
 export default function Page({ params: { category, productId } }: PageProps) {
   const router = useRouter();
-
-  const {
-    addCartItem,
-    removeCartItem,
-    dispatch,
-    cart,
-    updateCart,
-    updateQuantity,
-    isInCart,
-    increaseQuantity,
-    decreaseQuantity
-  } = useCartManager();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const {
     data: product,
@@ -50,6 +42,49 @@ export default function Page({ params: { category, productId } }: PageProps) {
       }
     }
   });
+
+  const { addCartItem, removeCartItem, dispatch, cart, updateCart, isInCart } =
+    useCartManager();
+
+  const cartProduct = useMemo<CartItem>(
+    () => ({
+      productId: Number(productId),
+      name: product?.name || '',
+      colors: searchParams.get('colors')?.split(',') || [],
+      sizes: searchParams.get('sizes')?.split(',') || [],
+      image: product?.images[0].url || '',
+      price: product?.price || 0,
+      quantity: Number(searchParams.get('quantity')) || 0
+    }),
+    [searchParams, product]
+  );
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      router.replace(
+        pathname.concat(
+          '?',
+          new URLSearchParams({
+            quantity: cartProduct.quantity.toString(),
+            colors: cartProduct.colors.toString(),
+            sizes: cartProduct.sizes.toString()
+          }).toString()
+        )
+      );
+
+      if (product && isInCart(+product.id)) {
+        dispatch(
+          updateCart([
+            ...cart.map((item) =>
+              item.productId === product.id ? { ...item, ...cartProduct } : item
+            )
+          ])
+        );
+      }
+    }, 200);
+    return () => clearTimeout(debounceTimer);
+  }, [searchParams, product]);
+
   return (
     <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-4xl flex-col gap-8 px-4 font-sans-body'>
       <section className='w-full'>
@@ -85,11 +120,12 @@ export default function Page({ params: { category, productId } }: PageProps) {
                   </h3>
                   <div className='flex items-center gap-2'>
                     {product.colors.map((color) => (
-                      <div
-                        key={color.id}
-                        className='base-border h-6 w-6 rounded-full'
-                        style={{ background: color.value }}
-                      />
+                      <TooltipWrapper key={color.id} content={color.label}>
+                        <div
+                          className='base-border h-6 w-6 rounded-full'
+                          style={{ background: color.value }}
+                        />
+                      </TooltipWrapper>
                     ))}
                   </div>
                 </div>
@@ -99,7 +135,7 @@ export default function Page({ params: { category, productId } }: PageProps) {
                     size={'lg'}
                     className='flex w-full items-center gap-1 rounded-full  bg-black font-semibold'
                     onClick={() => {
-                      if (!isInCart(+product.id)) addCartItem(product);
+                      if (!isInCart(+product.id)) addCartItem(cartProduct);
                       router.push('/checkout');
                     }}>
                     <span className='text-white'>Buy Now</span>
@@ -118,7 +154,7 @@ export default function Page({ params: { category, productId } }: PageProps) {
                       size={'lg'}
                       variant={'outline'}
                       className='flex w-full items-center gap-1 rounded-full font-semibold'
-                      onClick={() => addCartItem(product)}>
+                      onClick={() => addCartItem(cartProduct)}>
                       Add to cart
                     </Button>
                   )}
@@ -132,7 +168,7 @@ export default function Page({ params: { category, productId } }: PageProps) {
                 </div>
               </div>
             </section>
-            <section className='mt-16'>
+            <section className='mt-8'>
               <div className='flex flex-col gap-2'>
                 <h2 className='text-base'>Product Details</h2>
                 {product.specs && product.specs.includes('\n') ? (
