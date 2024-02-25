@@ -1,5 +1,3 @@
-
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,19 +22,19 @@ export const ThemeToggle = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className='base-border flex flex-col justify-start gap-2 font-sans font-semibold normal-case'>
         <DropdownMenuItem
-          className='items-start justify-start text-left cursor-pointer'
+          className='cursor-pointer items-start justify-start text-left'
           onClick={() => setTheme('light')}>
           <span>Light</span>
         </DropdownMenuItem>
         <Separator decorative />
         <DropdownMenuItem
           onClick={() => setTheme('dark')}
-          className='items-start justify-start text-left cursor-pointer'>
+          className='cursor-pointer items-start justify-start text-left'>
           <span>Dark</span>
         </DropdownMenuItem>
         <Separator decorative />
         <DropdownMenuItem
-          className='items-start justify-start text-left cursor-pointer'
+          className='cursor-pointer items-start justify-start text-left'
           onClick={() => setTheme('system')}>
           <span className='text-left'>System</span>
         </DropdownMenuItem>

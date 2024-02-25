@@ -10,13 +10,13 @@ export const useCartManager = () => {
   const cart = useSelector((state: RootState) => state.cart);
 
   const isInCart = useMemo(
-    () => (productId: number) => {
+    () => (productId: string) => {
       return cart.some((item) => item.productId === productId);
     },
     [cart]
   );
 
-  const removeCartItem = (productId: number) => {
+  const removeCartItem = (productId: string) => {
     if (!isInCart(productId)) return toast.error('Product already removed.');
     dispatch(updateCart([...cart.filter((item) => item.productId !== productId)]));
   };
@@ -53,7 +53,7 @@ export const useCartManager = () => {
     );
   };
 
-  const updateQuantity = (productId: number, qty: number) => {
+  const updateQuantity = (productId: string, qty: number) => {
     dispatch(
       updateCart([
         ...cart.map((item) =>

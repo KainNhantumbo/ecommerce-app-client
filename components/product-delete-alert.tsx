@@ -21,9 +21,7 @@ import { toast } from 'sonner';
 import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
 
-type Props = {
-  id: number;
-};
+type Props = { id: string };
 
 export const DeleteProductAlert: FC<Props> = ({ id }) => {
   const { httpClientAPI } = useAppContext();
@@ -36,7 +34,7 @@ export const DeleteProductAlert: FC<Props> = ({ id }) => {
         method: 'delete',
         url: `/api/v1/products/${id}`
       });
-      dispatch(updateProducts(products.filter((item) => item.id !== id)));
+      dispatch(updateProducts(products.filter((item) => item._id !== id)));
       toast.success('Product deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);

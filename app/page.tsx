@@ -7,7 +7,7 @@ import { BrandSupport } from '@/components/brand-support';
 
 export default function Page() {
   return (
-    <main className='mt-[70px] flex w-full flex-col gap-8 mobile-x:gap-20 px-4 font-sans-body'>
+    <main className='mt-[70px] flex w-full flex-col gap-8 px-4 font-sans-body mobile-x:gap-20'>
       <Introduction />
       <BrandSupport />
       <BrandFeatures />

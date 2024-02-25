@@ -10,7 +10,7 @@ import { useQueryProducts } from '@/hooks/query-products-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter, scrollToTop } from '@/lib/utils';
 import type { HttpError } from '@/types';
-import { AlertTriangleIcon, LayoutDashboardIcon, ShoppingBagIcon } from 'lucide-react';
+import { AlertTriangleIcon, ShoppingBasketIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -28,10 +28,10 @@ export default function Page() {
         {products.length > 0
           ? products.map((product, index) => (
               <Link
-                key={product.id}
+                key={product._id}
                 className='base-border  flex w-full flex-col gap-2 rounded-lg'
                 ref={products.length === index + 1 ? inViewRef : undefined}
-                href={`/products/${product.category.value}/${product.id}`}>
+                href={`/products/${product.category.value}/${product._id}`}>
                 <Image
                   src={product.images[0].url}
                   width={280}
@@ -51,7 +51,7 @@ export default function Page() {
           : null}
       </section>
 
-      {!isError && !isLoading && !hasNextPage ? (
+      {!isError && !isLoading && !hasNextPage && products.length !== 0 ? (
         <div>
           <Separator decorative className='mb-2' />
           <div className='mx-auto flex w-full max-w-[300px] flex-col items-center gap-3'>
@@ -63,13 +63,9 @@ export default function Page() {
         </div>
       ) : null}
 
-      {products.length < 0 && !isError && !isLoading ? (
-        <EmptyMessage icon={LayoutDashboardIcon} message='No products to show yet.' />
-      ) : null}
-
       {!isError && !isLoading && products.length < 1 ? (
         <EmptyMessage
-          icon={ShoppingBagIcon}
+          icon={ShoppingBasketIcon}
           message={'No products to show yet. Please come back later.'}
         />
       ) : null}

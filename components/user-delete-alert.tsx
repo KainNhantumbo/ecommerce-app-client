@@ -23,7 +23,7 @@ import { toast } from 'sonner';
 import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
 
-type Props = { id: number };
+type Props = { id: string };
 
 export const DeleteUserAlert: FC<Props> = ({ id }) => {
   const { httpClientAPI } = useAppContext();
@@ -38,11 +38,11 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
         method: 'delete',
         url: `/api/v1/users/${id}`
       });
-      dispatch(updateUsers(users.filter((item) => +item.id !== id)));
+      dispatch(updateUsers(users.filter((item) => item._id !== id)));
 
       toast.success('User account deleted.');
       if (auth.id === id) {
-        dispatch(updateAuth({ id: 0, email: '', name: '', token: '' }));
+        dispatch(updateAuth({ id: '', email: '', name: '', token: '' }));
         router.push('/auth/sign-in');
       }
     } catch (error) {

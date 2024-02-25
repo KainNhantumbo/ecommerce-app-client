@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command';
 import { Command as CommandPrimitive } from 'cmdk';
 
-type Data = { id: number | string; label: string; value: string };
+type Data = { id: string; label: string; value: string };
 type Props = {
   data: Data[];
   defaultValues: Data[];
@@ -30,16 +30,19 @@ export const MultiSelector: FC<Props> = ({
   onChange
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<Data[]>(defaultValues);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
 
-  const handleUnselect = useCallback((data: Data) => {
-    setSelected((prev) => {
-      const selected = prev.filter((s) => s.value !== data.value);
-      return selected;
-    });
-  }, [defaultValues]);
+  const handleUnselect = useCallback(
+    (data: Data) => {
+      setSelected((prev) => {
+        const selected = prev.filter((s) => s.value !== data.value);
+        return selected;
+      });
+    },
+    [defaultValues]
+  );
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLDivElement>) => {
     const input = inputRef.current;
@@ -49,7 +52,6 @@ export const MultiSelector: FC<Props> = ({
           setSelected((prev) => {
             const newSelected = [...prev];
             newSelected.pop();
-            // onChange(newSelected);
             return newSelected;
           });
         }
@@ -61,13 +63,21 @@ export const MultiSelector: FC<Props> = ({
     }
   }, []);
 
-  const selectable = useMemo(()=>  data.filter(
-    (data) => !selected.some((selected) => data.value === selected.value)
-  ), [defaultValues, data])
+  const selectable = useMemo(
+    () =>
+      data.filter(
+        (data) => !selected.some((selected) => data.value === selected.value)
+      ),
+    [defaultValues, data]
+  );
 
   useEffect(() => {
     onChange(selected);
   }, [selected, defaultValues]);
+
+  useEffect(() => {
+    setSelected(data);
+  }, [data]);
 
   return (
     <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>
@@ -118,11 +128,9 @@ export const MultiSelector: FC<Props> = ({
                       e.preventDefault();
                       e.stopPropagation();
                     }}
-                    onSelect={(value) => {
+                    onSelect={() => {
                       setInputValue('');
-                      setSelected((prev) => {
-                        return [...prev, data];
-                      });
+                      setSelected((prev) => [...prev, data]);
                     }}
                     className={'cursor-pointer'}>
                     {data.label}

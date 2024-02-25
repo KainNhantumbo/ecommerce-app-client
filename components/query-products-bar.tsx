@@ -223,14 +223,14 @@ export const QueryProductsBar: FC<Props> = () => {
                   <DropdownMenuSubContent className='font-sans normal-case'>
                     <DropdownMenuItem
                       onClick={() =>
-                        setQueryParams((values) => ({ ...values, sort: 'name,ASC' }))
+                        setQueryParams((values) => ({ ...values, sort: 'name,asc' }))
                       }>
                       <ArrowDownAZIcon className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>A-Z</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() =>
-                        setQueryParams((values) => ({ ...values, sort: 'name,DESC' }))
+                        setQueryParams((values) => ({ ...values, sort: 'name,desc' }))
                       }>
                       <ArrowDownZaIcon className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>Z-A</span>
@@ -247,47 +247,17 @@ export const QueryProductsBar: FC<Props> = () => {
                   <DropdownMenuSubContent className='font-sans'>
                     <DropdownMenuItem
                       onClick={() =>
-                        setQueryParams((values) => ({ ...values, sort: 'price,ASC' }))
+                        setQueryParams((values) => ({ ...values, sort: 'price,asc' }))
                       }>
                       <ArrowUp10 className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>To Highest</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() =>
-                        setQueryParams((values) => ({ ...values, sort: 'price,DESC' }))
+                        setQueryParams((values) => ({ ...values, sort: 'price,desc' }))
                       }>
                       <ArrowDown10Icon className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>To Lowest</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                  <ArrowDownUpIcon className='mr-2 h-4 w-4' />
-                  <span>Featured</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent className='font-sans'>
-                    <DropdownMenuItem
-                      onClick={() =>
-                        setQueryParams((values) => ({
-                          ...values,
-                          sort: 'featured,DESC'
-                        }))
-                      }>
-                      <ArrowUpIcon className='mr-2 h-4 w-4' />
-                      <span className='font-semibold'>Featured first</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() =>
-                        setQueryParams((values) => ({
-                          ...values,
-                          sort: 'featured,ASC'
-                        }))
-                      }>
-                      <ArrowDown10Icon className='mr-2 h-4 w-4' />
-                      <span className='font-semibold'>Featured last</span>
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -303,7 +273,7 @@ export const QueryProductsBar: FC<Props> = () => {
                       onClick={() =>
                         setQueryParams((values) => ({
                           ...values,
-                          sort: 'updatedAt,DESC'
+                          sort: 'updatedAt,desc'
                         }))
                       }>
                       <ArrowUpIcon className='mr-2 h-4 w-4' />
@@ -313,7 +283,7 @@ export const QueryProductsBar: FC<Props> = () => {
                       onClick={() =>
                         setQueryParams((values) => ({
                           ...values,
-                          sort: 'updatedAt,ASC'
+                          sort: 'updatedAt,asc'
                         }))
                       }>
                       <ArrowDown10Icon className='mr-2 h-4 w-4' />

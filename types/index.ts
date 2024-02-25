@@ -1,10 +1,8 @@
 import type { OrderSchemaType, UserSignupType } from '@/providers/schemas';
 import type { AxiosError } from 'axios';
 
-export type SortOptions = 'ASC' | 'DESC' | 'asc' | 'desc';
-
 export type User = Omit<UserSignupType, 'password' | 'confirm_password'> & {
-  id: string;
+  _id: string;
 };
 
 export type CreateOrder = OrderSchemaType & {
@@ -12,7 +10,7 @@ export type CreateOrder = OrderSchemaType & {
 };
 
 export type Order = {
-  id: string;
+  _id: string;
   orderItems: { product: number; quantity: number }[];
   phone: string;
   address: string;
@@ -22,27 +20,23 @@ export type Order = {
 };
 export type CartItem = {
   name: string;
-  productId: number;
+  productId: string;
   quantity: number;
   price: number;
   image: string;
-  colors: string[]
-  sizes: string[]
+  colors: string[];
+  sizes: string[];
 };
 
 export type ImageType = {
-  id: number | string;
+  id: string;
   url: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Color = {
-  id: number | string;
+  id: string;
   label: string;
   value: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type Category = Color;
@@ -50,7 +44,7 @@ export type Category = Color;
 export type Size = Category;
 
 export type Product = {
-  id: number | string;
+  _id: string;
   name: string;
   price: number;
   description: string;
@@ -70,12 +64,12 @@ export type CreateProduct = {
   price: number;
   specs: string;
   description: string;
-  sizes: Array<Omit<Size, 'updatedAt' | 'createdAt'>>;
-  colors: Array<Omit<Color, 'updatedAt' | 'createdAt'>>;
-  category: Omit<Category, 'updatedAt' | 'createdAt'>;
+  sizes: Array<Size>;
+  colors: Array<Color>;
+  category: Omit<Category, 'id'>;
   isArchived: boolean;
   isFeatured: boolean;
-  images: Array<Omit<ImageType, 'updatedAt' | 'createdAt'>>;
+  images: Array<ImageType>;
 };
 
 export type ProductQuery = {
@@ -95,7 +89,7 @@ export type HttpError = AxiosError<{
 }>;
 
 export type Auth = {
-  id: number;
+  id: string;
   name: string;
   token: string;
   email: string;
@@ -110,7 +104,7 @@ export type Testimonials = Array<{
 }>;
 
 export type Billboard = {
-  id: number;
+  _id: string;
   label: string;
   image: ImageType;
   createdAt: string;

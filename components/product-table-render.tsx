@@ -89,7 +89,7 @@ export const createColumns: ColumnDef<Product>[] = [
     enableHiding: false,
     cell: ({ row }: any) => {
       const product = row.original as Product;
-      return <DeleteProductAlert id={+product.id} />;
+      return <DeleteProductAlert id={product._id} />;
     }
   },
   {
@@ -99,7 +99,7 @@ export const createColumns: ColumnDef<Product>[] = [
       const product = row.original as Product;
       return (
         <Button asChild variant={'ghost'}>
-          <Link href={`/dashboard/products/update/${product.id}`}>
+          <Link href={`/dashboard/products/update/${product._id}`}>
             <TooltipWrapper content='Edit product'>
               <EditIcon className='h-auto w-4' />
             </TooltipWrapper>

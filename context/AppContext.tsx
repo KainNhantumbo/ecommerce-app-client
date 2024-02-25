@@ -9,13 +9,7 @@ import type { Auth, HttpError } from '@/types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import {
-  createContext,
-  useContext,
-  useEffect,
-  type FC,
-  type ReactNode
-} from 'react';
+import { createContext, useContext, useEffect, type FC, type ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 type Props = { children: ReactNode };

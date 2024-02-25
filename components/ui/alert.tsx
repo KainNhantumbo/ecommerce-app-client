@@ -32,16 +32,15 @@ const Alert = forwardRef<
 ));
 Alert.displayName = 'Alert';
 
-const AlertTitle = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={cn('mb-1 font-medium leading-none tracking-tight', className)}
-    {...props}
-  />
-));
+const AlertTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h5
+      ref={ref}
+      className={cn('mb-1 font-medium leading-none tracking-tight', className)}
+      {...props}
+    />
+  )
+);
 AlertTitle.displayName = 'AlertTitle';
 
 const AlertDescription = forwardRef<

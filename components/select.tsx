@@ -10,9 +10,9 @@ import {
 } from './ui/select';
 
 export type SelectProps = {
-  // eslint-disable-next-line no-unused-vars
   handler: (value: string) => void;
   items: Array<Option>;
+  defaultValue: string;
   placeholder: string;
 };
 

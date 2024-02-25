@@ -22,7 +22,7 @@ import { TooltipWrapper } from './tooltip-wrapper';
 import { Button } from './ui/button';
 
 type Props = {
-  id: number;
+  id: string;
 };
 
 export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
@@ -36,7 +36,7 @@ export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
         method: 'delete',
         url: `/api/v1/billboards/${id}`
       });
-      dispatch(updateBillboards(billboards.filter((billboard) => billboard.id !== id)));
+      dispatch(updateBillboards(billboards.filter((billboard) => billboard._id !== id)));
       toast.success('Billboard deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);

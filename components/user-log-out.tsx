@@ -32,7 +32,7 @@ export const LogoutAlert: FC = () => {
         method: 'delete',
         url: `/api/v1/auth/sign-out`
       });
-      dispatch(updateAuth({ id: 0, email: '', name: '', token: '' }));
+      dispatch(updateAuth({ id: '', email: '', name: '', token: '' }));
       router.push('/auth/sign-in');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);

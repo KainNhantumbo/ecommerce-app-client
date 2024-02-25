@@ -27,7 +27,9 @@ export default function Page() {
           identifiable. The purpose of the information is for analyzing trends,
           administering the site, tracking users' movement on the website, and gathering
           demographic information. Our Privacy Policy was created with the help of the{' '}
-          <a className='base-link' href='https://www.privacypolicyonline.com/privacy-policy-generator/'>
+          <a
+            className='base-link'
+            href='https://www.privacypolicyonline.com/privacy-policy-generator/'>
             Privacy Policy Generator
           </a>
           .
@@ -42,7 +44,9 @@ export default function Page() {
         </p>
         <p className='py-3 leading-relaxed'>
           For more general information on cookies, please read{' '}
-          <a className='base-link' href='https://www.privacypolicyonline.com/what-are-cookies/'>
+          <a
+            className='base-link'
+            href='https://www.privacypolicyonline.com/what-are-cookies/'>
             the "Cookies" article from the Privacy Policy Generator
           </a>
           .
@@ -57,7 +61,8 @@ export default function Page() {
           network Privacy Policy at the following URL –{' '}
           <a className='base-link' href='https://policies.google.com/technologies/ads'>
             https://policies.google.com/technologies/ads
-          </a>.
+          </a>
+          .
         </p>
         <h2 className='py-2 leading-relaxed'>Privacy Policies</h2>
         <p className='py-3 leading-relaxed'>

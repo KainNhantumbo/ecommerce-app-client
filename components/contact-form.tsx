@@ -1,8 +1,5 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { type FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,13 +12,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ContactType, contactSchema } from '@/providers/schemas';
-import { useParams, useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState, type FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export const ContactForm: FC = () => {
-  const params = useParams();
-  const router = useRouter();
-
   const [loading, setLoading] = useState(false);
 
   const form = useForm<ContactType>({

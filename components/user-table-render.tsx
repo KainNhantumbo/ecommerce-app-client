@@ -124,7 +124,7 @@ export const createColumns: ColumnDef<User>[] = [
     enableHiding: false,
     cell: ({ row }: { row: Row<User> }) => {
       const user = row.original;
-      return <DeleteUserAlert id={+user.id} />;
+      return <DeleteUserAlert id={user._id} />;
     }
   },
   {
@@ -134,7 +134,7 @@ export const createColumns: ColumnDef<User>[] = [
       const user = row.original;
       return (
         <Button asChild variant={'ghost'}>
-          <Link href={`/dashboard/users/update/${user.id}`}>
+          <Link href={`/dashboard/users/update/${user._id}`}>
             <TooltipWrapper content='Edit user'>
               <EditIcon className='h-auto w-4' />
             </TooltipWrapper>

@@ -90,7 +90,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
     enableHiding: false,
     cell: ({ row }: any) => {
       const billboard = row.original as Billboard;
-      return <DeleteBillboardAlert id={billboard.id} />;
+      return <DeleteBillboardAlert id={billboard._id} />;
     }
   },
   {
@@ -100,7 +100,7 @@ export const createColumns: ColumnDef<Billboard>[] = [
       const billboard = row.original as Billboard;
       return (
         <Button asChild variant={'ghost'}>
-          <Link href={`/dashboard/billboards/update/${billboard.id}`}>
+          <Link href={`/dashboard/billboards/update/${billboard._id}`}>
             <TooltipWrapper content='Edit billboard'>
               <EditIcon className='h-auto w-4' />
             </TooltipWrapper>

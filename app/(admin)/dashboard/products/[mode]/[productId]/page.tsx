@@ -33,7 +33,7 @@ export default function Page({ params }: PageProps) {
     specs: '',
     description: '',
     sizes: [],
-    category: { id: Number(), label: '', value: '' },
+    category: { label: '', value: '' },
     colors: [],
     isArchived: false,
     isFeatured: false
@@ -62,7 +62,7 @@ export default function Page({ params }: PageProps) {
     }
   });
 
-  const handleUpdate = async (productId: number) => {
+  const handleUpdate = async (productId: string) => {
     try {
       setIsDisabled(true);
       await httpClientAPI<CreateProduct>({
@@ -98,9 +98,7 @@ export default function Page({ params }: PageProps) {
         url: '/api/v1/products',
         data: {
           ...product,
-          images: product.images.map(({ url }) => ({ url })),
-          colors: product.colors.map(({ label, value }) => ({ label, value })),
-          sizes: product.sizes.map(({ label, value }) => ({ label, value }))
+          images: product.images.map(({ url }) => ({ url }))
         }
       });
       toast.success('Product created.', {
@@ -116,7 +114,7 @@ export default function Page({ params }: PageProps) {
         specs: '',
         description: '',
         sizes: [],
-        category: { id: 0, label: '', value: '' },
+        category: { label: '', value: '' },
         colors: [],
         isArchived: false,
         isFeatured: false
@@ -317,7 +315,7 @@ export default function Page({ params }: PageProps) {
         disabled={isDisabled}
         onClick={() => {
           if (params.mode === 'update') {
-            handleUpdate(Number(params?.productId));
+            handleUpdate(String(params.productId));
           } else if (params.mode === 'create') {
             handleCreate();
           }

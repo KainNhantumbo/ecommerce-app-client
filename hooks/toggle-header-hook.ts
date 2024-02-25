@@ -8,9 +8,7 @@ export const useToggleHeader = (breakpoint: number) => {
   const [isBreakPoint, setIsBreakPoint] = useState<boolean>(false);
 
   useEffect((): void => {
-    windowInnerSize.width > breakpoint
-      ? setIsBreakPoint(true)
-      : setIsBreakPoint(false);
+    windowInnerSize.width > breakpoint ? setIsBreakPoint(true) : setIsBreakPoint(false);
   }, [windowInnerSize, breakpoint]);
 
   return {

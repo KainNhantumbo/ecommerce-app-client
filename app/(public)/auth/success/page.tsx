@@ -16,10 +16,8 @@ export default function Page() {
             </p>
 
             <Button asChild>
-              <Link
-                href={'/auth/sign-in'}
-                className='flex w-fit items-center gap-2'>
-                <ArrowRight className='stroke-white w-5 h-auto' />
+              <Link href={'/auth/sign-in'} className='flex w-fit items-center gap-2'>
+                <ArrowRight className='h-auto w-5 stroke-white' />
                 <span className='font-semibold text-white'>Go and Sign In</span>
               </Link>
             </Button>

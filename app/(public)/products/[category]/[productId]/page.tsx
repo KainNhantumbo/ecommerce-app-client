@@ -2,9 +2,9 @@
 
 import { EmptyMessage } from '@/components/empty-message';
 import { ProductCarousel } from '@/components/product-carousel';
-import { TooltipWrapper } from '@/components/tooltip-wrapper';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import httpClient from '@/config/http-client';
 import { useCartManager } from '@/hooks/cart-manager-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
@@ -16,9 +16,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { toast } from 'sonner';
 
-type PageProps = { params: { category?: string; productId?: string } };
+type Props = { params: { category?: string; productId?: string } };
 
-export default function Page({ params: { category, productId } }: PageProps) {
+export default function Page<T extends Props>({ params: { category, productId } }: T) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -48,7 +48,7 @@ export default function Page({ params: { category, productId } }: PageProps) {
 
   const cartProduct = useMemo<CartItem>(
     () => ({
-      productId: Number(productId),
+      productId: String(productId),
       name: product?.name || '',
       colors: searchParams.get('colors')?.split(',') || [],
       sizes: searchParams.get('sizes')?.split(',') || [],
@@ -72,11 +72,11 @@ export default function Page({ params: { category, productId } }: PageProps) {
         )
       );
 
-      if (product && isInCart(+product.id)) {
+      if (product && isInCart(product._id)) {
         dispatch(
           updateCart([
             ...cart.map((item) =>
-              item.productId === product.id ? { ...item, ...cartProduct } : item
+              item.productId === product._id ? { ...item, ...cartProduct } : item
             )
           ])
         );
@@ -115,19 +115,27 @@ export default function Page({ params: { category, productId } }: PageProps) {
                 </h2>
 
                 <div className='flex w-full flex-wrap gap-2 font-sans'>
+                  <h3 className='capitalize'>{product.sizes.length} sizes available</h3>
+                  <ToggleGroup type='multiple' onValueChange={(value) => {}}>
+                    {product.sizes.map(({ id, label, value }) => (
+                      <ToggleGroupItem key={id} value={value} className='uppercase'>
+                        {label}
+                      </ToggleGroupItem>
+                    ))}
+                  </ToggleGroup>
+                </div>
+
+                <div className='flex w-full flex-wrap gap-2 font-sans'>
                   <h3 className='capitalize'>
                     {product.colors.length} colors available
                   </h3>
-                  <div className='flex items-center gap-2'>
-                    {product.colors.map((color) => (
-                      <TooltipWrapper key={color.id} content={color.label}>
-                        <div
-                          className='base-border h-6 w-6 rounded-full'
-                          style={{ background: color.value }}
-                        />
-                      </TooltipWrapper>
+                  <ToggleGroup type='multiple' onValueChange={(value) => {}}>
+                    {product.colors.map(({ id, label, value }) => (
+                      <ToggleGroupItem key={id} value={value}>
+                        {label}
+                      </ToggleGroupItem>
                     ))}
-                  </div>
+                  </ToggleGroup>
                 </div>
 
                 <div className='flex w-full items-center gap-3 font-sans'>
@@ -135,18 +143,18 @@ export default function Page({ params: { category, productId } }: PageProps) {
                     size={'lg'}
                     className='flex w-full items-center gap-1 rounded-full  bg-black font-semibold'
                     onClick={() => {
-                      if (!isInCart(+product.id)) addCartItem(cartProduct);
+                      if (!isInCart(product._id)) addCartItem(cartProduct);
                       router.push('/checkout');
                     }}>
                     <span className='text-white'>Buy Now</span>
                   </Button>
 
-                  {isInCart(+product.id) ? (
+                  {isInCart(product._id) ? (
                     <Button
                       size={'lg'}
                       variant={'outline'}
                       className='flex w-full items-center gap-1 rounded-full font-semibold'
-                      onClick={() => removeCartItem(+product.id)}>
+                      onClick={() => removeCartItem(product._id)}>
                       Remove
                     </Button>
                   ) : (

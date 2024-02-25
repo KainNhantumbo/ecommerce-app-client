@@ -74,9 +74,7 @@ type FormItemContextValue = {
   id: string;
 };
 
-const FormItemContext = createContext<FormItemContextValue>(
-  {} as FormItemContextValue
-);
+const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue);
 
 const FormItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => {
@@ -112,17 +110,14 @@ const FormControl = forwardRef<
   ElementRef<typeof Slot>,
   ComponentPropsWithoutRef<typeof Slot>
 >(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } =
-    useFormField();
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot
       ref={ref}
       id={formItemId}
       aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
+        !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
       {...props}

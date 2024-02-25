@@ -46,15 +46,15 @@ export const BillboardsCarousel = () => {
           </CarouselPrevious>
           <CarouselContent>
             {data.map((item) => (
-              <CarouselItem key={item.id}>
+              <CarouselItem key={item._id}>
                 <Image
                   width={1024}
                   height={220}
-                  key={item.id}
+                  key={item._id}
                   src={item.image.url}
                   alt={item.label}
                   priority
-                  className='h-[220px] w-full rounded-lg object-cover'
+                  className='h-[220px] w-full max-w-5xl rounded-lg object-cover'
                 />
               </CarouselItem>
             ))}
