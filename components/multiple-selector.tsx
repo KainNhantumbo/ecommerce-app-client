@@ -434,7 +434,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
                     <CommandGroup
                       key={key}
                       heading={key}
-                      className='h-full overflow-auto'>
+                      className='h-full max-h-[200px] overflow-auto'>
                       <>
                         {dropdowns.map((option) => {
                           return (

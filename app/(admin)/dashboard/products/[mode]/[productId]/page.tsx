@@ -15,7 +15,7 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import CategoryOptions from '@/shared/categories.json';
 import ColorOptions from '@/shared/colors.json';
 import SizesOptions from '@/shared/sizes.json';
-import { CreateProduct, HttpError, Product, Size } from '@/types';
+import { Color, CreateProduct, HttpError, Product, Size } from '@/types';
 import {
   Select,
   SelectContent,
@@ -256,40 +256,52 @@ export default function Page({ params }: PageProps) {
         <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
           <div className='flex w-full flex-col gap-2'>
             <Label>Colors *</Label>
-            <MultiSelector
-              defaultValues={product.colors}
-              data={ColorOptions}
+            <MultipleSelector
+              loadingIndicator={true}
+              badgeClassName='bg-secondary text-font'
+              value={product.colors.map(({ label, value }) => ({ label, value }))}
+              options={ColorOptions.map(({ label, value }) => ({ label, value }))}
               placeholder='Select colors...'
-              onChange={(data) => setProduct((state) => ({ ...state, colors: data }))}
+              onChange={(options: unknown) =>
+                setProduct((state) => ({
+                  ...state,
+                  colors: (options as Omit<Color, 'id'>[]).map((option) => {
+                    for (const color of ColorOptions) {
+                      if (option.value === color.value) return { ...color };
+                    }
+                    return { ...option, id: '' };
+                  })
+                }))
+              }
+              emptyIndicator={
+                <p className='text-center text-lg leading-relaxed text-font'>
+                  No results found.
+                </p>
+              }
             />
           </div>
           <div className='flex w-full flex-col gap-2'>
             <Label>Sizes *</Label>
             <MultipleSelector
-              value={product.sizes.map((size) => ({
-                label: size.label,
-                value: size.value
-              }))}
-              defaultOptions={SizesOptions.map((size) => ({
-                label: size.label,
-                value: size.value
-              }))}
-              placeholder='Select colors...'
-              onChange={(options: unknown) => {
-                console.log(options);
+              loadingIndicator={true}
+              badgeClassName='bg-secondary text-font'
+              value={product.sizes.map(({ label, value }) => ({ label, value }))}
+              options={SizesOptions.map(({ label, value }) => ({ label, value }))}
+              placeholder='Select sizes...'
+              onChange={(options: unknown) =>
                 setProduct((state) => ({
                   ...state,
-                  sizes: (options as Omit<Size, 'id'>[]).map((item) => {
+                  sizes: (options as Omit<Size, 'id'>[]).map((option) => {
                     for (const size of SizesOptions) {
-                      if (item.value === size.value) return { ...size };
+                      if (option.value === size.value) return { ...size };
                     }
-                    return { ...item, id: '' };
+                    return { ...option, id: '' };
                   })
-                }));
-              }}
+                }))
+              }
               emptyIndicator={
-                <p className='text-center text-lg leading-10 text-gray-600 dark:text-gray-400'>
-                  no results found.
+                <p className='text-center text-lg leading-relaxed text-font'>
+                  No results found.
                 </p>
               }
             />
