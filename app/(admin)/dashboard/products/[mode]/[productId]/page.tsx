@@ -1,8 +1,6 @@
 'use client';
 
 import { DropzoneArea } from '@/components/dropzone';
-import { MultiSelector } from '@/components/multi-selector';
-import { SelectWrapper } from '@/components/select-wrapper';
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
@@ -54,7 +52,7 @@ export default function Page({ params }: PageProps) {
   const { httpClientAPI } = useAppContext();
   const router = useRouter();
 
-  const { isLoading } = useQuery({
+  useQuery({
     queryKey: ['edit-product'],
     queryFn: async () => {
       try {

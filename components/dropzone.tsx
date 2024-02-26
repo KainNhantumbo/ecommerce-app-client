@@ -61,7 +61,7 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
     <div
       {...getRootProps()}
       className={cn(
-        'base-border grid w-full place-content-center rounded-lg bg-background px-4 py-8 h-full',
+        'base-border grid h-full w-full place-content-center rounded-lg bg-background px-4 py-8',
         { 'border-blue-400/85 divide-dashed': isDragActive }
       )}>
       <div className='flex w-full select-none flex-col items-center gap-3'>
