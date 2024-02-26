@@ -72,12 +72,8 @@ export const MultiSelector: FC<Props> = ({
   );
 
   useEffect(() => {
-    onChange(selected);
+    // onChange(selected);
   }, [selected, defaultValues]);
-
-  useEffect(() => {
-    setSelected(data);
-  }, [data]);
 
   return (
     <Command onKeyDown={handleKeyDown} className='overflow-visible bg-transparent'>

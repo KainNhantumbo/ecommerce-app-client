@@ -15,13 +15,24 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import CategoryOptions from '@/shared/categories.json';
 import ColorOptions from '@/shared/colors.json';
 import SizesOptions from '@/shared/sizes.json';
-import { CreateProduct, HttpError, Product } from '@/types';
+import { CreateProduct, HttpError, Product, Size } from '@/types';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import { useQuery } from '@tanstack/react-query';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import MultipleSelector from '@/components/multiple-selector';
 
 export type PageProps = { params: { mode: 'create' | 'update'; productId?: string } };
 
@@ -33,8 +44,8 @@ export default function Page({ params }: PageProps) {
     specs: '',
     description: '',
     sizes: [],
-    category: { label: '', value: '' },
     colors: [],
+    category: { label: '', value: '' },
     isArchived: false,
     isFeatured: false
   });
@@ -43,7 +54,7 @@ export default function Page({ params }: PageProps) {
   const { httpClientAPI } = useAppContext();
   const router = useRouter();
 
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: ['edit-product'],
     queryFn: async () => {
       try {
@@ -164,7 +175,7 @@ export default function Page({ params }: PageProps) {
             ))}
 
           {product.images.length <= 5 ? (
-            <div className='static max-w-[220px]'>
+            <div className='static h-[220px] max-w-[220px]'>
               <DropzoneArea
                 width={280}
                 height={420}
@@ -254,21 +265,42 @@ export default function Page({ params }: PageProps) {
           </div>
           <div className='flex w-full flex-col gap-2'>
             <Label>Sizes *</Label>
-            <MultiSelector
-              defaultValues={product.sizes}
-              data={SizesOptions}
-              placeholder='Select sizes...'
-              onChange={(data) => setProduct((state) => ({ ...state, sizes: data }))}
+            <MultipleSelector
+              value={product.sizes.map((size) => ({
+                label: size.label,
+                value: size.value
+              }))}
+              defaultOptions={SizesOptions.map((size) => ({
+                label: size.label,
+                value: size.value
+              }))}
+              placeholder='Select colors...'
+              onChange={(options: unknown) => {
+                console.log(options);
+                setProduct((state) => ({
+                  ...state,
+                  sizes: (options as Omit<Size, 'id'>[]).map((item) => {
+                    for (const size of SizesOptions) {
+                      if (item.value === size.value) return { ...size };
+                    }
+                    return { ...item, id: '' };
+                  })
+                }));
+              }}
+              emptyIndicator={
+                <p className='text-center text-lg leading-10 text-gray-600 dark:text-gray-400'>
+                  no results found.
+                </p>
+              }
             />
           </div>
         </div>
         <div className='flex flex-col items-center gap-3 mobile-x:flex-row'>
           <div className='flex w-full flex-col gap-2'>
             <Label>Category *</Label>
-            <SelectWrapper
-              data={CategoryOptions}
-              placeholder='Select category...'
-              onSelect={(option) => {
+            <Select
+              value={product.category.value}
+              onValueChange={(option) => {
                 const [selected] = CategoryOptions.filter(
                   (item) => item.value === option
                 );
@@ -276,8 +308,22 @@ export default function Page({ params }: PageProps) {
                   ...state,
                   category: { ...selected }
                 }));
-              }}
-            />
+              }}>
+              <SelectTrigger>
+                <SelectValue placeholder={'Select category...'} />
+              </SelectTrigger>
+              <SelectContent className='font-sans-body'>
+                <SelectScrollUpButton />
+                <SelectGroup>
+                  {CategoryOptions.map(({ id, label, value }) => (
+                    <SelectItem value={value} key={id}>
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+                <SelectScrollDownButton />
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <div className=' flex flex-col gap-3'>

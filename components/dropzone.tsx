@@ -30,6 +30,10 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
         new Compressor(file, {
           width,
           height,
+          maxHeight: height,
+          maxWidth: width,
+          strict: true,
+          resize: 'cover',
           quality: 0.9,
           success: (compressedImage: File | Blob) => {
             const reader = new FileReader();
@@ -57,7 +61,7 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
     <div
       {...getRootProps()}
       className={cn(
-        'base-border grid w-full place-content-center rounded-lg bg-background px-4 py-12',
+        'base-border grid w-full place-content-center rounded-lg bg-background px-4 py-8 h-full',
         { 'border-blue-400/85 divide-dashed': isDragActive }
       )}>
       <div className='flex w-full select-none flex-col items-center gap-3'>
