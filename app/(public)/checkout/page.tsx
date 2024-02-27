@@ -33,6 +33,8 @@ import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import ColorOptions from '@/shared/colors.json';
+import SizeOptions from '@/shared/colors.json';
 
 export default function Page() {
   const { removeCartItem, updateQuantity, increaseQuantity, cart, decreaseQuantity } =
@@ -56,8 +58,8 @@ export default function Page() {
           items: cart.map((item) => ({
             productId: item.productId,
             quantity: item.quantity,
-            sizes: item.sizes,
-            colors: item.colors
+            sizes: item.sizes.filter((item) => item !== ''),
+            colors: item.colors.filter((item) => item !== '')
           }))
         }
       });
@@ -92,7 +94,7 @@ export default function Page() {
             cart.map((product) => (
               <div
                 key={product.productId}
-                className='base-border flex w-full flex-col gap-8 rounded-lg p-4 sm:flex-row'>
+                className='base-border flex w-full flex-col items-center gap-8 rounded-lg p-4 md:flex-row md:items-start'>
                 <Image
                   src={product.image}
                   alt={`${product.name} image`}
@@ -101,29 +103,55 @@ export default function Page() {
                   className='base-border h-[160px] w-[160px] rounded-lg object-cover'
                 />
                 <div className='flex w-full flex-col gap-3 font-sans'>
-                  <div className='flex w-full items-center justify-between gap-3'>
+                  <div className='flex w-full flex-wrap items-center justify-between gap-3'>
                     <h2 className='text-lg'>{product.name}</h2>
                     <p className='text-xl font-bold'>
                       {currencyFormatter(product.price)}
                     </p>
                   </div>
-                  <div className='space-y-2 text-sm'>
-                    <p>
-                      <i>Colors</i>:{' '}
-                      {product.colors.map((color, i) => (
-                        <p key={i} className='base-border rounded-full p-1 px-2'>
-                          {color}
-                        </p>
-                      ))}
-                    </p>
-                    <p>
-                      <i>Sizes</i>:{' '}
-                      {product.sizes.map((size, i) => (
-                        <p key={i} className='base-border rounded-full p-1 px-2'>
-                          {size}
-                        </p>
-                      ))}
-                    </p>
+                  <div className='w-full space-y-2 text-sm'>
+                    {product.colors.length > 1 ? (
+                      <div className='flex w-full flex-col gap-3'>
+                        <h3 className='text-base font-medium'>Colors</h3>
+                        <div className='flex w-full flex-wrap items-center gap-2'>
+                          {product.colors
+                            .filter((item) => item !== '')
+                            .map((item) => {
+                              return ColorOptions.find((color) => item === color.value);
+                            })
+                            .map((color, i) => (
+                              <div
+                                key={i}
+                                className='base-border flex w-fit flex-nowrap items-center gap-1 rounded-lg p-2 py-1 font-semibold uppercase'>
+                                <div
+                                  className='base-border h-3 w-3 rounded-full'
+                                  style={{ background: color?.value || '' }}
+                                />
+                                <span className='text-xs font-semibold'>
+                                  {color?.label}
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {product.sizes.length > 1 ? (
+                      <div className='flex w-full flex-col gap-3'>
+                        <h3 className='text-base font-medium'>Sizes</h3>
+                        <div className='flex w-full flex-wrap items-center gap-2'>
+                          {product.sizes
+                            .filter((item) => item !== '')
+                            .map((size, i) => (
+                              <p
+                                key={i}
+                                className='base-border rounded-full p-1 px-2 text-xs font-semibold uppercase'>
+                                {size}
+                              </p>
+                            ))}
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
 
                   <div className='flex w-full items-center justify-between gap-3'>

@@ -15,8 +15,6 @@ import { AlertTriangleIcon } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { toast } from 'sonner';
-import ColorOptions from '@/shared/colors.json';
-import SizeOptions from '@/shared/colors.json';
 
 type Props = { params: { category?: string; productId?: string } };
 
