@@ -15,6 +15,8 @@ import { AlertTriangleIcon } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { toast } from 'sonner';
+import ColorOptions from '@/shared/colors.json';
+import SizeOptions from '@/shared/colors.json';
 
 type Props = { params: { category?: string; productId?: string } };
 
@@ -46,18 +48,29 @@ export default function Page<T extends Props>({ params: { category, productId } 
   const { addCartItem, removeCartItem, dispatch, cart, updateCart, isInCart } =
     useCartManager();
 
-  const cartProduct = useMemo<CartItem>(
-    () => ({
+  const cartProduct = useMemo<CartItem>(() => {
+    const foundProduct = cart.find((item) => item.productId === product?._id);
+
+    return {
       productId: String(productId),
       name: product?.name || '',
-      colors: searchParams.get('colors')?.split(',') || [],
-      sizes: searchParams.get('sizes')?.split(',') || [],
+      colors: Array.from(
+        new Set([
+          ...Array.from(foundProduct?.colors || []),
+          ...Array.from(searchParams.get('colors')?.split(',') || [])
+        ])
+      ),
+      sizes: Array.from(
+        new Set([
+          ...Array.from(foundProduct?.sizes || []),
+          ...Array.from(searchParams.get('sizes')?.split(',') || [])
+        ])
+      ),
       image: product?.images[0].url || '',
       price: product?.price || 0,
       quantity: Number(searchParams.get('quantity')) || 0
-    }),
-    [searchParams, product]
-  );
+    };
+  }, [searchParams, product]);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
@@ -65,7 +78,6 @@ export default function Page<T extends Props>({ params: { category, productId } 
         pathname.concat(
           '?',
           new URLSearchParams({
-            quantity: cartProduct.quantity.toString(),
             colors: cartProduct.colors.toString(),
             sizes: cartProduct.sizes.toString()
           }).toString()
@@ -83,7 +95,7 @@ export default function Page<T extends Props>({ params: { category, productId } 
       }
     }, 200);
     return () => clearTimeout(debounceTimer);
-  }, [searchParams, product]);
+  }, [searchParams, product, cartProduct]);
 
   return (
     <main className='mx-auto mt-[90px] flex h-full min-h-[calc(100vh_-_340px)] w-full max-w-4xl flex-col gap-8 px-4 font-sans-body'>
@@ -114,25 +126,67 @@ export default function Page<T extends Props>({ params: { category, productId } 
                   {currencyFormatter(product.price)}
                 </h2>
 
-                <div className='flex w-full flex-wrap gap-2 font-sans'>
+                <div className='flex w-full flex-col gap-2 font-sans'>
                   <h3 className='capitalize'>{product.sizes.length} sizes available</h3>
-                  <ToggleGroup type='multiple' onValueChange={(value) => {}}>
+                  <ToggleGroup
+                    size={'sm'}
+                    className='base-border flex w-full flex-wrap items-center justify-start gap-2 rounded-lg p-1 '
+                    type='multiple'
+                    value={cartProduct.sizes}
+                    onValueChange={(options) => {
+                      router.replace(
+                        pathname.concat(
+                          '?',
+                          new URLSearchParams({
+                            colors: cartProduct.colors.toString(),
+                            sizes: options.toString()
+                          }).toString()
+                        )
+                      );
+                    }}>
                     {product.sizes.map(({ id, label, value }) => (
-                      <ToggleGroupItem key={id} value={value} className='uppercase'>
+                      <ToggleGroupItem
+                        key={id}
+                        value={value}
+                        size={'sm'}
+                        className='rounded-lg px-2 font-semibold uppercase'>
                         {label}
                       </ToggleGroupItem>
                     ))}
                   </ToggleGroup>
                 </div>
 
-                <div className='flex w-full flex-wrap gap-2 font-sans'>
+                <div className='flex w-full flex-col gap-2 font-sans'>
                   <h3 className='capitalize'>
                     {product.colors.length} colors available
                   </h3>
-                  <ToggleGroup type='multiple' onValueChange={(value) => {}}>
+                  <ToggleGroup
+                    type='multiple'
+                    size={'sm'}
+                    className='base-border flex w-full flex-wrap items-center justify-start gap-2 rounded-lg p-1 '
+                    value={cartProduct.colors}
+                    onValueChange={(options) => {
+                      router.replace(
+                        pathname.concat(
+                          '?',
+                          new URLSearchParams({
+                            colors: options.toString(),
+                            sizes: cartProduct.sizes.toString()
+                          }).toString()
+                        )
+                      );
+                    }}>
                     {product.colors.map(({ id, label, value }) => (
-                      <ToggleGroupItem key={id} value={value}>
-                        {label}
+                      <ToggleGroupItem
+                        key={id}
+                        value={value}
+                        size={'sm'}
+                        className='flex flex-nowrap items-center gap-1 rounded-lg px-2 font-semibold uppercase'>
+                        <div
+                          className='base-border h-4 w-4 rounded-full'
+                          style={{ background: value }}
+                        />
+                        <span>{label}</span>
                       </ToggleGroupItem>
                     ))}
                   </ToggleGroup>

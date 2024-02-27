@@ -52,7 +52,7 @@ export default function Page() {
       console.warn(message || error);
     }
   };
-
+ 
   const [users] = useQueries({
     queries: [
       { queryFn: getUsers, queryKey: ['users'] },
