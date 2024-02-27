@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import { useQueryProducts } from '@/hooks/query-products-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter, scrollToTop } from '@/lib/utils';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { HttpError } from '@/types';
 import { AlertTriangleIcon, ShoppingBasketIcon } from 'lucide-react';
 import Image from 'next/image';
@@ -74,7 +75,9 @@ export default function Page() {
         <EmptyMessage
           icon={AlertTriangleIcon}
           action={{ label: 'Try again.', handler: () => refetch() }}
-          message={errorTransformer(error as HttpError).message}
+          message={
+            errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
+          }
         />
       ) : null}
 

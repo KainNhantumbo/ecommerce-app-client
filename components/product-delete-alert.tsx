@@ -13,6 +13,7 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateProducts } from '@/redux/slices/products';
 import { AppDispatch, RootState } from '@/redux/store';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 import { Trash2Icon, XIcon } from 'lucide-react';
 import type { FC } from 'react';
@@ -38,8 +39,10 @@ export const DeleteProductAlert: FC<Props> = ({ id }) => {
       toast.success('Product deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message);
-      console.warn(message || error);
+      toast.error(message || DEFAULT_ERROR_MESSAGE, {
+        action: { onClick: () => onDelete(), label: 'Retry' }
+      });
+      console.error(message || error);
     }
   };
 

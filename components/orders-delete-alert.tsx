@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
-import { updateBillboards } from '@/redux/slices/billboards';
+import { updateOrders } from '@/redux/slices/orders';
 import { AppDispatch, RootState } from '@/redux/store';
 import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
@@ -24,21 +24,16 @@ import { Button } from './ui/button';
 
 type Props = { id: string };
 
-export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
+export const DeleteOrderAlert: FC<Props> = ({ id }) => {
   const { httpClientAPI } = useAppContext();
   const dispatch = useDispatch<AppDispatch>();
-  const billboards = useSelector((state: RootState) => state.billboards);
+  const orders = useSelector((state: RootState) => state.orders);
 
   const onDelete = async () => {
     try {
-      await httpClientAPI({
-        method: 'delete',
-        url: `/api/v1/billboards/${id}`
-      });
-      dispatch(
-        updateBillboards(billboards.filter((billboard) => billboard._id !== id))
-      );
-      toast.success('Billboard deleted.');
+      await httpClientAPI({ method: 'delete', url: `/api/v1/orders/${id}` });
+      dispatch(updateOrders(orders.filter((item) => item._id !== id)));
+      toast.success('Product deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE, {
@@ -52,20 +47,21 @@ export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant={'ghost'}>
-          <TooltipWrapper content='Delete billboard'>
+          <TooltipWrapper content='Delete product'>
             <Trash2Icon className='h-auto w-4' />
           </TooltipWrapper>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className='font-sans-body'>
         <AlertDialogHeader>
-          <AlertDialogTitle className='font-sans'>Delete Billboard</AlertDialogTitle>
+          <AlertDialogTitle className='font-sans'>Delete Order</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this billboard.
+            This action cannot be undone. This will permanently remove this order from
+            history.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='border-none group flex items-center gap-2 rounded-lg bg-transparent shadow-none'>
+          <AlertDialogCancel className='group flex items-center gap-2 rounded-lg border-none bg-transparent shadow-none'>
             <XIcon className='w-4 transition-colors group-hover:stroke-blue-400 group-active:stroke-blue-400' />
             <span className='capitalize transition-colors group-hover:text-blue-400'>
               Cancel

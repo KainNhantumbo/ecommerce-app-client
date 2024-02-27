@@ -17,6 +17,7 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
 import { OrderSchemaType, orderSchema } from '@/providers/schemas';
 import ColorOptions from '@/shared/colors.json';
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import type { CreateOrder, HttpError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -74,13 +75,13 @@ export default function Page() {
       router.push('/checkout/success');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
-      toast.error(message, {
+      toast.error(message || DEFAULT_ERROR_MESSAGE, {
         action: {
           label: 'Retry',
           onClick: () => onSubmit(orderData)
         }
       });
-      console.warn(message || error);
+      console.error(message || error);
     } finally {
       setLoading(false);
     }
