@@ -29,6 +29,7 @@ export const useQueryProducts = () => {
           limit: params.get('limit') || String(PRODUCTS_LIMIT_PER_PAGE),
           category: params.get('category') || '',
           color: params.get('color') || '',
+          featured: params.get('featured') || '',
           sort: params.get('sort') || '',
           size: params.get('size') || ''
         });

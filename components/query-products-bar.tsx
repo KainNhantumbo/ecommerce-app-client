@@ -40,30 +40,25 @@ import { useRouter, useSearchParams } from 'next/navigation';
 type Props = {};
 
 export const QueryProductsBar: FC<Props> = () => {
-  const [queryParams, setQueryParams] = useState(() => {
-    const queryParams = new URLSearchParams();
-    return {
-      search: queryParams.get('search') || '',
-      color: queryParams.get('color') || '',
-      category: queryParams.get('category') || '',
-      limit: queryParams.get('limit') || '',
-      offset: queryParams.get('offset') || '',
-      featured: queryParams.get('featured') || '',
-      size: queryParams.get('size') || '',
-      sort: queryParams.get('sort') || ''
-    };
-  });
-
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [queryParams, setQueryParams] = useState(() => {
+    return {
+      search: searchParams.get('search') || '',
+      color: searchParams.get('color') || '',
+      category: searchParams.get('category') || '',
+      featured: searchParams.get('featured') || '',
+      size: searchParams.get('size') || '',
+      sort: searchParams.get('sort') || ''
+    };
+  });
 
   const onClearQueryParams = () =>
     setQueryParams({
       search: '',
       color: '',
       category: '',
-      limit: '',
-      offset: '',
       featured: '',
       size: '',
       sort: ''
@@ -93,6 +88,7 @@ export const QueryProductsBar: FC<Props> = () => {
           className='border-none p-0'
           placeholder='Search...'
           role='searchbox'
+          value={queryParams.search}
           onValueChange={(value) => {
             setQueryParams((values) => ({ ...values, search: value }));
           }}
@@ -119,16 +115,18 @@ export const QueryProductsBar: FC<Props> = () => {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent className='max-h-48 overflow-y-auto font-sans text-xs'>
-                    {ColorOptions.map(({ label, value, id }, i) => (
-                      <DropdownMenuItem
-                        key={id}
-                        onClick={() =>
-                          setQueryParams((values) => ({ ...values, color: value }))
-                        }>
-                        <DropletsIcon className='mr-2 h-4 w-4' />
-                        <span className='font-semibold'>{label}</span>
-                      </DropdownMenuItem>
-                    ))}
+                    {ColorOptions.sort((a, b) => (a.label > b.label ? 1 : -1)).map(
+                      ({ label, value, id }, i) => (
+                        <DropdownMenuItem
+                          key={id}
+                          onClick={() =>
+                            setQueryParams((values) => ({ ...values, color: value }))
+                          }>
+                          <DropletsIcon className='mr-2 h-4 w-4' />
+                          <span className='font-semibold'>{label}</span>
+                        </DropdownMenuItem>
+                      )
+                    )}
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
@@ -139,16 +137,18 @@ export const QueryProductsBar: FC<Props> = () => {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent className='max-h-48 overflow-y-auto font-sans text-xs'>
-                    {CategoryOptions.map(({ label, value, id }, i) => (
-                      <DropdownMenuItem
-                        key={id}
-                        onClick={() =>
-                          setQueryParams((values) => ({ ...values, category: value }))
-                        }>
-                        <ArrowRight className='mr-2 h-4 w-4' />
-                        <span className='font-semibold'>{label}</span>
-                      </DropdownMenuItem>
-                    ))}
+                    {CategoryOptions.sort((a, b) => (a.label > b.label ? 1 : -1)).map(
+                      ({ label, value, id }, i) => (
+                        <DropdownMenuItem
+                          key={id}
+                          onClick={() =>
+                            setQueryParams((values) => ({ ...values, category: value }))
+                          }>
+                          <ArrowRight className='mr-2 h-4 w-4' />
+                          <span className='font-semibold'>{label}</span>
+                        </DropdownMenuItem>
+                      )
+                    )}
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
@@ -159,16 +159,18 @@ export const QueryProductsBar: FC<Props> = () => {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent className='max-h-48 overflow-y-auto font-sans text-xs'>
-                    {SizeOptions.map(({ label, value, id }, i) => (
-                      <DropdownMenuItem
-                        key={id}
-                        onClick={() =>
-                          setQueryParams((values) => ({ ...values, size: value }))
-                        }>
-                        <ArrowRight className='mr-2 h-4 w-4' />
-                        <span className='font-semibold'>{label}</span>
-                      </DropdownMenuItem>
-                    ))}
+                    {SizeOptions.sort((a, b) => (a.label > b.label ? 1 : -1)).map(
+                      ({ label, value, id }, i) => (
+                        <DropdownMenuItem
+                          key={id}
+                          onClick={() =>
+                            setQueryParams((values) => ({ ...values, size: value }))
+                          }>
+                          <ArrowRight className='mr-2 h-4 w-4' />
+                          <span className='font-semibold'>{label}</span>
+                        </DropdownMenuItem>
+                      )
+                    )}
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
               </DropdownMenuSub>
@@ -181,7 +183,7 @@ export const QueryProductsBar: FC<Props> = () => {
                   <DropdownMenuSubContent className='max-h-48 overflow-y-auto font-sans text-xs'>
                     <DropdownMenuItem
                       onClick={() =>
-                        setQueryParams((values) => ({ ...values, featured: '0' }))
+                        setQueryParams((values) => ({ ...values, featured: 'none' }))
                       }>
                       <ArrowRight className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>All Products</span>
@@ -192,6 +194,13 @@ export const QueryProductsBar: FC<Props> = () => {
                       }>
                       <ArrowRight className='mr-2 h-4 w-4' />
                       <span className='font-semibold'>Featured products only</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        setQueryParams((values) => ({ ...values, featured: '0' }))
+                      }>
+                      <ArrowRight className='mr-2 h-4 w-4' />
+                      <span className='font-semibold'>Normal products only</span>
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
