@@ -109,8 +109,8 @@ export default function Page<T extends Props>({ params: { category, productId } 
 
         {!isLoading && !isError && product ? (
           <section className='flex flex-col gap-5'>
-            <section className='flex w-full flex-col gap-2 sm:flex-row'>
-              <div className='w-full max-w-[360px]'>
+            <section className=' flex w-full flex-col items-center gap-3 sm:flex-row sm:items-start'>
+              <div className='mb-20 w-full max-w-[360px]'>
                 <p className='mb-3 font-sans text-sm font-medium'>
                   Collections / {product.category.label} /{' '}
                   {product.isArchived ? 'Featured' : 'Premiere'} /{' '}
