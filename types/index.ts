@@ -24,6 +24,7 @@ export type CartItem = {
   quantity: number;
   price: number;
   image: string;
+  category: string
   colors: string[];
   sizes: string[];
 };

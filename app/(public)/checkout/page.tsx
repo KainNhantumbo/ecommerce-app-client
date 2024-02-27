@@ -35,6 +35,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import ColorOptions from '@/shared/colors.json';
 import SizeOptions from '@/shared/colors.json';
+import Link from 'next/link';
 
 export default function Page() {
   const { removeCartItem, updateQuantity, increaseQuantity, cart, decreaseQuantity } =
@@ -104,7 +105,11 @@ export default function Page() {
                 />
                 <div className='flex w-full flex-col gap-3 font-sans'>
                   <div className='flex w-full flex-wrap items-center justify-between gap-3'>
-                    <h2 className='text-lg'>{product.name}</h2>
+                    <Link
+                      className='group'
+                      href={`/products/${product.category}/${product.productId}?${new URLSearchParams({ sizes: product.sizes.toString(), colors: product.colors.toString() })}`}>
+                      <h2 className='group-hover:text-blue-400 underline-offset-4 underline  text-lg'>{product.name}</h2>
+                    </Link>
                     <p className='text-xl font-bold'>
                       {currencyFormatter(product.price)}
                     </p>

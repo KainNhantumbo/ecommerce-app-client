@@ -66,7 +66,8 @@ export default function Page<T extends Props>({ params: { category, productId } 
       ),
       image: product?.images[0].url || '',
       price: product?.price || 0,
-      quantity: Number(searchParams.get('quantity')) || 0
+      quantity: Number(searchParams.get('quantity')) || 0,
+      category: String(category)
     };
   }, [searchParams, product]);
 
