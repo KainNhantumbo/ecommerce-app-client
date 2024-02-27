@@ -3,6 +3,7 @@
 import { EmptyMessage } from '@/components/empty-message';
 import { ProductCarousel } from '@/components/product-carousel';
 import { Button } from '@/components/ui/button';
+import { Loader } from '@/components/ui/loader';
 import { Separator } from '@/components/ui/separator';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import httpClient from '@/config/http-client';
@@ -69,7 +70,7 @@ export default function Page<T extends Props>({ params: { category, productId } 
       name: product?.name || '',
       image: product?.images[0].url || '',
       price: product?.price || 0,
-      quantity: Number(searchParams.get('quantity')) || 0,
+      quantity: Number(searchParams.get('quantity')) || 1,
       category: String(category)
     };
   }, [searchParams, product]);
@@ -109,6 +110,8 @@ export default function Page<T extends Props>({ params: { category, productId } 
             message={errorTransformer(error as HttpError).message}
           />
         ) : null}
+
+        {!isError && isLoading ? <Loader /> : null}
 
         {!isLoading && !isError && product ? (
           <section className='flex flex-col gap-5'>

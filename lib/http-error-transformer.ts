@@ -1,3 +1,4 @@
+import { DEFAULT_ERROR_MESSAGE } from '@/shared/constants';
 import { HttpError } from '@/types';
 
 export const errorTransformer = ({ response }: HttpError) => {
@@ -10,7 +11,7 @@ export const errorTransformer = ({ response }: HttpError) => {
         return message;
       }, '');
     } else {
-      message = response.data.message;
+      message = response?.data?.message || DEFAULT_ERROR_MESSAGE
     }
   }
 

@@ -65,7 +65,7 @@ export default function Page() {
           ...orderData,
           items: cart.map((item) => ({
             productId: item.productId,
-            quantity: item.quantity,
+            quantity: item.quantity || 1,
             sizes: item.sizes.filter((item) => item !== ''),
             colors: item.colors.filter((item) => item !== '')
           }))

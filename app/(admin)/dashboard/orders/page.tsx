@@ -43,7 +43,7 @@ export default function Page() {
 
   return (
     <main className='mx-auto mt-[90px] flex min-h-[calc(100vh_-_340px)] w-full max-w-3xl flex-col gap-8 px-4 font-sans-body'>
-      <Heading title='Orders' description='View and manage store orders' />
+      <Heading title='Orders' description='View and manage store order reports' />
 
       <section>
         {!isLoading && !isError ? <OrderTableRender data={orders} /> : null}

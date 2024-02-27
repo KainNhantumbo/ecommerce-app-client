@@ -9,20 +9,22 @@ export type CreateOrder = OrderSchemaType & {
   items: { productId: number; quantity: number }[];
 };
 
+export type OrderItem = {
+  name: string;
+  productId: string;
+  quantity: number;
+  price: number;
+  sizes: string[];
+  colors: string[];
+};
+
 export type Order = {
   _id: string;
   customerName: string;
   phone: string;
   address: string;
   isPaid: boolean;
-  items: Array<{
-    name: string;
-    productId: string;
-    quantity: number;
-    price: number;
-    sizes: string[];
-    colors: string[];
-  }>;
+  items: Array<OrderItem>;
   updatedAt: string;
   createdAt: string;
 };
