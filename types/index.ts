@@ -11,10 +11,18 @@ export type CreateOrder = OrderSchemaType & {
 
 export type Order = {
   _id: string;
-  orderItems: { product: number; quantity: number }[];
+  customerName: string;
   phone: string;
   address: string;
   isPaid: boolean;
+  items: Array<{
+    name: string;
+    productId: string;
+    quantity: number;
+    price: number;
+    sizes: string[];
+    colors: string[];
+  }>;
   updatedAt: string;
   createdAt: string;
 };
@@ -24,7 +32,7 @@ export type CartItem = {
   quantity: number;
   price: number;
   image: string;
-  category: string
+  category: string;
   colors: string[];
   sizes: string[];
 };
