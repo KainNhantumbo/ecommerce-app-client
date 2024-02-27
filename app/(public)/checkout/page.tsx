@@ -16,6 +16,7 @@ import { useCartManager } from '@/hooks/cart-manager-hook';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { currencyFormatter } from '@/lib/utils';
 import { OrderSchemaType, orderSchema } from '@/providers/schemas';
+import ColorOptions from '@/shared/colors.json';
 import type { CreateOrder, HttpError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -29,17 +30,22 @@ import {
   Trash2Icon
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import ColorOptions from '@/shared/colors.json';
-import SizeOptions from '@/shared/colors.json';
-import Link from 'next/link';
 
 export default function Page() {
-  const { removeCartItem, updateQuantity, increaseQuantity, cart, decreaseQuantity } =
-    useCartManager();
+  const {
+    removeCartItem,
+    updateQuantity,
+    increaseQuantity,
+    cart,
+    decreaseQuantity,
+    updateCart,
+    dispatch
+  } = useCartManager();
 
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -64,6 +70,7 @@ export default function Page() {
           }))
         }
       });
+      dispatch(updateCart([]));
       router.push('/checkout/success');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
@@ -108,7 +115,9 @@ export default function Page() {
                     <Link
                       className='group'
                       href={`/products/${product.category}/${product.productId}?${new URLSearchParams({ sizes: product.sizes.toString(), colors: product.colors.toString() })}`}>
-                      <h2 className='group-hover:text-blue-400 underline-offset-4 underline  text-lg'>{product.name}</h2>
+                      <h2 className='text-lg underline underline-offset-4  group-hover:text-blue-400'>
+                        {product.name}
+                      </h2>
                     </Link>
                     <p className='text-xl font-bold'>
                       {currencyFormatter(product.price)}

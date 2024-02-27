@@ -1,19 +1,11 @@
 'use client';
 
 import { DropzoneArea } from '@/components/dropzone';
+import MultipleSelector from '@/components/multiple-selector';
 import { Button } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
-import httpClient from '@/config/http-client';
-import { useAppContext } from '@/context/AppContext';
-import { errorTransformer } from '@/lib/http-error-transformer';
-import CategoryOptions from '@/shared/categories.json';
-import ColorOptions from '@/shared/colors.json';
-import SizesOptions from '@/shared/sizes.json';
-import { Color, CreateProduct, HttpError, Product, Size } from '@/types';
 import {
   Select,
   SelectContent,
@@ -24,13 +16,21 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
+import httpClient from '@/config/http-client';
+import { useAppContext } from '@/context/AppContext';
+import { errorTransformer } from '@/lib/http-error-transformer';
+import CategoryOptions from '@/shared/categories.json';
+import ColorOptions from '@/shared/colors.json';
+import SizesOptions from '@/shared/sizes.json';
+import { Color, CreateProduct, HttpError, Product, Size } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import MultipleSelector from '@/components/multiple-selector';
 
 export type PageProps = { params: { mode: 'create' | 'update'; productId?: string } };
 

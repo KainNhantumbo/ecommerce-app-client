@@ -48,22 +48,25 @@ export default function Page<T extends Props>({ params: { category, productId } 
 
   const cartProduct = useMemo<CartItem>(() => {
     const foundProduct = cart.find((item) => item.productId === product?._id);
+    const colors = Array.from(
+      new Set([
+        ...Array.from(foundProduct?.colors || []),
+        ...Array.from(searchParams.get('colors')?.split(',') || [])
+      ])
+    );
+
+    const sizes = Array.from(
+      new Set([
+        ...Array.from(foundProduct?.sizes || []),
+        ...Array.from(searchParams.get('sizes')?.split(',') || [])
+      ])
+    );
 
     return {
+      colors,
+      sizes,
       productId: String(productId),
       name: product?.name || '',
-      colors: Array.from(
-        new Set([
-          ...Array.from(foundProduct?.colors || []),
-          ...Array.from(searchParams.get('colors')?.split(',') || [])
-        ])
-      ),
-      sizes: Array.from(
-        new Set([
-          ...Array.from(foundProduct?.sizes || []),
-          ...Array.from(searchParams.get('sizes')?.split(',') || [])
-        ])
-      ),
       image: product?.images[0].url || '',
       price: product?.price || 0,
       quantity: Number(searchParams.get('quantity')) || 0,
@@ -196,6 +199,15 @@ export default function Page<T extends Props>({ params: { category, productId } 
                     size={'lg'}
                     className='flex w-full items-center gap-1 rounded-full  bg-black font-semibold'
                     onClick={() => {
+                      if (cartProduct.colors.filter((item) => item !== '').length < 1)
+                        return toast.error(
+                          'Please select one or more colors before proceeding.'
+                        );
+                      if (cartProduct.sizes.filter((item) => item !== '').length < 1)
+                        return toast.error(
+                          'Please select one or more sizes before proceeding.'
+                        );
+
                       if (!isInCart(product._id)) addCartItem(cartProduct);
                       router.push('/checkout');
                     }}>
@@ -215,7 +227,17 @@ export default function Page<T extends Props>({ params: { category, productId } 
                       size={'lg'}
                       variant={'outline'}
                       className='flex w-full items-center gap-1 rounded-full font-semibold'
-                      onClick={() => addCartItem(cartProduct)}>
+                      onClick={() => {
+                        if (cartProduct.colors.filter((item) => item !== '').length < 1)
+                          return toast.error(
+                            'Please select one or more colors before proceeding.'
+                          );
+                        if (cartProduct.sizes.filter((item) => item !== '').length < 1)
+                          return toast.error(
+                            'Please select one or more sizes before proceeding.'
+                          );
+                        addCartItem(cartProduct);
+                      }}>
                       Add to cart
                     </Button>
                   )}
