@@ -40,7 +40,7 @@ import { TooltipWrapper } from './tooltip-wrapper';
 
 export const createColumns: ColumnDef<Order>[] = [
   {
-    accessorKey: 'name',
+    accessorKey: 'customerName',
     header: ({ column }) => {
       return (
         <Button
@@ -100,7 +100,7 @@ export const createColumns: ColumnDef<Order>[] = [
       );
     },
     cell: ({ row }: { row: Row<Order> }) => (
-      <div className='capitalize'>{row.getValue('isPaid')}</div>
+      <div className='capitalize'>{String(row.getValue('isPaid'))}</div>
     )
   },
   {
@@ -145,11 +145,11 @@ export const createColumns: ColumnDef<Order>[] = [
   }
 ];
 
-export type ProductTableRenderProps = {
+export type OrderTableRenderProps = {
   data: Order[];
 };
 
-export const ProductTableRender: FC<ProductTableRenderProps> = (props) => {
+export const OrderTableRender: FC<OrderTableRenderProps> = (props) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});

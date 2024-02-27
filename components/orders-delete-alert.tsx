@@ -33,7 +33,7 @@ export const DeleteOrderAlert: FC<Props> = ({ id }) => {
     try {
       await httpClientAPI({ method: 'delete', url: `/api/v1/orders/${id}` });
       dispatch(updateOrders(orders.filter((item) => item._id !== id)));
-      toast.success('Product deleted.');
+      toast.success('Order deleted successfully.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message || DEFAULT_ERROR_MESSAGE, {

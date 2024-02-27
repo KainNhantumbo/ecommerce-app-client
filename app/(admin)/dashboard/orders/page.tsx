@@ -1,6 +1,7 @@
 'use client';
 
 import { EmptyMessage } from '@/components/empty-message';
+import { OrderTableRender } from '@/components/orders-table-render';
 import { Heading } from '@/components/ui/heading';
 import { Loader } from '@/components/ui/loader';
 import { useAppContext } from '@/context/AppContext';
@@ -45,7 +46,7 @@ export default function Page() {
       <Heading title='Orders' description='View and manage store orders' />
 
       <section>
-        {/* {!isLoading && !isError ? <ProductTableRender data={orders} /> : null} */}
+        {!isLoading && !isError ? <OrderTableRender data={orders} /> : null}
 
         {!isLoading && isError ? (
           <EmptyMessage
