@@ -10,12 +10,15 @@ export type CreateOrder = OrderSchemaType & {
 };
 
 export type OrderItem = {
+  _id: string;
   name: string;
   productId: string;
   quantity: number;
   price: number;
   sizes: string[];
   colors: string[];
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type Order = {
@@ -25,8 +28,8 @@ export type Order = {
   address: string;
   isPaid: boolean;
   items: Array<OrderItem>;
-  updatedAt: string;
-  createdAt: string;
+  updatedAt: Date;
+  createdAt: Date;
 };
 export type CartItem = {
   name: string;
@@ -66,8 +69,8 @@ export type Product = {
   images: ImageType[];
   category: Category;
   sizes: Size[];
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type CreateProduct = {
@@ -118,8 +121,8 @@ export type Billboard = {
   _id: string;
   label: string;
   image: ImageType;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type CreateBillboard = { label: string; image: string };
