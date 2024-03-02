@@ -1,4 +1,5 @@
 'use client';
+
 import type { FC } from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 

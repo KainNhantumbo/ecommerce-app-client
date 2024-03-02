@@ -36,8 +36,9 @@ import Link from 'next/link';
 import { useState, type FC } from 'react';
 import { DeleteProductAlert } from './product-delete-alert';
 import { TooltipWrapper } from './tooltip-wrapper';
+import { FilteredCustomProduct } from '@/app/(admin)/dashboard/products/page';
 
-export const createColumns: ColumnDef<Product>[] = [
+export const createColumns: ColumnDef<FilteredCustomProduct>[] = [
   {
     accessorKey: 'name',
     header: ({ column }: any) => {
@@ -111,7 +112,7 @@ export const createColumns: ColumnDef<Product>[] = [
 ];
 
 export type ProductTableRenderProps = {
-  data: Product[];
+  data: FilteredCustomProduct[];
 };
 
 export const ProductTableRender: FC<ProductTableRenderProps> = (props) => {

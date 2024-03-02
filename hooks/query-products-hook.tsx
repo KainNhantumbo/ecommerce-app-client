@@ -1,21 +1,28 @@
 'use client';
 
+import { FilteredCustomProduct } from '@/app/(admin)/dashboard/products/page';
 import httpClient from '@/config/http-client';
-import { updateProducts } from '@/redux/slices/products';
+import { updatePublicProducts } from '@/redux/slices/public-products';
 import type { AppDispatch, RootState } from '@/redux/store';
 import { PRODUCTS_LIMIT_PER_PAGE } from '@/shared/constants';
-import type { Product } from '@/types';
+import type { Category, ImageType } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useDispatch, useSelector } from 'react-redux';
 
+export type PublicProduct = FilteredCustomProduct & {
+  price: number;
+  category: Category;
+  images: ImageType[];
+};
+
 export const useQueryProducts = () => {
   const { ref: inViewRef, inView } = useInView();
 
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: RootState) => state.products);
+  const products = useSelector((state: RootState) => state.publicProducts);
   const params = useSearchParams();
 
   const { data, refetch, fetchNextPage, hasNextPage, isLoading, isError, error } =
@@ -31,10 +38,11 @@ export const useQueryProducts = () => {
           color: params.get('color') || '',
           featured: params.get('featured') || '',
           sort: params.get('sort') || '',
-          size: params.get('size') || ''
+          size: params.get('size') || '',
+          fields: 'price,images,name,category'
         });
 
-        const { data } = await httpClient<Product[]>({
+        const { data } = await httpClient<PublicProduct[]>({
           method: 'get',
           url: `/api/v1/products?${queryParams.toString()}`
         });
@@ -45,7 +53,7 @@ export const useQueryProducts = () => {
         data.length >= PRODUCTS_LIMIT_PER_PAGE ? currentOffset : undefined
     });
 
-  const newProductsData = useMemo((): Product[] => {
+  const newProductsData = useMemo((): PublicProduct[] => {
     if (data)
       return data.pages
         .map(({ data: products }) => products)
@@ -54,7 +62,7 @@ export const useQueryProducts = () => {
   }, [data]);
 
   useEffect(() => {
-    dispatch(updateProducts([...newProductsData]));
+    dispatch(updatePublicProducts([...newProductsData]));
   }, [newProductsData]);
 
   useEffect(() => {

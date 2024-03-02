@@ -9,13 +9,20 @@ import { useAppContext } from '@/context/AppContext';
 import { errorTransformer } from '@/lib/http-error-transformer';
 import { updateProducts } from '@/redux/slices/products';
 import { AppDispatch, RootState } from '@/redux/store';
-import { HttpError, Product } from '@/types';
+import { HttpError } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 import { AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
+
+export type FilteredCustomProduct = {
+  _id: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+};
 
 export default function Page() {
   const { httpClientAPI } = useAppContext();
@@ -26,9 +33,9 @@ export default function Page() {
     queryKey: ['products-query'],
     queryFn: async () => {
       try {
-        const { data } = await httpClientAPI<Product[]>({
+        const { data } = await httpClientAPI<FilteredCustomProduct[]>({
           method: 'get',
-          url: '/api/v1/products'
+          url: '/api/v1/products?fields=name,updatedAt,createdAt'
         });
         return data;
       } catch (error) {

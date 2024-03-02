@@ -10,6 +10,7 @@ import billboardReducer from '@/redux/slices/billboards';
 import usersReducer from '@/redux/slices/users';
 import modalsReducer from '@/redux/slices/modals';
 import ordersReducer from '@/redux/slices/orders';
+import publicProductReducer from './slices/public-products';
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
     billboards: billboardReducer,
     modals: modalsReducer,
     users: usersReducer,
-    orders: ordersReducer
+    orders: ordersReducer,
+    publicProducts: publicProductReducer
   }
 });
 
