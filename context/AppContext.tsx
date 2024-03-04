@@ -56,13 +56,15 @@ export const AppContext: FC<Props> = ({ children }) => {
       undefined,
       (error: AxiosError): Promise<never> => {
         const status = Number(error?.response?.status);
-        if (status > 400 && status < 404) {
+        let retryCount = 0;
+        if (status > 400 && status < 404 && retryCount < 6) {
           authenticateUser().catch((error) => {
             const { message } = errorTransformer(error as HttpError);
             console.error(message || error);
-            router.push('/auth/sign-in');
+            retryCount += 1;
           });
         }
+        router.push('/auth/sign-in');
         return Promise.reject(error);
       }
     );
