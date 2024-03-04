@@ -31,7 +31,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "code:lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "typecheck": "tsc --noEmit -p ./tsconfig.json",
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx,json}\""
   },

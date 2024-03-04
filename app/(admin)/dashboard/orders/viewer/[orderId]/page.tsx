@@ -74,7 +74,8 @@ export default function Page({ params: { orderId } }: PageProps) {
                 <i className='font-semibold'>Is Paid:</i> {String(order.isPaid)}
               </p>
               <p>
-                <i className='font-semibold'>Date:</i> {formatDate(order.createdAt)}
+                <i className='font-semibold'>Date:</i>{' '}
+                {formatDate(String(order.createdAt))}
               </p>
               <p>
                 <i className='font-semibold'>Total Price: </i>
@@ -86,7 +87,7 @@ export default function Page({ params: { orderId } }: PageProps) {
               </p>
             </div>
           </section>
-          <section className='space-y-4 w-full'>
+          <section className='w-full space-y-4'>
             <h2>Order Items</h2>
             <OrderItemsTableRender data={order.items} />
           </section>

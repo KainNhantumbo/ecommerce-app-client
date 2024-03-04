@@ -73,6 +73,7 @@ export default function Page() {
       console.error(message || error);
     }
   };
+  
   const getBillboards = async () => {
     try {
       const { data } = await httpClientAPI<
