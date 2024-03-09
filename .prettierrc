@@ -4,7 +4,7 @@
   "singleQuote": true,
   "root": true,
   "endOfLine": "lf",
-  "printWidth": 88,
+  "printWidth": 92,
   "tabWidth": 2,
   "useTabs": false,
   "proseWrap": "preserve",

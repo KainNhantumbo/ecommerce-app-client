@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 type Props = { children: ReactNode };
 
 type Context = {
-  // eslint-disable-next-line no-unused-vars
   httpClientAPI: <T>(config: AxiosRequestConfig<T>) => Promise<AxiosResponse<T>>;
 };
 
