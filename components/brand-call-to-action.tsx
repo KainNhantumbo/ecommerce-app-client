@@ -11,8 +11,8 @@ export const CallToAction = () => {
             Discover the latest in <em>Trendy Products</em> with us!
           </h2>
           <p className='font-sm max-w-2xl '>
-            Embark on a style adventure with our essential product collections. Uncover
-            the trends, promotions and first-class choice possibilities that await you.
+            Embark on a style adventure with our essential product collections. Uncover the
+            trends, promotions and first-class choice possibilities that await you.
           </p>
         </div>
 

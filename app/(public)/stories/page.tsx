@@ -23,29 +23,27 @@ export default function Stories() {
 
       <section className='mx-auto flex w-full max-w-4xl flex-col gap-3 font-sans-body text-lg'>
         <p>
-          Step into a world where fashion is more than just clothing—it's a vibrant
-          tapestry of stories waiting to be told. Welcome to our Stories page, a place
-          where inspiration, creativity, and the essence of style converge to captivate
-          and inspire.
+          Step into a world where fashion is more than just clothing—it's a vibrant tapestry
+          of stories waiting to be told. Welcome to our Stories page, a place where
+          inspiration, creativity, and the essence of style converge to captivate and
+          inspire.
         </p>
         <p>
           Here, amidst the digital pages of our platform, you'll find a collection of
-          narratives that celebrate the diverse journeys and experiences of our
-          community. From the glitz and glamour of the runway to the intimate moments of
-          personal style exploration, each story is a testament to the transformative
-          power of fashion.
+          narratives that celebrate the diverse journeys and experiences of our community.
+          From the glitz and glamour of the runway to the intimate moments of personal style
+          exploration, each story is a testament to the transformative power of fashion.
         </p>
         <p>
-          Join us as we delve into the depths of creativity, exploring the
-          behind-the-scenes magic of the fashion industry, spotlighting individuals who
-          are shaping trends and pushing boundaries, and sharing personal tales of
-          self-expression and empowerment.
+          Join us as we delve into the depths of creativity, exploring the behind-the-scenes
+          magic of the fashion industry, spotlighting individuals who are shaping trends and
+          pushing boundaries, and sharing personal tales of self-expression and empowerment.
         </p>
         <p>
-          Whether you're seeking inspiration, insight, or simply a moment of connection
-          with fellow fashion enthusiasts, our Stories page invites you to embark on a
-          journey of discovery. So, sit back, immerse yourself in the beauty of
-          storytelling, and let the pages of our Stories section unfold before you.
+          Whether you're seeking inspiration, insight, or simply a moment of connection with
+          fellow fashion enthusiasts, our Stories page invites you to embark on a journey of
+          discovery. So, sit back, immerse yourself in the beauty of storytelling, and let
+          the pages of our Stories section unfold before you.
         </p>
       </section>
 
@@ -59,20 +57,19 @@ export default function Stories() {
             <h3 className='text-green-500'>Style Spotlight</h3>
             <p>
               Step into the spotlight and discover the stories behind some of the most
-              iconic fashion moments. From red carpet glamour to street style
-              sensations, our Style Spotlight section shines a light on the individuals
-              who are shaping the world of fashion with their bold choices and
-              distinctive tastes.
+              iconic fashion moments. From red carpet glamour to street style sensations,
+              our Style Spotlight section shines a light on the individuals who are shaping
+              the world of fashion with their bold choices and distinctive tastes.
             </p>
           </div>
           <div>
             <h3 className='text-green-500'>Behind the Seams</h3>
             <p>
-              Go behind the scenes and uncover the secrets of the fashion industry. In
-              this section, we lift the curtain to reveal the creative processes,
-              craftsmanship, and innovation that go into creating the garments and
-              accessories you love. Gain insights from designers, artisans, and industry
-              insiders as they share their stories and expertise.
+              Go behind the scenes and uncover the secrets of the fashion industry. In this
+              section, we lift the curtain to reveal the creative processes, craftsmanship,
+              and innovation that go into creating the garments and accessories you love.
+              Gain insights from designers, artisans, and industry insiders as they share
+              their stories and expertise.
             </p>
           </div>
         </section>
@@ -81,21 +78,20 @@ export default function Stories() {
           <div>
             <h3 className='text-green-500'>Fashion Forward</h3>
             <p>
-              Stay ahead of the curve with our Fashion Forward section, where we explore
-              the latest trends, collections, and must-have pieces. Whether you're
-              seeking inspiration for your next wardrobe refresh or eager to discover
-              emerging designers, this is your go-to destination for all things
-              fashion-forward.
+              Stay ahead of the curve with our Fashion Forward section, where we explore the
+              latest trends, collections, and must-have pieces. Whether you're seeking
+              inspiration for your next wardrobe refresh or eager to discover emerging
+              designers, this is your go-to destination for all things fashion-forward.
             </p>
           </div>
           <div>
             <h3 className='text-green-500'>Personal Stories</h3>
             <p>
-              Every outfit tells a story, and in this section, we invite you to share
-              yours. From memorable fashion moments to transformative style journeys,
-              our Personal Stories section is a platform for you to celebrate your
-              unique experiences and connect with like-minded individuals who share your
-              passion for self-expression through clothing.
+              Every outfit tells a story, and in this section, we invite you to share yours.
+              From memorable fashion moments to transformative style journeys, our Personal
+              Stories section is a platform for you to celebrate your unique experiences and
+              connect with like-minded individuals who share your passion for
+              self-expression through clothing.
             </p>
           </div>
         </section>
@@ -105,19 +101,18 @@ export default function Stories() {
             <h3 className='text-green-500'>Community Spotlight</h3>
             <p>
               At {constants.name}, our community is at the heart of everything we do. In
-              this section, we shine a spotlight on the individuals who make our
-              community vibrant and diverse. Meet fellow fashion enthusiasts, discover
-              their stories, and celebrate the connections that unite us through a
-              shared love of style.
+              this section, we shine a spotlight on the individuals who make our community
+              vibrant and diverse. Meet fellow fashion enthusiasts, discover their stories,
+              and celebrate the connections that unite us through a shared love of style.
             </p>
           </div>
         </section>
         <p className='font-sans-body text-lg'>
-          Join us on a journey of inspiration, discovery, and self-expression as we
-          explore the stories that shape the world of fashion. Whether you're a
-          trendsetter, a storyteller, or simply a lover of beautiful garments, there's
-          something here for everyone. Sit back, relax, and immerse yourself in the
-          magic of fashion storytelling.
+          Join us on a journey of inspiration, discovery, and self-expression as we explore
+          the stories that shape the world of fashion. Whether you're a trendsetter, a
+          storyteller, or simply a lover of beautiful garments, there's something here for
+          everyone. Sit back, relax, and immerse yourself in the magic of fashion
+          storytelling.
         </p>
       </section>
     </main>

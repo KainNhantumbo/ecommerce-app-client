@@ -12,5 +12,4 @@ export const currencyFormatter = (amount: number): string =>
 
 export const formatDate = (date: string): string => moment(date).format('LL');
 
-export const scrollToTop = () =>
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+export const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

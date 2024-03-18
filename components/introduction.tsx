@@ -27,14 +27,14 @@ export const Introduction = () => {
 
       <div className='flex flex-wrap place-items-center items-center justify-center gap-4 font-medium'>
         <p className='max-w-[420px] text-justify'>
-          At {constants.name}, we believe that fashion is more than just clothing; it's
-          a form of self-expression that empowers individuals to showcase their unique
+          At {constants.name}, we believe that fashion is more than just clothing; it's a
+          form of self-expression that empowers individuals to showcase their unique
           personality and creativity.
         </p>
         <p className='max-w-[420px] text-justify'>
-          Thank you for choosing us as your go-to destination for all things fashion.
-          We're excited to embark on this adventure with you and help you discover your
-          signature style. <i className='italic text-primary'>Happy shopping!</i>
+          Thank you for choosing us as your go-to destination for all things fashion. We're
+          excited to embark on this adventure with you and help you discover your signature
+          style. <i className='italic text-primary'>Happy shopping!</i>
         </p>
       </div>
 

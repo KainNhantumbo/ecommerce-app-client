@@ -75,9 +75,7 @@ export default function Page() {
         <EmptyMessage
           icon={AlertTriangleIcon}
           action={{ label: 'Try again.', handler: () => refetch() }}
-          message={
-            errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE
-          }
+          message={errorTransformer(error as HttpError).message || DEFAULT_ERROR_MESSAGE}
         />
       ) : null}
 

@@ -11,7 +11,7 @@ export const errorTransformer = ({ response }: HttpError) => {
         return message;
       }, '');
     } else {
-      message = response?.data?.message || DEFAULT_ERROR_MESSAGE
+      message = response?.data?.message || DEFAULT_ERROR_MESSAGE;
     }
   }
 

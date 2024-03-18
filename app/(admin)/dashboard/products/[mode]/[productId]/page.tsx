@@ -36,19 +36,21 @@ import { toast } from 'sonner';
 
 export type PageProps = { params: { mode: 'create' | 'update'; productId?: string } };
 
+const initialProductState = {
+  name: '',
+  price: 0,
+  images: [],
+  specs: '',
+  description: '',
+  sizes: [],
+  colors: [],
+  category: { label: '', value: '' },
+  isArchived: false,
+  isFeatured: false
+};
+
 export default function Page({ params }: PageProps) {
-  const [product, setProduct] = useState<CreateProduct>({
-    name: '',
-    price: 0,
-    images: [],
-    specs: '',
-    description: '',
-    sizes: [],
-    colors: [],
-    category: { label: '', value: '' },
-    isArchived: false,
-    isFeatured: false
-  });
+  const [product, setProduct] = useState<CreateProduct>(initialProductState);
 
   const [isDisabled, setIsDisabled] = useState(false);
   const { httpClientAPI } = useAppContext();
@@ -107,36 +109,16 @@ export default function Page({ params }: PageProps) {
       await httpClientAPI({
         method: 'post',
         url: '/api/v1/products',
-        data: {
-          ...product,
-          images: product.images.map(({ url }) => ({ url }))
-        }
+        data: { ...product, images: product.images.map(({ url }) => ({ url })) }
       });
       toast.success('Product created.', {
-        action: {
-          label: 'Get Back',
-          onClick: () => router.back()
-        }
+        action: { label: 'Get Back', onClick: () => router.back() }
       });
-      setProduct({
-        name: '',
-        price: 0,
-        images: [],
-        specs: '',
-        description: '',
-        sizes: [],
-        category: { label: '', value: '' },
-        colors: [],
-        isArchived: false,
-        isFeatured: false
-      });
+      setProduct(initialProductState);
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
       toast.error(message, {
-        action: {
-          label: 'Retry',
-          onClick: () => handleCreate()
-        }
+        action: { label: 'Retry', onClick: () => handleCreate() }
       });
       console.warn(message || error);
     } finally {
@@ -237,9 +219,7 @@ export default function Page({ params }: PageProps) {
                     setProduct((state) => ({ ...state, price: Number(e.target.value) }))
                   }
                 />
-                <span className='self-end text-xs'>
-                  {product.price.toString().length}
-                </span>
+                <span className='self-end text-xs'>{product.price.toString().length}</span>
               </div>
             </div>
             <div className='flex flex-col items-center gap-3'>
@@ -253,9 +233,7 @@ export default function Page({ params }: PageProps) {
                     setProduct((state) => ({ ...state, description: e.target.value }))
                   }
                 />
-                <span className='self-end text-xs'>
-                  {product.description.length} / 256
-                </span>
+                <span className='self-end text-xs'>{product.description.length} / 256</span>
               </div>
               <div className='flex w-full flex-col gap-2'>
                 <Label>Specs</Label>
@@ -372,8 +350,8 @@ export default function Page({ params }: PageProps) {
                 <div className='space-y-0.5'>
                   <Label>Archived</Label>
                   <p>
-                    Controls if this product is archived and will not appear anywhere in
-                    the store.
+                    Controls if this product is archived and will not appear anywhere in the
+                    store.
                   </p>
                 </div>
                 <Switch

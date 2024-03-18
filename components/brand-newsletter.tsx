@@ -8,8 +8,8 @@ export const BrandNewsletter = () => {
         Your Monthly Dose of Updates and Offers!
       </h2>
       <p className='font-sm mx-auto max-w-2xl text-center'>
-        Send your email, we will inform you about the latest product releases and
-        satisfying discounts!
+        Send your email, we will inform you about the latest product releases and satisfying
+        discounts!
       </p>
 
       <form

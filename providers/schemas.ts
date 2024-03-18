@@ -91,10 +91,7 @@ export const userSignupSchema = z
       .min(2, { message: 'Last name must have a minimum of 2 characters.' })
       .max(21, { message: 'Last name must have less than 21 characters.' })
       .trim(),
-    employeeId: z
-      .string()
-      .nonempty({ message: 'Please insert your employer ID.' })
-      .trim(),
+    employeeId: z.string().nonempty({ message: 'Please insert your employer ID.' }).trim(),
     role: z.string().nonempty({ message: 'Please select your role.' }).trim(),
     email: z
       .string()
@@ -129,10 +126,7 @@ export const updateUserSchema = z.object({
     .min(2, { message: 'Last name must have a minimum of 2 characters.' })
     .max(21, { message: 'Last name must have less than 21 characters.' })
     .trim(),
-  employeeId: z
-    .string()
-    .nonempty({ message: 'Please insert your employer ID.' })
-    .trim(),
+  employeeId: z.string().nonempty({ message: 'Please insert your employer ID.' }).trim(),
   role: z.string().nonempty({ message: 'Please select your role.' }).trim(),
   password: z
     .string()

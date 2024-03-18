@@ -65,8 +65,7 @@ export const DeleteUserAlert: FC<Props> = ({ id }) => {
         <AlertDialogHeader>
           <AlertDialogTitle className='font-sans'>Delete User Account</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete this user
-            account.
+            This action cannot be undone. This will permanently delete this user account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

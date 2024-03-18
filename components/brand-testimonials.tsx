@@ -31,9 +31,7 @@ export const BrandTestimonials = () => {
 
       <section className=' mx-auto flex w-full flex-wrap items-center justify-center gap-4'>
         {testimonials.map((data, i) => (
-          <div
-            key={i}
-            className='flex max-w-xs flex-col items-center gap-3 text-center'>
+          <div key={i} className='flex max-w-xs flex-col items-center gap-3 text-center'>
             <div className='flex gap-3'>
               <StarsIcon className='stroke-primary' />
               <StarsIcon className='stroke-font' />

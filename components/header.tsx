@@ -92,9 +92,7 @@ export const Header = () => {
             asChild
             variant={'ghost'}
             className='fixed right-28 top-[6px] flex w-fit  items-center  border-none hover:cursor-pointer md:right-20 lg:right-[calc(50%_-_430px)]'>
-            <Link
-              href={'/checkout'}
-              className='group flex w-fit items-center gap-2 px-2'>
+            <Link href={'/checkout'} className='group flex w-fit items-center gap-2 px-2'>
               <ShoppingBagIcon className='pointer-events-none h-auto w-6 group-hover:stroke-primary' />
               <span className='font-bold group-hover:text-primary'>{cart.length}</span>
             </Link>

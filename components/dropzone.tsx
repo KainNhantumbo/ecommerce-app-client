@@ -67,9 +67,7 @@ export const DropzoneArea = ({ handler, width, height }: DropzoneProps) => {
       <div className='flex w-full select-none flex-col items-center gap-3'>
         <DownloadIcon />
         <h3 className='mx-auto w-full max-w-[260px] text-center text-primary'>
-          {isDragActive
-            ? 'Drop your image here'
-            : 'Click or drag and drop an image here'}
+          {isDragActive ? 'Drop your image here' : 'Click or drag and drop an image here'}
         </h3>
         <span className='text-center'>[.JPEG, .JPG, .PNG]</span>
         <span className='text-center text-xs font-medium'>

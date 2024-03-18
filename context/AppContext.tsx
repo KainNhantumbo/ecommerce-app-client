@@ -48,25 +48,20 @@ export const AppContext: FC<Props> = ({ children }) => {
     }
   };
 
-  async function httpClientAPI<T>(
-    config: AxiosRequestConfig
-  ): Promise<AxiosResponse<T>> {
-    httpClient.interceptors.response.use(
-      undefined,
-      (error: AxiosError): Promise<never> => {
-        const status = Number(error?.response?.status);
-        let retryCount = 0;
-        if (status > 400 && status < 404 && retryCount < 6) {
-          authenticateUser().catch((error) => {
-            const { message } = errorTransformer(error as HttpError);
-            console.error(message || error);
-            retryCount += 1;
-          });
-        }
-        router.push('/auth/sign-in');
-        return Promise.reject(error);
+  async function httpClientAPI<T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    httpClient.interceptors.response.use(undefined, (error: AxiosError): Promise<never> => {
+      const status = Number(error?.response?.status);
+      let retryCount = 0;
+      if (status > 400 && status < 404 && retryCount < 6) {
+        authenticateUser().catch((error) => {
+          const { message } = errorTransformer(error as HttpError);
+          console.error(message || error);
+          retryCount += 1;
+        });
       }
-    );
+      router.push('/auth/sign-in');
+      return Promise.reject(error);
+    });
     return await httpClient<T>({
       ...config,
       headers: { authorization: `Bearer ${auth.token}` },

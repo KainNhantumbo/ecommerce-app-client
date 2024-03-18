@@ -56,15 +56,13 @@ const listings = [
   },
   {
     career: 'SEO Marketing Manager',
-    description:
-      "We're looking for a experienced Seo marketing manager to join our team.",
+    description: "We're looking for a experienced Seo marketing manager to join our team.",
     basedIn: 'Remote',
     type: 'Part-time'
   },
   {
     career: 'Engineering Manager',
-    description:
-      "We're looking for a experienced engineering manager to join our team.",
+    description: "We're looking for a experienced engineering manager to join our team.",
     basedIn: 'Remote',
     type: 'Part-time'
   }
@@ -80,8 +78,8 @@ export default function Page() {
 
         <p className='font-sm mx-auto max-w-3xl text-center'>
           To be the company of our customers want us to be, it takes an{' '}
-          <em>eclectic team</em> of passionate workers. Get to know the people leading
-          the way at <strong>{constants.name}</strong>.
+          <em>eclectic team</em> of passionate workers. Get to know the people leading the
+          way at <strong>{constants.name}</strong>.
         </p>
 
         <div className='grid w-full place-content-center place-items-center'>
@@ -137,8 +135,8 @@ export default function Page() {
         <section className=' mx-auto flex w-full flex-col gap-4 py-8'>
           <h3 className='mx-auto max-w-3xl text-center font-sans-body text-2xl font-medium'>
             <strong className='text-primary'>{constants.name}</strong> truly values{' '}
-            <em>work-life balance.</em> We work really hard, but at the end of the day
-            you can take a rest and switch off.
+            <em>work-life balance.</em> We work really hard, but at the end of the day you
+            can take a rest and switch off.
           </h3>
           <div className='flex flex-col items-center gap-2'>
             <Image

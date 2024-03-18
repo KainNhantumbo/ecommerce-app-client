@@ -20,9 +20,7 @@ export const AccordionWrapper: FC<AccordionProps> = ({ data }) => (
         <AccordionTrigger className='font-sans text-lg underline-offset-2'>
           {title}
         </AccordionTrigger>
-        <AccordionContent className='font-sans-body text-base'>
-          {content}
-        </AccordionContent>
+        <AccordionContent className='font-sans-body text-base'>{content}</AccordionContent>
       </AccordionItem>
     ))}
   </Accordion>

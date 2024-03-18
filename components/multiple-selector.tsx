@@ -122,7 +122,7 @@ function removePickedOption(groupOption: GroupOption, picked: Option[]) {
 }
 
 /**
- * The `CommandEmpty` of shadcn/ui will cause the cmdk empty not rendering correctly.
+ * The `CommandEmpty` of shadcn /ui will cause the cmdk empty not rendering correctly.
  * So we create one and copy the `Empty` implementation from `cmdk`.
  *
  * @reference: https://github.com/hsuanyi-chou/shadcn-ui-expansions/issues/34#issuecomment-1949561607

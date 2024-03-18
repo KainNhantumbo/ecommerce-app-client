@@ -16,9 +16,7 @@ export default function Page() {
 
   const getProducts = async () => {
     try {
-      const { data } = await httpClientAPI<
-        { _id: string; name: string; price: number }[]
-      >({
+      const { data } = await httpClientAPI<{ _id: string; name: string; price: number }[]>({
         method: 'get',
         url: '/api/v1/products?fields=name,price'
       });
@@ -73,7 +71,7 @@ export default function Page() {
       console.error(message || error);
     }
   };
-  
+
   const getBillboards = async () => {
     try {
       const { data } = await httpClientAPI<
@@ -106,7 +104,7 @@ export default function Page() {
     <main className='space-x-480 mx-auto mt-24 flex w-full max-w-5xl flex-col gap-8 px-4 font-sans-body text-lg'>
       <Heading title='Overview' description='Store stats overview' />
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 font-sans'>
+      <div className='grid grid-cols-1 gap-4 font-sans sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
             <CardTitle className='text-sm font-medium'>Amount in Products</CardTitle>
@@ -152,9 +150,7 @@ export default function Page() {
             <UserIcon className='h-auto w-5 text-muted-foreground' />
           </CardHeader>
           <CardContent>
-            <div className='text-2xl font-bold'>
-              {users.data ? users.data.length : 0}
-            </div>
+            <div className='text-2xl font-bold'>{users.data ? users.data.length : 0}</div>
           </CardContent>
         </Card>
         <Card>

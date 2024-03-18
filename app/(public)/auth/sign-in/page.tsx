@@ -138,9 +138,7 @@ export default function Page() {
                   size={'lg'}
                   className='group flex w-full items-center gap-2'>
                   <GithubIcon className='stroke-primary ' />
-                  <span className='font-semibold text-primary '>
-                    Sign In with Github
-                  </span>
+                  <span className='font-semibold text-primary '>Sign In with Github</span>
                 </Button>
               </div>
             </form>

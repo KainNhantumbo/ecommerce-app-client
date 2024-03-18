@@ -162,9 +162,7 @@ export default function Page<T extends Props>({ params: { category, productId } 
                 </div>
 
                 <div className='flex w-full flex-col gap-2 font-sans'>
-                  <h3 className='capitalize'>
-                    {product.colors.length} colors available
-                  </h3>
+                  <h3 className='capitalize'>{product.colors.length} colors available</h3>
                   <ToggleGroup
                     type='multiple'
                     size={'sm'}

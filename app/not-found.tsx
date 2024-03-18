@@ -15,8 +15,8 @@ export default function NotFound() {
         <h1 className='text-center font-sans text-6xl font-bold leading-tight'>404</h1>
         <h2 className='font-sans font-bold uppercase text-primary'>Page not found</h2>
         <p className='max-w-screen-mobile text-center font-sans font-medium normal-case'>
-          But if you don't change your direction, and if you keep looking, you may end
-          up where you are heading.
+          But if you don't change your direction, and if you keep looking, you may end up
+          where you are heading.
         </p>
         <Link
           href={'/'}

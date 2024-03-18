@@ -191,9 +191,7 @@ export const UserTableRender: FC<UserTableRenderProps> = (props) => {
               Columns <ChevronDownIcon className='ml-2 h-4 w-4' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align='end'
-            className='font-sans-body font-medium text-font'>
+          <DropdownMenuContent align='end' className='font-sans-body font-medium text-font'>
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -221,10 +219,7 @@ export const UserTableRender: FC<UserTableRenderProps> = (props) => {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );
                 })}

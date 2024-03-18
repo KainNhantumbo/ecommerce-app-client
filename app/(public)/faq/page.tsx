@@ -54,18 +54,18 @@ export default function Page() {
       <h2>Welcome to Our FAQ Page</h2>
       <div className='flex flex-col gap-3'>
         <p>
-          Have questions? You're in the right place! Our Frequently Asked Questions
-          (FAQ) page is designed to provide you with quick and comprehensive answers to
-          common queries about shopping with us. Whether you're curious about our
-          ordering process, shipping policies, returns, or product information, we're
-          here to ensure your shopping experience is seamless and enjoyable.
+          Have questions? You're in the right place! Our Frequently Asked Questions (FAQ)
+          page is designed to provide you with quick and comprehensive answers to common
+          queries about shopping with us. Whether you're curious about our ordering process,
+          shipping policies, returns, or product information, we're here to ensure your
+          shopping experience is seamless and enjoyable.
         </p>
 
         <p>
           Browse through our FAQ section to find the answers you need. Can't find what
           you're looking for? Don't worry, our dedicated customer support team is always
-          ready to assist you. At {constants.name}, we believe in transparency and
-          strive to provide you with all the information you need to shop confidently.
+          ready to assist you. At {constants.name}, we believe in transparency and strive to
+          provide you with all the information you need to shop confidently.
         </p>
 
         <p>
@@ -78,9 +78,9 @@ export default function Page() {
       <AccordionWrapper data={[...questions]} />
 
       <p>
-        If you have any additional questions or concerns, please don't hesitate to
-        contact us. Our customer support team is here to assist you and provide you with
-        the best shopping experience possible!
+        If you have any additional questions or concerns, please don't hesitate to contact
+        us. Our customer support team is here to assist you and provide you with the best
+        shopping experience possible!
       </p>
     </main>
   );

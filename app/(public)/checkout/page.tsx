@@ -120,9 +120,7 @@ export default function Page() {
                         {product.name}
                       </h2>
                     </Link>
-                    <p className='text-xl font-bold'>
-                      {currencyFormatter(product.price)}
-                    </p>
+                    <p className='text-xl font-bold'>{currencyFormatter(product.price)}</p>
                   </div>
                   <div className='w-full space-y-2 text-sm'>
                     {product.colors.length > 1 ? (
@@ -185,9 +183,7 @@ export default function Page() {
                         min={1}
                         className='w-full max-w-[67px]'
                         value={String(product.quantity)}
-                        onChange={(e) =>
-                          updateQuantity(product.productId, +e.target.value)
-                        }
+                        onChange={(e) => updateQuantity(product.productId, +e.target.value)}
                       />
                       <Button
                         size={'icon'}

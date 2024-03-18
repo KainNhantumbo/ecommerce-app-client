@@ -74,15 +74,12 @@ export default function Page({ params: { orderId } }: PageProps) {
                 <i className='font-semibold'>Is Paid:</i> {String(order.isPaid)}
               </p>
               <p>
-                <i className='font-semibold'>Date:</i>{' '}
-                {formatDate(String(order.createdAt))}
+                <i className='font-semibold'>Date:</i> {formatDate(String(order.createdAt))}
               </p>
               <p>
                 <i className='font-semibold'>Total Price: </i>
                 {currencyFormatter(
-                  order.items
-                    .map((item) => item.price)
-                    .reduce((acc, curr) => acc + curr, 0)
+                  order.items.map((item) => item.price).reduce((acc, curr) => acc + curr, 0)
                 )}
               </p>
             </div>

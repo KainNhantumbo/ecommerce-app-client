@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Order } from '@/types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';

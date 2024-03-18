@@ -27,12 +27,7 @@ import { USER_ROLES } from '@/shared/constants';
 import type { HttpError, User } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import {
-  AlertTriangleIcon,
-  ArrowRightCircleIcon,
-  LockIcon,
-  User2Icon
-} from 'lucide-react';
+import { AlertTriangleIcon, ArrowRightCircleIcon, LockIcon, User2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -228,8 +223,7 @@ export default function Page({ params: { userId } }: PageProps) {
             </div>
 
             <h3>
-              Note: leave these fields below blank, if you don't want to update
-              password.
+              Note: leave these fields below blank, if you don't want to update password.
             </h3>
             <div className='flex flex-col items-center justify-between gap-4 sm:flex-row'>
               <FormField

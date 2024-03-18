@@ -1,11 +1,6 @@
 import { BrandNewsletter } from '@/components/brand-newsletter';
 import { ContactForm } from '@/components/contact-form';
-import {
-  ContactIcon,
-  LocateIcon,
-  MessageCircleIcon,
-  PhoneCallIcon
-} from 'lucide-react';
+import { ContactIcon, LocateIcon, MessageCircleIcon, PhoneCallIcon } from 'lucide-react';
 
 const options = [
   {
@@ -45,8 +40,8 @@ export default function Page() {
               Contact our friendly team
             </h1>
             <p className='font-sm mx-auto max-w-xl text-center'>
-              We're here to help! If you have any questions, suggestions, or just want
-              to say hello, please feel free to reach out to us.
+              We're here to help! If you have any questions, suggestions, or just want to
+              say hello, please feel free to reach out to us.
             </p>
           </div>
 

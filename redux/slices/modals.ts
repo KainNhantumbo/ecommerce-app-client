@@ -24,6 +24,5 @@ export const modalSlice = createSlice({
   }
 });
 
-export const { toggleBillboardEditor, toggleBillboardImagePreviewer } =
-  modalSlice.actions;
+export const { toggleBillboardEditor, toggleBillboardImagePreviewer } = modalSlice.actions;
 export default modalSlice.reducer;

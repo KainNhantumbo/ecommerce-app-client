@@ -42,9 +42,7 @@ export const BrandFeatures = () => {
               className='group flex select-none flex-col gap-4 rounded-xl border-[1px] border-solid border-font/10 p-5 transition-colors hover:bg-primary/20'>
               <div className='flex items-center justify-between'>
                 <StarIcon className='group-hover:stroke-primary' />
-                <span className='font-bold group-hover:text-primary'>{`0${
-                  i + 1
-                }`}</span>
+                <span className='font-bold group-hover:text-primary'>{`0${i + 1}`}</span>
               </div>
 
               <h3 className='text-xl group-hover:text-primary'>{card.title}</h3>

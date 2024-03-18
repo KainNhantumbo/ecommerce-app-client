@@ -180,9 +180,7 @@ export const OrderTableRender: FC<OrderTableRenderProps> = (props) => {
         <Input
           placeholder='Filter by name...'
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
           className='max-w-sm'
         />
         <DropdownMenu>
@@ -191,9 +189,7 @@ export const OrderTableRender: FC<OrderTableRenderProps> = (props) => {
               Columns <ChevronDownIcon className='ml-2 h-4 w-4' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align='end'
-            className='font-sans-body font-medium text-font'>
+          <DropdownMenuContent align='end' className='font-sans-body font-medium text-font'>
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -221,10 +217,7 @@ export const OrderTableRender: FC<OrderTableRenderProps> = (props) => {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                        : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );
                 })}

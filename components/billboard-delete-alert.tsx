@@ -35,9 +35,7 @@ export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
         method: 'delete',
         url: `/api/v1/billboards/${id}`
       });
-      dispatch(
-        updateBillboards(billboards.filter((billboard) => billboard._id !== id))
-      );
+      dispatch(updateBillboards(billboards.filter((billboard) => billboard._id !== id)));
       toast.success('Billboard deleted.');
     } catch (error) {
       const { message } = errorTransformer(error as HttpError);
@@ -65,7 +63,7 @@ export const DeleteBillboardAlert: FC<Props> = ({ id }) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='border-none group flex items-center gap-2 rounded-lg bg-transparent shadow-none'>
+          <AlertDialogCancel className='group flex items-center gap-2 rounded-lg border-none bg-transparent shadow-none'>
             <XIcon className='w-4 transition-colors group-hover:stroke-blue-400 group-active:stroke-blue-400' />
             <span className='capitalize transition-colors group-hover:text-blue-400'>
               Cancel

@@ -12,12 +12,7 @@ import {
   Trigger
 } from '@radix-ui/react-dialog';
 import { XIcon } from 'lucide-react';
-import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLAttributes,
-  forwardRef
-} from 'react';
+import { ComponentPropsWithoutRef, ElementRef, HTMLAttributes, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 

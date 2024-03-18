@@ -3,12 +3,7 @@
 import { DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Search } from 'lucide-react';
-import {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLAttributes,
-  forwardRef
-} from 'react';
+import { ComponentPropsWithoutRef, ElementRef, HTMLAttributes, forwardRef } from 'react';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
