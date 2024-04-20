@@ -117,12 +117,12 @@ export default function Page() {
                     <FormItem className='w-full'>
                       <FormLabel className='flex items-center gap-2'>
                         <User2Icon className='h-5 w-auto' />
-                        <span>First name</span>
+                        <span>Last name</span>
                       </FormLabel>
                       <FormControl>
                         <Input
                           disabled={loading}
-                          placeholder='Enter your first name'
+                          placeholder='Enter your last name'
                           {...field}
                         />
                       </FormControl>

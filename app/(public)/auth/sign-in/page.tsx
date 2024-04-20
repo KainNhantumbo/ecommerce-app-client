@@ -16,6 +16,7 @@ import { errorTransformer } from '@/lib/http-error-transformer';
 import { UserLoginType, userLoginSchema } from '@/providers/schemas';
 import backgroundImage from '@/public/login-background.jpg';
 import { updateAuth } from '@/redux/slices/auth';
+import { AppDispatch } from '@/redux/store';
 import { Auth, HttpError } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { GithubIcon, LockIcon, MailIcon, UnlockIcon } from 'lucide-react';
@@ -28,7 +29,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 
 export default function Page() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { height: innerHeight } = useInnerWindowSize();
