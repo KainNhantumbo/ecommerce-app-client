@@ -50,7 +50,7 @@ export const ProductCarousel: FC<ProductCarouselProps> = ({ images }) => {
   return (
     <Carousel className='base-border h-[340px] max-w-[320px] rounded-lg'>
       <CarouselContent>
-        {images.map((image, index) => (
+        {images.map((image) => (
           <CarouselItem key={image.id}>
             <Image
               src={image.url}
